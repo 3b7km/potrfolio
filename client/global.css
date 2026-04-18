@@ -1,0 +1,121 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Onyx Editorial palette */
+    --background: 0 0% 5%; /* #0d0d0d */
+    --foreground: 40 23% 92%; /* #f0ede6 */
+    --primary: 40 23% 92%;
+    --secondary: 40 10% 70%;
+    --accent: 40 23% 92%;
+    --muted: 40 23% 92%; /* we will use opacity for muted */
+    --border: 0 0% 100%; /* we will use opacity for border */
+    --divider: 0 0% 100%;
+  }
+
+  * {
+    @apply border-border/10;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    overflow-x: hidden;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Typography defaults */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-syne font-bold;
+  }
+
+  p,
+  span,
+  li,
+  a,
+  button,
+  label {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  pre,
+  code {
+    overflow-x: auto;
+    white-space: pre;
+  }
+
+  /* Custom cursor styles */
+  .cursor-dot {
+    @apply pointer-events-none fixed rounded-full border border-foreground mix-blend-screen z-50 transition-all duration-200;
+  }
+
+  /* Text reveal animation from bottom */
+  .text-reveal {
+    clip-path: inset(100% 0 0 0);
+  }
+
+  .text-reveal.revealed {
+    clip-path: inset(0 0 0 0);
+  }
+
+  /* Divider line */
+  .divider {
+    @apply h-px bg-divider;
+  }
+
+  /* Section label styling */
+  .section-label {
+    @apply text-xs font-syne uppercase tracking-wider text-muted;
+  }
+
+  /* Link styling */
+  a {
+    @apply transition-colors duration-300;
+  }
+
+  /* Smooth scroll behavior for Lenis */
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Lenis smooth scroll override */
+html.lenis {
+  height: auto;
+}
+
+html.lenis body {
+  height: auto;
+}
+
+/* Marquee animation */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee {
+  animation: marquee var(--duration, 30s) linear infinite;
+}
+
+/* Gradient text for special effects (if needed) */
+.gradient-text {
+  background: linear-gradient(90deg, var(--accent), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
