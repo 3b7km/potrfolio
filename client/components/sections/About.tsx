@@ -27,15 +27,7 @@ export default function About() {
               </p>
             </div>
 
-            <div className="mt-8">
-              <a 
-                href="/resume.pdf" 
-                target="_blank"
-                className="inline-flex items-center gap-2 pb-2 border-b border-foreground text-sm font-bold font-sans uppercase tracking-widest hover:text-muted hover:border-muted transition-colors"
-              >
-                Download Résumé
-              </a>
-            </div>
+
           </div>
 
           {/* Right Column: Experience & Skills */}
