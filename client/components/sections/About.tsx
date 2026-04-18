@@ -53,11 +53,13 @@ export default function About() {
 
         {/* Content Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-start">
-          {/* Left: 3D Cube */}
-          <div className="h-64 md:h-96 hidden md:block">
-            <Canvas3D cameraPosition={[0, 0, 3]}>
-              <WireframeCube />
-            </Canvas3D>
+          {/* Left: Photo */}
+          <div className="h-64 md:h-96 rounded-lg overflow-hidden">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets%2F412054951e8b4d02957cdfe69d9f1d3c%2Fabab53a9ca4d4fcf85e04068b30e2924?format=webp&width=800&height=1200"
+              alt="Youssef Abdelhakam"
+              className="w-full h-full object-cover"
+            />
           </div>
 
           {/* Right: Text & Stats */}
@@ -85,7 +87,7 @@ export default function About() {
               viewport={{ once: true, margin: "-100px" }}
             >
               <p className="text-base md:text-lg leading-relaxed">
-                {`I'm Youssef — a web developer and programmer based in Benha, Egypt. I build e-commerce stores, custom web applications, and digital products that actually work for real businesses. Currently studying Network & Cyber Security at ElSewedy University of Technology while taking on real client projects.`.split(" ").map((word, idx) => (
+                {`I'm Youssef — a web developer and programmer. I build e-commerce stores, custom web applications, and digital products that actually work for real businesses. Currently studying Network & Cyber Security at ElSewedy University of Technology while taking on real client projects.`.split(" ").map((word, idx) => (
                   <span key={idx} className="word inline-block mr-1">
                     {word}
                   </span>

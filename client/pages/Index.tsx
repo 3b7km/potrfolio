@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import LoadingScreen from "@/components/LoadingScreen";
-import CustomCursor from "@/components/CustomCursor";
 import Hero from "@/components/sections/Hero";
 import Marquee from "@/components/sections/Marquee";
 import Projects from "@/components/sections/Projects";
@@ -51,7 +50,6 @@ export default function Index() {
 
   return (
     <div className="bg-background text-foreground overflow-x-hidden">
-      <CustomCursor />
 
       {/* Loading Screen */}
       <AnimatePresence>

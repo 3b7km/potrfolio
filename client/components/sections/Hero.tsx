@@ -107,7 +107,7 @@ export default function Hero({ onNavigate }: HeroProps) {
           transition={{ delay: 0.8, duration: 0.8 }}
           className="text-muted text-sm md:text-base mt-8 max-w-2xl"
         >
-          Based in Benha, Egypt — Available for projects
+          Available for projects
         </motion.p>
       </div>
 

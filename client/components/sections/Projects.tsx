@@ -6,14 +6,15 @@ import { ExternalLink } from "lucide-react";
 const projects = [
   {
     id: "a",
-    name: "Sneakrz King",
-    platform: "Next.js",
-    tags: ["E-commerce Development", "Custom Frontend", "Performance Optimization", "UX/UI"],
+    name: "Helwa Fashion",
+    platform: "Shopify",
+    tags: ["Shopify Development", "Luxury Positioning", "Brand Direction", "UX/UI"],
     year: "2025©",
     description:
-      "Custom-built sneaker e-commerce store for the Egyptian market. Features 3D animated hero logo, brand filtering, size selection, dual CTA system, and full mobile optimization.",
-    url: "https://sneakrz-king.vercel.app",
-    image: "https://images.unsplash.com/photo-1460353581641-37baddab0fa2?w=800&h=600&fit=crop",
+      "Premium women's fashion Shopify store with dark luxury theme. Built 4 distinct collections — fur jackets, check sets, dresses, and Ramadan kaftans.",
+    url: "https://helwafashion.com",
+    image:
+      "https://helwafashion.com/cdn/shop/files/WhatsAppImage2026-04-04at10.44.20PM_5.jpg?v=1775348224&width=1200",
   },
   {
     id: "b",
@@ -25,19 +26,18 @@ const projects = [
       "Full Shopify store for a modest fashion brand — prayer abayas, kaftans, and abayas. Designed and developed the SUJOOD Ramadan 2026 collection.",
     url: "https://djabi-eg.com",
     image:
-      "https://images.unsplash.com/photo-1441986300352-7e59c8b69a32?w=800&h=600&fit=crop",
+      "https://djabi-eg.com/cdn/shop/files/IMG_0953.jpg?v=1770860845&width=1200",
   },
   {
     id: "c",
-    name: "Helwa Fashion",
-    platform: "Shopify",
-    tags: ["Shopify Development", "Luxury Positioning", "Brand Direction", "UX/UI"],
+    name: "Sneakrz King",
+    platform: "Next.js",
+    tags: ["E-commerce Development", "Custom Frontend", "Performance Optimization", "UX/UI"],
     year: "2025©",
     description:
-      "Premium women's fashion Shopify store with dark luxury theme. Built 4 distinct collections — fur jackets, check sets, dresses, and Ramadan kaftans.",
-    url: "https://helwafashion.com",
-    image:
-      "https://images.unsplash.com/photo-1489824904134-891ab64532f1?w=800&h=600&fit=crop",
+      "Custom-built sneaker e-commerce store for the Egyptian market. Features 3D animated hero logo, brand filtering, size selection, dual CTA system, and full mobile optimization.",
+    url: "https://sneakrz-king.vercel.app",
+    image: "https://images.unsplash.com/photo-1460353581641-37baddab0fa2?w=800&h=600&fit=crop",
   },
 ];
 
