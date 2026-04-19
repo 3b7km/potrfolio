@@ -122,14 +122,20 @@ export const experiences = [
 ];
 
 export const skills = [
+  "Next.js",
   "React",
   "TypeScript",
-  "Next.js",
-  "Three.js",
   "Tailwind CSS",
-  "Shopify",
   "Node.js",
-  "PostgreSQL",
-  "Framer Motion",
-  "Supabase",
+  "REST APIs",
+  "Laravel",
+  "PHP",
+  "Blade Templates",
+  "Eloquent ORM",
+  "MVC Architecture",
+  "SQL",
+  "Shopify",
+  "Shopify Theme Development",
+  "Web Development",
+  "Backend Development",
 ];
