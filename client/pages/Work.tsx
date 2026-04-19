@@ -71,10 +71,10 @@ export default function Work() {
   }, []);
 
   return (
-    <div className="bg-background min-h-screen text-foreground overflow-x-hidden selection:bg-foreground selection:text-background relative">
+    <div className="bg-background min-h-screen text-white overflow-x-hidden selection:bg-foreground selection:text-background relative">
 
       {/* Editorial Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 px-6 md:px-12 py-8 mix-blend-difference pointer-events-auto flex justify-between items-center text-foreground">
+      <nav className="fixed top-0 left-0 right-0 z-50 px-6 md:px-12 py-8 mix-blend-difference pointer-events-auto flex justify-between items-center text-white">
         <Link to="/" className="tap-target text-sm font-syne font-bold uppercase tracking-widest">
           Y.A ©
         </Link>
@@ -185,7 +185,7 @@ export default function Work() {
                       href={project.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="tap-target inline-flex items-center self-start text-sm font-syne font-bold uppercase tracking-widest border-b border-foreground pb-1 hover:text-muted hover:border-muted transition-colors"
+                      className="tap-target inline-flex items-center self-start text-sm font-syne font-bold uppercase tracking-widest border-b border-white pb-1 hover:text-muted hover:border-muted transition-colors"
                     >
                       Launch Site →
                     </a>
@@ -204,7 +204,7 @@ export default function Work() {
                       <ul className="flex flex-col gap-3">
                         {project.features.map((feature, i) => (
                           <li key={i} className="text-sm font-sans text-muted leading-relaxed flex items-start gap-2">
-                            <span className="text-foreground/30 mt-1 text-xs">◆</span>
+                            <span className="text-white/30 mt-1 text-xs">◆</span>
                             {feature}
                           </li>
                         ))}
@@ -219,7 +219,7 @@ export default function Work() {
                       <div className="flex flex-col gap-5">
                         {Object.entries(project.techStack).map(([category, items]) => (
                           <div key={category}>
-                            <span className="block text-xs font-sans text-foreground/50 uppercase tracking-widest mb-2">
+                            <span className="block text-xs font-sans text-white/50 uppercase tracking-widest mb-2">
                               {category}
                             </span>
                             <div className="flex flex-wrap gap-1.5">
@@ -245,7 +245,7 @@ export default function Work() {
                       <ul className="flex flex-col gap-3">
                         {project.skills.map((skill, i) => (
                           <li key={i} className="text-sm font-sans text-muted leading-relaxed flex items-start gap-2">
-                            <span className="text-foreground/30 mt-1 text-xs">→</span>
+                            <span className="text-white/30 mt-1 text-xs">→</span>
                             {skill}
                           </li>
                         ))}
@@ -275,7 +275,7 @@ export default function Work() {
             {skills.map((skill) => (
               <div
                 key={skill}
-                className="tap-target px-6 py-4 border border-white/5 bg-[#111] text-sm font-sans uppercase tracking-wider text-muted hover:text-foreground hover:border-white/20 transition-colors"
+                className="tap-target px-6 py-4 border border-white/5 bg-[#111] text-sm font-sans uppercase tracking-wider text-muted hover:text-white hover:border-white/20 transition-colors"
               >
                 {skill}
               </div>

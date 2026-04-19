@@ -6,19 +6,8 @@ export default function About() {
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8">
 
-          {/* Left Column: Photo */}
-          <div className="lg:col-span-4 flex flex-col gap-8">
-            <div className="rounded-lg overflow-hidden aspect-square">
-              <img
-                src="https://cdn.builder.io/api/v1/image/assets%2F412054951e8b4d02957cdfe69d9f1d3c%2Fabab53a9ca4d4fcf85e04068b30e2924?format=webp&width=600&height=800"
-                alt="Youssef Abdelhakam"
-                className="w-full h-full object-cover"
-              />
-            </div>
-          </div>
-
           {/* Center Column: Bio */}
-          <div className="lg:col-span-5 flex flex-col gap-8">
+          <div className="lg:col-span-7 flex flex-col gap-8">
             <h2 className="text-sm font-sans tracking-widest text-muted uppercase">
               (About)
             </h2>
@@ -30,7 +19,7 @@ export default function About() {
             <div className="text-base md:text-lg font-sans text-muted leading-relaxed max-w-2xl space-y-4">
               <div className="p-4 border border-white/10 rounded bg-white/[0.02]">
                 <p className="text-secondary font-sans font-medium mb-2 uppercase text-sm tracking-wide">
-                  🔐 Unique Advantage
+                  Unique Advantage
                 </p>
                 <p className="text-foreground">
                   My background in <span className="font-semibold">Network & Cyber Security</span> at ElSewedy University of Technology uniquely positions me to build not just beautiful—but secure, robust, and scalable solutions. This translates to enterprise-grade applications that protect your users and data.
@@ -73,7 +62,7 @@ export default function About() {
                 {skills.map((skill) => (
                   <span 
                     key={skill} 
-                    className="text-xs uppercase px-4 py-2.5 min-h-[36px] inline-flex items-center bg-white/10 rounded-full border border-white/20 text-foreground/90 font-medium hover:border-white/40 hover:bg-white/15 transition-all"
+                    className="text-xs uppercase px-4 py-2.5 min-h-[36px] inline-flex items-center bg-white/10 rounded-full border border-white/20 text-white/90 font-medium hover:border-white/40 hover:bg-white/15 transition-all"
                   >
                     {skill}
                   </span>

@@ -51,7 +51,7 @@ export default function Index() {
   };
 
   return (
-    <div className="bg-transparent text-foreground overflow-x-hidden relative">
+    <div className="bg-transparent overflow-x-hidden relative">
 
       <div className="fixed inset-0 z-[-1] pointer-events-none">
         <Canvas3D cameraPosition={[0, 0, 8]}>

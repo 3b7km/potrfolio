@@ -8,8 +8,8 @@
   :root {
     /* Portfolio color palette - improved for accessibility */
     --background: 0 0% 0%;
-    --foreground: 35 29% 96%;
-    --primary: 35 29% 96%;
+    --foreground: 213 53% 25%;
+    --primary: 213 53% 25%;
     --secondary: 48 8% 58%;  /* Improved contrast from 50 5% 53% */
     --accent: 217 100% 50%;
     --muted: 48 8% 58%;      /* Improved contrast from 50 5% 53% */
@@ -22,7 +22,8 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans;
+    @apply bg-background font-sans;
+    color: white;
     overflow-x: hidden;
   }
 
@@ -30,7 +31,7 @@
     scroll-behavior: smooth;
   }
 
-  /* Typography defaults */
+  /* Typography defaults — headings use navy foreground */
   h1,
   h2,
   h3,
@@ -38,6 +39,7 @@
   h5,
   h6 {
     @apply font-syne font-bold;
+    color: hsl(var(--foreground));
   }
 
   p,

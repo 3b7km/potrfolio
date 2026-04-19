@@ -47,12 +47,12 @@ function ProjectRow({ project }: ProjectRowProps) {
 
           {/* Title & Tags */}
           <div className="col-span-12 md:col-span-6 flex flex-col gap-2">
-            <h3 className="text-2xl md:text-5xl font-syne font-bold uppercase tracking-tight text-foreground group-hover:pl-4 transition-all duration-300">
+            <h3 className="text-2xl md:text-5xl font-syne font-bold uppercase tracking-tight text-white group-hover:pl-4 transition-all duration-300">
               {project.name}
             </h3>
             <div className="flex flex-wrap gap-2 mt-2 group-hover:pl-4 transition-all duration-300 delay-75">
               {project.tags.map((tag) => (
-                <span key={tag} className="text-xs uppercase px-3 py-2 min-h-[36px] inline-flex items-center bg-white/10 rounded-full border border-white/20 text-foreground/80 font-sans font-medium">
+                <span key={tag} className="text-xs uppercase px-3 py-2 min-h-[36px] inline-flex items-center bg-white/10 rounded-full border border-white/20 text-white/90 font-sans font-medium">
                   {tag}
                 </span>
               ))}
@@ -65,7 +65,7 @@ function ProjectRow({ project }: ProjectRowProps) {
           {/* Metrics Column */}
           <div className="hidden md:block col-span-5 text-right font-sans">
             <div className="text-sm text-muted mb-2 uppercase tracking-wide">Impact</div>
-            <div className="text-xl text-foreground font-syne">{project.metrics}</div>
+            <div className="text-xl text-white font-syne">{project.metrics}</div>
           </div>
         </div>
 
@@ -80,14 +80,14 @@ function ProjectRow({ project }: ProjectRowProps) {
             href={project.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="tap-target inline-flex items-center gap-2 text-sm font-sans uppercase tracking-wide text-foreground border border-foreground/30 px-5 py-3 rounded hover:border-foreground hover:bg-white/5 transition-all duration-300"
+            className="tap-target inline-flex items-center gap-2 text-sm font-sans uppercase tracking-wide text-white border border-white/30 px-5 py-3 rounded hover:border-white hover:bg-white/5 transition-all duration-300"
           >
             View Live Site
             <ArrowUpRight size={16} />
           </a>
           <a
             href="/work"
-            className="tap-target inline-flex items-center gap-2 text-sm font-sans uppercase tracking-wide text-muted border border-white/20 px-5 py-3 rounded hover:border-foreground hover:text-foreground hover:bg-white/5 transition-all duration-300"
+            className="tap-target inline-flex items-center gap-2 text-sm font-sans uppercase tracking-wide text-white/70 border border-white/20 px-5 py-3 rounded hover:border-white hover:text-white hover:bg-white/5 transition-all duration-300"
           >
             View Case Study
             <ArrowUpRight size={16} />

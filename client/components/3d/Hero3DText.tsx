@@ -56,7 +56,7 @@ export default function Hero3DText() {
           >
             {`YOUSSEF\nABDELHAKAM`}
             <meshStandardMaterial
-              color="#D4D4D8"
+              color="#1e3b60"
               roughness={0.15}
               metalness={0.9}
               envMapIntensity={isMobile ? 1.5 : 2.5}

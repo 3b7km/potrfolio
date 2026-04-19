@@ -7,7 +7,7 @@ export function Navigation() {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      className="fixed top-0 left-0 right-0 z-[100] px-6 py-6 flex items-center justify-between mix-blend-difference text-foreground"
+      className="fixed top-0 left-0 right-0 z-[100] px-6 py-6 flex items-center justify-between mix-blend-difference text-white"
     >
       <Link to="/" className="font-syne font-bold text-xl tracking-tight">
         YA.
@@ -20,8 +20,8 @@ export function Navigation() {
       </nav>
 
       {/* Theme toggle indicator circle mockup */}
-      <div className="w-8 h-8 rounded-full border border-foreground/30 flex items-center justify-center cursor-pointer hover:border-foreground transition-colors">
-        <div className="w-2.5 h-2.5 rounded-full bg-foreground" />
+      <div className="w-8 h-8 rounded-full border border-white/30 flex items-center justify-center cursor-pointer hover:border-white transition-colors">
+        <div className="w-2.5 h-2.5 rounded-full bg-white" />
       </div>
     </motion.header>
   );

@@ -50,7 +50,7 @@ export default function Hero({ onNavigate }: HeroProps) {
         >
           <a
             href="#work"
-            className="inline-flex items-center gap-3 px-6 md:px-8 py-3 md:py-4 border border-foreground/40 rounded text-sm md:text-base font-sans uppercase tracking-wide text-foreground hover:border-foreground hover:bg-white/5 transition-all duration-300"
+            className="inline-flex items-center gap-3 px-6 md:px-8 py-3 md:py-4 border border-white/40 rounded text-sm md:text-base font-sans uppercase tracking-wide text-white hover:border-white hover:bg-white/5 transition-all duration-300"
           >
             View My Work
             <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -65,14 +65,14 @@ export default function Hero({ onNavigate }: HeroProps) {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1, duration: 1 }}
-        className="flex justify-between items-end w-full pointer-events-auto mix-blend-difference text-foreground pb-4"
+        className="flex justify-between items-end w-full pointer-events-auto mix-blend-difference text-white pb-4"
       >
         <span className="text-xs uppercase tracking-widest">Scroll to explore</span>
-        <div className="w-[1px] h-12 bg-foreground/50 overflow-hidden relative">
+        <div className="w-[1px] h-12 bg-white/50 overflow-hidden relative">
           <motion.div 
             animate={{ y: [0, 48, 48, 0] }} 
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            className="w-full h-1/3 bg-foreground absolute top-0"
+            className="w-full h-1/3 bg-white absolute top-0"
           />
         </div>
       </motion.div>

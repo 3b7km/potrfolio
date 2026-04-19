@@ -132,8 +132,8 @@ export default function ExperienceContact() {
                     setErrors({ ...errors, name: "" });
                   }}
                   placeholder="Your name"
-                  className={`w-full bg-transparent border-b pb-3 text-lg font-syne text-foreground outline-none transition-colors placeholder:text-white/15 ${
-                    errors.name ? "border-red-400/50 focus:border-red-400" : "border-white/10 focus:border-foreground"
+                  className={`w-full bg-transparent border-b pb-3 text-lg font-syne text-white outline-none transition-colors placeholder:text-white/15 ${
+                    errors.name ? "border-red-400/50 focus:border-red-400" : "border-white/10 focus:border-white"
                   }`}
                 />
                 {errors.name && <p className="text-red-400/70 text-xs mt-2">{errors.name}</p>}
@@ -153,8 +153,8 @@ export default function ExperienceContact() {
                     setErrors({ ...errors, email: "" });
                   }}
                   placeholder="you@company.com"
-                  className={`w-full bg-transparent border-b pb-3 text-lg font-syne text-foreground outline-none transition-colors placeholder:text-white/15 ${
-                    errors.email ? "border-red-400/50 focus:border-red-400" : "border-white/10 focus:border-foreground"
+                  className={`w-full bg-transparent border-b pb-3 text-lg font-syne text-white outline-none transition-colors placeholder:text-white/15 ${
+                    errors.email ? "border-red-400/50 focus:border-red-400" : "border-white/10 focus:border-white"
                   }`}
                 />
                 {errors.email && <p className="text-red-400/70 text-xs mt-2">{errors.email}</p>}
@@ -174,8 +174,8 @@ export default function ExperienceContact() {
                     setErrors({ ...errors, message: "" });
                   }}
                   placeholder="Tell me about your project..."
-                  className={`w-full bg-transparent border-b pb-3 text-lg font-syne text-foreground outline-none transition-colors placeholder:text-white/15 resize-none ${
-                    errors.message ? "border-red-400/50 focus:border-red-400" : "border-white/10 focus:border-foreground"
+                  className={`w-full bg-transparent border-b pb-3 text-lg font-syne text-white outline-none transition-colors placeholder:text-white/15 resize-none ${
+                    errors.message ? "border-red-400/50 focus:border-red-400" : "border-white/10 focus:border-white"
                   }`}
                 />
                 {errors.message && <p className="text-red-400/70 text-xs mt-2">{errors.message}</p>}
@@ -187,7 +187,7 @@ export default function ExperienceContact() {
                 disabled={formState !== "idle"}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="self-start inline-flex items-center gap-3 px-8 py-4 bg-foreground text-background font-syne font-bold text-sm uppercase tracking-widest hover:bg-white/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed mt-4"
+                className="self-start inline-flex items-center gap-3 px-8 py-4 bg-white text-background font-syne font-bold text-sm uppercase tracking-widest hover:bg-white/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed mt-4"
               >
                 {formState === "idle" && (
                   <>
