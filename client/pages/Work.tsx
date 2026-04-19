@@ -1,9 +1,67 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronDown } from "lucide-react";
 import { projects, skills } from "@/lib/data";
 import Footer from "@/components/Footer";
 import { useLenis } from "@/hooks/useLenis";
+
+/** Collapsible wrapper — accordion on mobile, always-visible on desktop */
+function CollapsibleSection({ 
+  title, 
+  children 
+}: { 
+  title: string; 
+  children: React.ReactNode;
+}) {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
+  // Desktop: always show
+  if (!isMobile) {
+    return <>{children}</>;
+  }
+
+  // Mobile: collapsible accordion
+  return (
+    <div className="border-t border-border/10">
+      <button
+        onClick={() => setIsExpanded(!isExpanded)}
+        className="tap-target w-full flex items-center justify-between py-4 text-xs font-sans uppercase tracking-widest text-muted hover:text-foreground transition-colors"
+      >
+        <span>{isExpanded ? `Hide ${title}` : `View ${title}`}</span>
+        <motion.div
+          animate={{ rotate: isExpanded ? 180 : 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          <ChevronDown size={16} />
+        </motion.div>
+      </button>
+      <AnimatePresence>
+        {isExpanded && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            className="overflow-hidden"
+          >
+            <div className="pb-6">
+              {children}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
 
 export default function Work() {
   useLenis();
@@ -17,10 +75,10 @@ export default function Work() {
 
       {/* Editorial Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 px-6 md:px-12 py-8 mix-blend-difference pointer-events-auto flex justify-between items-center text-foreground">
-        <Link to="/" className="text-sm font-syne font-bold uppercase tracking-widest">
+        <Link to="/" className="tap-target text-sm font-syne font-bold uppercase tracking-widest">
           Y.A ©
         </Link>
-        <Link to="/" className="text-sm font-sans tracking-wide opacity-70 hover:opacity-100 transition-opacity">
+        <Link to="/" className="tap-target text-sm font-sans tracking-wide opacity-70 hover:opacity-100 transition-opacity">
           Close (X)
         </Link>
       </nav>
@@ -32,7 +90,7 @@ export default function Work() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-6xl md:text-8xl font-syne font-bold uppercase tracking-tighter"
+            className="text-fluid-hero font-syne font-bold uppercase tracking-tighter"
           >
             Digital <br /> Archives
           </motion.h1>
@@ -93,7 +151,7 @@ export default function Work() {
                       Case {project.id} — {project.type}
                     </div>
 
-                    <h2 className="text-4xl md:text-6xl font-syne font-bold uppercase tracking-tight mb-6">
+                    <h2 className="text-fluid-subsection font-syne font-bold uppercase tracking-tight mb-6">
                       {project.name}
                     </h2>
 
@@ -116,7 +174,7 @@ export default function Work() {
                       {project.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="text-xs font-sans uppercase tracking-widest px-3 py-1.5 border border-white/10 rounded-full text-muted"
+                          className="text-xs font-sans uppercase tracking-widest px-4 py-2.5 min-h-[36px] inline-flex items-center border border-white/10 rounded-full text-muted"
                         >
                           {tag}
                         </span>
@@ -127,72 +185,74 @@ export default function Work() {
                       href={project.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center self-start text-sm font-syne font-bold uppercase tracking-widest border-b border-foreground pb-1 hover:text-muted hover:border-muted transition-colors"
+                      className="tap-target inline-flex items-center self-start text-sm font-syne font-bold uppercase tracking-widest border-b border-foreground pb-1 hover:text-muted hover:border-muted transition-colors"
                     >
                       Launch Site →
                     </a>
                   </div>
                 </div>
 
-                {/* Bottom Row: Features + Tech Stack + Skills */}
-                <div className="mt-16 pt-16 border-t border-border/5 grid grid-cols-1 md:grid-cols-3 gap-12">
+                {/* Bottom Row: Features + Tech Stack + Skills — Collapsible on mobile */}
+                <CollapsibleSection title="Technical Details">
+                  <div className="mt-16 pt-16 border-t border-border/5 grid grid-cols-1 md:grid-cols-3 gap-12">
 
-                  {/* Key Features */}
-                  <div>
-                    <h3 className="text-xs font-sans tracking-widest text-muted uppercase mb-6 pb-3 border-b border-border/10">
-                      Key Features
-                    </h3>
-                    <ul className="flex flex-col gap-3">
-                      {project.features.map((feature, i) => (
-                        <li key={i} className="text-sm font-sans text-muted leading-relaxed flex items-start gap-2">
-                          <span className="text-foreground/30 mt-1 text-xs">◆</span>
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                    {/* Key Features */}
+                    <div>
+                      <h3 className="text-xs font-sans tracking-widest text-muted uppercase mb-6 pb-3 border-b border-border/10">
+                        Key Features
+                      </h3>
+                      <ul className="flex flex-col gap-3">
+                        {project.features.map((feature, i) => (
+                          <li key={i} className="text-sm font-sans text-muted leading-relaxed flex items-start gap-2">
+                            <span className="text-foreground/30 mt-1 text-xs">◆</span>
+                            {feature}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
 
-                  {/* Tech Stack */}
-                  <div>
-                    <h3 className="text-xs font-sans tracking-widest text-muted uppercase mb-6 pb-3 border-b border-border/10">
-                      Tech Stack
-                    </h3>
-                    <div className="flex flex-col gap-5">
-                      {Object.entries(project.techStack).map(([category, items]) => (
-                        <div key={category}>
-                          <span className="block text-xs font-sans text-foreground/50 uppercase tracking-widest mb-2">
-                            {category}
-                          </span>
-                          <div className="flex flex-wrap gap-1.5">
-                            {items.map((item) => (
-                              <span
-                                key={item}
-                                className="text-xs font-sans px-2 py-1 bg-white/5 border border-white/5 text-muted"
-                              >
-                                {item}
-                              </span>
-                            ))}
+                    {/* Tech Stack */}
+                    <div>
+                      <h3 className="text-xs font-sans tracking-widest text-muted uppercase mb-6 pb-3 border-b border-border/10">
+                        Tech Stack
+                      </h3>
+                      <div className="flex flex-col gap-5">
+                        {Object.entries(project.techStack).map(([category, items]) => (
+                          <div key={category}>
+                            <span className="block text-xs font-sans text-foreground/50 uppercase tracking-widest mb-2">
+                              {category}
+                            </span>
+                            <div className="flex flex-wrap gap-1.5">
+                              {items.map((item) => (
+                                <span
+                                  key={item}
+                                  className="text-xs font-sans px-2 py-1 bg-white/5 border border-white/5 text-muted"
+                                >
+                                  {item}
+                                </span>
+                              ))}
+                            </div>
                           </div>
-                        </div>
-                      ))}
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Skills Demonstrated */}
+                    <div>
+                      <h3 className="text-xs font-sans tracking-widest text-muted uppercase mb-6 pb-3 border-b border-border/10">
+                        Skills Demonstrated
+                      </h3>
+                      <ul className="flex flex-col gap-3">
+                        {project.skills.map((skill, i) => (
+                          <li key={i} className="text-sm font-sans text-muted leading-relaxed flex items-start gap-2">
+                            <span className="text-foreground/30 mt-1 text-xs">→</span>
+                            {skill}
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                   </div>
-
-                  {/* Skills Demonstrated */}
-                  <div>
-                    <h3 className="text-xs font-sans tracking-widest text-muted uppercase mb-6 pb-3 border-b border-border/10">
-                      Skills Demonstrated
-                    </h3>
-                    <ul className="flex flex-col gap-3">
-                      {project.skills.map((skill, i) => (
-                        <li key={i} className="text-sm font-sans text-muted leading-relaxed flex items-start gap-2">
-                          <span className="text-foreground/30 mt-1 text-xs">→</span>
-                          {skill}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
+                </CollapsibleSection>
               </div>
             </article>
           );
@@ -203,7 +263,7 @@ export default function Work() {
       <section className="w-full py-32 px-6 md:px-12 bg-[#080808]">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-16">
           <div className="md:w-1/3">
-            <h2 className="text-3xl md:text-5xl font-syne font-bold uppercase tracking-tight">
+            <h2 className="text-fluid-subsection font-syne font-bold uppercase tracking-tight">
               Technical <br /> Arsenal
             </h2>
             <p className="mt-6 text-sm font-sans text-muted max-w-xs">
@@ -215,7 +275,7 @@ export default function Work() {
             {skills.map((skill) => (
               <div
                 key={skill}
-                className="px-6 py-4 border border-white/5 bg-[#111] text-sm font-sans uppercase tracking-wider text-muted hover:text-foreground hover:border-white/20 transition-colors"
+                className="tap-target px-6 py-4 border border-white/5 bg-[#111] text-sm font-sans uppercase tracking-wider text-muted hover:text-foreground hover:border-white/20 transition-colors"
               >
                 {skill}
               </div>

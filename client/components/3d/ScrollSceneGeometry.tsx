@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useFrame } from "@react-three/fiber";
 import { MeshDistortMaterial, Stars } from "@react-three/drei";
 import * as THREE from "three";
@@ -9,15 +9,23 @@ export default function ScrollSceneGeometry() {
   const innerRef = useRef<THREE.Mesh>(null);
   const particlesRef = useRef<THREE.Points>(null);
   const orbitRef = useRef<THREE.Group>(null);
+  const [isMobile, setIsMobile] = useState(false);
   
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
   // Smooth scroll lerping
   const targetScroll = useRef(0);
   const currentScroll = useRef(0);
   const mouseX = useRef(0);
   const mouseY = useRef(0);
 
-  // Set up particle geometry once
-  const particlesCount = 200;
+  // Reduced particles on mobile for performance
+  const particlesCount = isMobile ? 80 : 200;
   const positions = new Float32Array(particlesCount * 3);
   for (let i = 0; i < particlesCount * 3; i++) {
     positions[i] = (Math.random() - 0.5) * 15;
@@ -78,18 +86,18 @@ export default function ScrollSceneGeometry() {
   return (
     <group ref={groupRef} scale={1.2}>
       
-      {/* Background Deep Space Stars */}
-      <Stars radius={50} depth={50} count={5000} factor={4} saturation={0} fade speed={1} />
+      {/* Background Deep Space Stars — reduced on mobile */}
+      <Stars radius={50} depth={50} count={isMobile ? 1500 : 5000} factor={4} saturation={0} fade speed={1} />
 
-      {/* Liquid Metal Core */}
+      {/* Liquid Metal Core — lower segments on mobile */}
       <mesh ref={innerRef}>
-        <sphereGeometry args={[1.8, 64, 64]} />
+        <sphereGeometry args={[1.8, isMobile ? 32 : 64, isMobile ? 32 : 64]} />
         <MeshDistortMaterial 
           color="#050505" 
           roughness={0.1} 
           metalness={0.9}
-          distort={0.4}
-          speed={2.5}
+          distort={isMobile ? 0.3 : 0.4}
+          speed={isMobile ? 1.5 : 2.5}
         />
       </mesh>
 

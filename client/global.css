@@ -121,3 +121,41 @@ html.lenis body {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
+/* ===== MOBILE RESPONSIVENESS UTILITIES ===== */
+
+/* Fluid Typography — scales smoothly across all viewport widths */
+.text-fluid-hero {
+  font-size: clamp(2.5rem, 8vw, 8rem);
+}
+
+.text-fluid-section {
+  font-size: clamp(2rem, 6vw, 6rem);
+}
+
+.text-fluid-subsection {
+  font-size: clamp(1.5rem, 4vw, 4rem);
+}
+
+.text-fluid-contact {
+  font-size: clamp(3rem, 12vw, 10vw);
+}
+
+/* Minimum tap target — ensures 44×44px touch area per WCAG */
+.tap-target {
+  min-height: 44px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* 3D Canvas touch passthrough — prevents canvas from blocking scroll */
+.canvas-touch-passthrough {
+  touch-action: auto !important;
+  pointer-events: none !important;
+}
+
+.canvas-touch-passthrough canvas {
+  touch-action: auto !important;
+  pointer-events: none !important;
+}

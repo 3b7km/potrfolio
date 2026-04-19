@@ -82,7 +82,7 @@ export default function ExperienceContact() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                className="text-6xl md:text-8xl lg:text-[10vw] font-syne font-bold uppercase tracking-tighter leading-[0.8] text-foreground mix-blend-difference"
+                className="text-fluid-contact font-syne font-bold uppercase tracking-tighter leading-[0.8] text-foreground mix-blend-difference"
               >
                 Say <br/> <span className="text-muted">Hi!</span>
               </motion.h2>
@@ -95,7 +95,7 @@ export default function ExperienceContact() {
             <div className="flex flex-col gap-4 mt-4">
               <a
                 href="mailto:youssefabdelhakam99@gmail.com"
-                className="group inline-flex items-center gap-3 text-sm font-sans text-muted hover:text-foreground transition-colors"
+                className="tap-target group inline-flex items-center gap-3 text-sm font-sans text-muted hover:text-foreground transition-colors py-2"
               >
                 <Mail size={16} />
                 <span>youssefabdelhakam99@gmail.com</span>
@@ -105,7 +105,7 @@ export default function ExperienceContact() {
                 href="https://www.linkedin.com/in/youssef-abdelhakm-gamal-3b7km/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center gap-3 text-sm font-sans text-muted hover:text-foreground transition-colors"
+                className="tap-target group inline-flex items-center gap-3 text-sm font-sans text-muted hover:text-foreground transition-colors py-2"
               >
                 <Linkedin size={16} />
                 <span>LinkedIn</span>
