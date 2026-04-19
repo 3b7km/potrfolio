@@ -29,12 +29,18 @@ export default function About() {
               I'm Youssef — an independent web developer bridging the gap between rigorous engineering and high-end digital design. 
             </div>
             
-            <div className="text-base md:text-lg font-sans text-muted leading-relaxed max-w-2xl">
-              <p className="mb-6">
-                Currently pursuing a degree in Network & Cyber Security at ElSewedy University of Technology, my background provides a strict foundation in robust architecture and secure systems.
-              </p>
+            <div className="text-base md:text-lg font-sans text-muted leading-relaxed max-w-2xl space-y-4">
+              <div className="p-4 border border-white/10 rounded bg-white/[0.02]">
+                <p className="text-secondary font-sans font-medium mb-2 uppercase text-sm tracking-wide">
+                  🔐 Unique Advantage
+                </p>
+                <p className="text-foreground">
+                  My background in <span className="font-semibold">Network & Cyber Security</span> at ElSewedy University of Technology uniquely positions me to build not just beautiful—but secure, robust, and scalable solutions. This translates to enterprise-grade applications that protect your users and data.
+                </p>
+              </div>
+
               <p>
-                In practice, I build bespoke e-commerce platforms, complex web applications, and immersive 3D experiences. I don't just write code; I architect solutions that elevate brand perception and drive measurable business impact.
+                I build bespoke e-commerce platforms, complex web applications, and immersive 3D experiences. I don't just write code; I architect solutions that elevate brand perception, drive measurable business impact, and maintain security-first principles from the ground up.
               </p>
             </div>
 

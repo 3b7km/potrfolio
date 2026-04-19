@@ -1,22 +1,24 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    /* Onyx Editorial palette */
-    --background: 0 0% 5%; /* #0d0d0d */
-    --foreground: 40 23% 92%; /* #f0ede6 */
-    --primary: 40 23% 92%;
-    --secondary: 40 10% 70%;
-    --accent: 40 23% 92%;
-    --muted: 40 23% 92%; /* we will use opacity for muted */
-    --border: 0 0% 100%; /* we will use opacity for border */
-    --divider: 0 0% 100%;
+    /* Portfolio color palette - improved for accessibility */
+    --background: 0 0% 0%;
+    --foreground: 35 29% 96%;
+    --primary: 35 29% 96%;
+    --secondary: 48 8% 58%;  /* Improved contrast from 50 5% 53% */
+    --accent: 217 100% 50%;
+    --muted: 48 8% 58%;      /* Improved contrast from 50 5% 53% */
+    --border: 0 0% 8.5%;
+    --divider: 0 0% 13%;
   }
 
   * {
-    @apply border-border/10;
+    @apply border-border;
   }
 
   body {

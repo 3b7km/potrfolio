@@ -5,10 +5,24 @@ import { Mail, Linkedin, Send, CheckCircle, ArrowUpRight } from "lucide-react";
 export default function ExperienceContact() {
   const [formState, setFormState] = useState<"idle" | "sending" | "sent">("idle");
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [errors, setErrors] = useState({ name: "", email: "", message: "" });
+
+  const validateEmail = (email: string) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.name || !formData.email || !formData.message) return;
+
+    // Validation
+    const newErrors = { name: "", email: "", message: "" };
+    if (!formData.name.trim()) newErrors.name = "Name is required";
+    if (!formData.email.trim()) newErrors.email = "Email is required";
+    else if (!validateEmail(formData.email)) newErrors.email = "Invalid email format";
+    if (!formData.message.trim()) newErrors.message = "Message is required";
+
+    setErrors(newErrors);
+    if (newErrors.name || newErrors.email || newErrors.message) return;
 
     setFormState("sending");
 
@@ -33,6 +47,11 @@ export default function ExperienceContact() {
       if (result.success) {
         setFormState("sent");
         setFormData({ name: "", email: "", message: "" });
+        setErrors({ name: "", email: "", message: "" });
+        // Auto-reset after 3 seconds
+        setTimeout(() => {
+          setFormState("idle");
+        }, 3000);
       } else {
         // Fallback: open mailto if API fails
         window.location.href = `mailto:youssefabdelhakam99@gmail.com?subject=Portfolio Contact from ${formData.name}&body=${formData.message}`;
@@ -49,7 +68,7 @@ export default function ExperienceContact() {
   };
 
   return (
-    <section id="contact" className="relative w-full py-32 bg-transparent pointer-events-auto">
+    <section id="contact" className="relative w-full py-48 md:py-64 bg-transparent pointer-events-auto">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8">
           
@@ -105,10 +124,16 @@ export default function ExperienceContact() {
                   type="text"
                   required
                   value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  onChange={(e) => {
+                    setFormData({ ...formData, name: e.target.value });
+                    setErrors({ ...errors, name: "" });
+                  }}
                   placeholder="Your name"
-                  className="w-full bg-transparent border-b border-white/10 focus:border-foreground pb-3 text-lg font-syne text-foreground outline-none transition-colors placeholder:text-white/15"
+                  className={`w-full bg-transparent border-b pb-3 text-lg font-syne text-foreground outline-none transition-colors placeholder:text-white/15 ${
+                    errors.name ? "border-red-400/50 focus:border-red-400" : "border-white/10 focus:border-foreground"
+                  }`}
                 />
+                {errors.name && <p className="text-red-400/70 text-xs mt-2">{errors.name}</p>}
               </div>
 
               {/* Email */}
@@ -120,10 +145,16 @@ export default function ExperienceContact() {
                   type="email"
                   required
                   value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  onChange={(e) => {
+                    setFormData({ ...formData, email: e.target.value });
+                    setErrors({ ...errors, email: "" });
+                  }}
                   placeholder="you@company.com"
-                  className="w-full bg-transparent border-b border-white/10 focus:border-foreground pb-3 text-lg font-syne text-foreground outline-none transition-colors placeholder:text-white/15"
+                  className={`w-full bg-transparent border-b pb-3 text-lg font-syne text-foreground outline-none transition-colors placeholder:text-white/15 ${
+                    errors.email ? "border-red-400/50 focus:border-red-400" : "border-white/10 focus:border-foreground"
+                  }`}
                 />
+                {errors.email && <p className="text-red-400/70 text-xs mt-2">{errors.email}</p>}
               </div>
 
               {/* Message */}
@@ -135,10 +166,16 @@ export default function ExperienceContact() {
                   required
                   rows={4}
                   value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  onChange={(e) => {
+                    setFormData({ ...formData, message: e.target.value });
+                    setErrors({ ...errors, message: "" });
+                  }}
                   placeholder="Tell me about your project..."
-                  className="w-full bg-transparent border-b border-white/10 focus:border-foreground pb-3 text-lg font-syne text-foreground outline-none transition-colors placeholder:text-white/15 resize-none"
+                  className={`w-full bg-transparent border-b pb-3 text-lg font-syne text-foreground outline-none transition-colors placeholder:text-white/15 resize-none ${
+                    errors.message ? "border-red-400/50 focus:border-red-400" : "border-white/10 focus:border-foreground"
+                  }`}
                 />
+                {errors.message && <p className="text-red-400/70 text-xs mt-2">{errors.message}</p>}
               </div>
 
               {/* Submit Button */}
@@ -172,6 +209,19 @@ export default function ExperienceContact() {
                   </>
                 )}
               </motion.button>
+
+              {/* Success Message */}
+              {formState === "sent" && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  className="mt-4 p-4 bg-green-400/10 border border-green-400/30 rounded text-sm text-green-300 flex items-center gap-2"
+                >
+                  <CheckCircle size={16} />
+                  Message sent successfully! I'll get back to you soon.
+                </motion.div>
+              )}
             </form>
           </div>
 

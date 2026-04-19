@@ -6,7 +6,14 @@ export default function Footer() {
           <p className="font-syne font-semibold">Youssef Abdelhakam © {new Date().getFullYear()}</p>
           <div className="flex items-center gap-6">
             <a href="mailto:youssefabdelhakam99@gmail.com" className="hover:text-foreground transition-colors">Email</a>
-            <a href="https://www.linkedin.com/in/youssef-abdelhakm-gamal-3b7km/" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">LinkedIn</a>
+            <a
+              href="https://www.linkedin.com/in/youssef-abdelhakm-gamal-3b7km/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-foreground transition-colors"
+            >
+              LinkedIn ↗
+            </a>
             <a href="tel:+2001023329072" className="hover:text-foreground transition-colors">Phone</a>
           </div>
         </div>

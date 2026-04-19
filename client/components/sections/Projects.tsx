@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-
+import { ArrowUpRight } from "lucide-react";
 import { projects } from "@/lib/data";
 
 interface ProjectRowProps {
@@ -27,11 +27,11 @@ function ProjectRow({ project }: ProjectRowProps) {
     <div
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="relative group border-t border-border/10 py-10 transition-colors hover:bg-white/[0.02]"
+      className="relative group border-t border-border/10 py-8 md:py-10 transition-colors hover:bg-white/[0.02]"
     >
-      <a href={project.url} target="_blank" rel="noopener noreferrer" className="block relative z-10">
+      <div className="relative z-10">
         <div className="grid grid-cols-12 gap-4 items-start px-4">
-          
+
           {/* Index */}
           <div className="col-span-12 md:col-span-1 text-sm font-sans text-muted mb-4 md:mb-0">
             {project.id}
@@ -39,12 +39,12 @@ function ProjectRow({ project }: ProjectRowProps) {
 
           {/* Title & Tags */}
           <div className="col-span-12 md:col-span-6 flex flex-col gap-2">
-            <h3 className="text-3xl md:text-5xl font-syne font-bold uppercase tracking-tight text-foreground group-hover:pl-4 transition-all duration-300">
+            <h3 className="text-2xl md:text-5xl font-syne font-bold uppercase tracking-tight text-foreground group-hover:pl-4 transition-all duration-300">
               {project.name}
             </h3>
             <div className="flex flex-wrap gap-2 mt-2 group-hover:pl-4 transition-all duration-300 delay-75">
               {project.tags.map((tag) => (
-                <span key={tag} className="text-xs uppercase px-2 py-1 bg-white/5 rounded-full border border-white/10 text-muted">
+                <span key={tag} className="text-xs uppercase px-2 py-1 bg-white/5 rounded-full border border-white/10 text-secondary font-sans">
                   {tag}
                 </span>
               ))}
@@ -60,7 +60,25 @@ function ProjectRow({ project }: ProjectRowProps) {
             <div className="text-xl text-foreground font-syne">{project.metrics}</div>
           </div>
         </div>
-      </a>
+
+        {/* CTA Section - Always visible on mobile, on hover on desktop */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: isHovered || window.innerWidth < 768 ? 1 : 0, y: isHovered || window.innerWidth < 768 ? 0 : 10 }}
+          transition={{ duration: 0.3 }}
+          className="mt-6 px-4 flex flex-col md:flex-row gap-3 md:gap-4"
+        >
+          <a
+            href={project.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-sm font-sans uppercase tracking-wide text-foreground border border-foreground/30 px-4 py-2 rounded hover:border-foreground hover:bg-white/5 transition-all duration-300"
+          >
+            View Live Site
+            <ArrowUpRight size={16} />
+          </a>
+        </motion.div>
+      </div>
 
       {/* Floating Preview — Masked Reveal */}
       <AnimatePresence>
@@ -109,9 +127,63 @@ export default function Projects() {
         </div>
 
         {/* Projects List */}
-        <div className="border-b border-border/10">
-          {projects.map((project) => (
-            <ProjectRow key={project.id} project={project} />
+        <div>
+          {projects.map((project, idx) => (
+            <div key={project.id} className="border-b border-border/10">
+              <ProjectRow project={project} />
+
+              {/* Project Description - Expandable on mobile, visible on desktop */}
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                whileInView={{ height: "auto", opacity: 1 }}
+                transition={{ delay: 0.2, duration: 0.4 }}
+                viewport={{ once: true, margin: "-50px" }}
+                className="overflow-hidden py-6 px-4 bg-white/[0.01] border-t border-border/10"
+              >
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl">
+                  {/* Challenge */}
+                  <div>
+                    <h4 className="text-xs font-sans uppercase tracking-widest text-muted mb-3">Challenge</h4>
+                    <p className="text-sm font-sans text-foreground leading-relaxed">
+                      {project.id === "01"
+                        ? "Build a premium luxury fashion store that stands out in Egypt's competitive market, combining sophisticated design with technical excellence and high conversion rates."
+                        : project.id === "02"
+                        ? "Create a complete e-commerce solution for modest fashion with proper product categorization, strong brand identity, and optimized marketing integration."
+                        : "Develop a high-performance sneaker store with advanced filtering, real-time inventory, and seamless social integration for the Egyptian market."}
+                    </p>
+                  </div>
+
+                  {/* Solution */}
+                  <div>
+                    <h4 className="text-xs font-sans uppercase tracking-widest text-muted mb-3">Solution</h4>
+                    <p className="text-sm font-sans text-foreground leading-relaxed">
+                      {project.id === "01"
+                        ? "Crafted a dark luxury Shopify theme with custom liquid code, promotional workflows, and deep social media integration. Implemented conversion-focused UX patterns and optimized checkout flow."
+                        : project.id === "02"
+                        ? "Built custom Shopify collections with intelligent product categorization, email subscription systems, and WhatsApp integration for real-time customer support and sales."
+                        : "Engineered a Next.js application with React hooks, server-side filtering, and Instagram/WhatsApp APIs for seamless social selling and brand engagement."}
+                    </p>
+                  </div>
+
+                  {/* Impact */}
+                  <div>
+                    <h4 className="text-xs font-sans uppercase tracking-widest text-muted mb-3">Impact & Results</h4>
+                    <div className="space-y-2">
+                      <p className="text-sm font-sans text-foreground">
+                        <span className="font-semibold text-accent">{project.metrics}</span>
+                      </p>
+                      <p className="text-sm font-sans text-muted">
+                        {project.id === "01"
+                          ? "Established a luxury brand presence with industry-leading conversion rates and customer retention."
+                          : project.id === "02"
+                          ? "Doubled organic traffic through strategic SEO and built a engaged community across social platforms."
+                          : "Achieved sub-1.2s load times with optimized Next.js and CDN strategy, enabling fast-moving inventory management."}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
           ))}
         </div>
       </div>

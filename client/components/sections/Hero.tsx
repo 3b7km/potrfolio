@@ -40,6 +40,24 @@ export default function Hero({ onNavigate }: HeroProps) {
         <div className="mt-[10vh] md:mt-[15vh] h-[30vh]">
            {/* Space reserved for 3D Text rendered from the global Canvas */}
         </div>
+
+        {/* Primary CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5, duration: 0.8 }}
+          className="mt-12 md:mt-16"
+        >
+          <a
+            href="#work"
+            className="inline-flex items-center gap-3 px-6 md:px-8 py-3 md:py-4 border border-foreground/40 rounded text-sm md:text-base font-sans uppercase tracking-wide text-foreground hover:border-foreground hover:bg-white/5 transition-all duration-300"
+          >
+            View My Work
+            <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            </svg>
+          </a>
+        </motion.div>
       </div>
 
       {/* Bottom Layout */}
