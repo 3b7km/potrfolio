@@ -1,6 +1,6 @@
 import { Canvas } from "@react-three/fiber";
 import { Suspense, useEffect, useState } from "react";
-import { PerspectiveCamera } from "@react-three/drei";
+import { PerspectiveCamera, Environment } from "@react-three/drei";
 
 interface Canvas3DProps {
   children: React.ReactNode;
@@ -25,17 +25,23 @@ export default function Canvas3D({
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  if (isMobile) {
-    return null;
-  }
-
   return (
-    <Canvas className={className}>
+    <Canvas 
+      className={className} 
+      dpr={isMobile ? 1 : [1, 2]} 
+      performance={{ min: 0.5 }}
+      gl={{ antialias: !isMobile, alpha: true }}
+    >
       <Suspense fallback={null}>
         <PerspectiveCamera position={cameraPosition} makeDefault />
-        <ambientLight intensity={0.5} />
-        <pointLight position={[10, 10, 10]} intensity={0.8} />
-        <pointLight position={[-10, -10, -10]} intensity={0.3} color="#0066FF" />
+        <ambientLight intensity={0.2} />
+        {/* Stark cool tone rim lights for metallic pop */}
+        <spotLight position={[10, 10, 10]} intensity={1.5} color="#ffffff" penumbra={1} />
+        <pointLight position={[-10, -10, -5]} intensity={0.8} color="#e5e5e5" />
+        
+        {/* Studio environment for realistic metalness reflections */}
+        <Environment preset="studio" />
+        
         {children}
       </Suspense>
     </Canvas>

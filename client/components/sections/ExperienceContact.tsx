@@ -1,140 +1,182 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
-import Canvas3D from "../3d/Canvas3D";
-import ParticleField from "../3d/ParticleField";
-import { Mail, Phone, Linkedin } from "lucide-react";
-
-const experiences = [
-  {
-    period: "07/2025 – 09/2025",
-    title: "IoT Application Developer Intern",
-    company: "Spime Sense Labs",
-    description:
-      "Implemented real-time IoT systems, developed device monitoring applications, utilized MQTT protocols, and conducted microcontroller testing.",
-  },
-  {
-    period: "08/2025 – 09/2025",
-    title: "Enterprise Solutions Intern",
-    company: "Orange Egypt",
-    description:
-      "Utilized Oracle E-Business Suite and executed SQL queries to generate sales reports and manage database operations.",
-  },
-];
-
-interface ExperienceItemProps {
-  item: (typeof experiences)[0];
-  index: number;
-}
-
-function ExperienceItem({ item, index }: ExperienceItemProps) {
-  return (
-    <motion.div
-      initial={{ x: -50, opacity: 0 }}
-      whileInView={{ x: 0, opacity: 1 }}
-      transition={{ duration: 0.8, delay: index * 0.2 }}
-      viewport={{ once: true, margin: "-100px" }}
-      className="relative pl-8 pb-12 border-l border-divider last:pb-0"
-    >
-      {/* Timeline dot */}
-      <div className="absolute left-[-6px] top-0 w-3 h-3 bg-foreground rounded-full"></div>
-
-      <p className="text-xs text-muted uppercase tracking-wider font-grotesk mb-2">{item.period}</p>
-      <h4 className="text-lg md:text-xl font-grotesk font-bold mb-1">{item.title}</h4>
-      <p className="text-sm text-muted mb-3">{item.company}</p>
-      <p className="text-sm text-foreground leading-relaxed">{item.description}</p>
-    </motion.div>
-  );
-}
+import { Mail, Linkedin, Send, CheckCircle, ArrowUpRight } from "lucide-react";
 
 export default function ExperienceContact() {
+  const [formState, setFormState] = useState<"idle" | "sending" | "sent">("idle");
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formData.name || !formData.email || !formData.message) return;
+
+    setFormState("sending");
+
+    try {
+      // Web3Forms — free form-to-email service (https://web3forms.com)
+      // Messages will be sent directly to: youssefabdelhakam99@gmail.com
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          access_key: "f9ed969f-b4af-49d9-a2e8-3590111d70fc",
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          subject: `Portfolio Contact from ${formData.name}`,
+          from_name: "Portfolio Website",
+        }),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setFormState("sent");
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        // Fallback: open mailto if API fails
+        window.location.href = `mailto:youssefabdelhakam99@gmail.com?subject=Portfolio Contact from ${formData.name}&body=${formData.message}`;
+        setFormState("idle");
+      }
+    } catch {
+      // Fallback: open mailto if network fails
+      window.location.href = `mailto:youssefabdelhakam99@gmail.com?subject=Portfolio Contact from ${formData.name}&body=${formData.message}`;
+      setFormState("idle");
+    }
+
+    // Reset after 4 seconds
+    setTimeout(() => setFormState("idle"), 4000);
+  };
+
   return (
-    <>
-      {/* Experience Section */}
-      <section id="experience" className="relative w-full py-20 md:py-32 bg-background px-4 md:px-8">
-        <div className="max-w-6xl mx-auto">
-          {/* Header */}
-          <div className="mb-16">
-            <h2 className="section-label mb-4">(05) EXPERIENCE</h2>
-            <div className="divider"></div>
+    <section id="contact" className="relative w-full py-32 bg-transparent pointer-events-auto">
+      <div className="max-w-7xl mx-auto px-6 md:px-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8">
+          
+          {/* Left: Giant CTA + Social Links */}
+          <div className="lg:col-span-5 flex flex-col gap-12">
+            <div>
+              <h2 className="text-sm font-sans tracking-widest text-muted uppercase mb-8">
+                (Contact)
+              </h2>
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                className="text-6xl md:text-8xl lg:text-[10vw] font-syne font-bold uppercase tracking-tighter leading-[0.8] text-foreground mix-blend-difference"
+              >
+                Say <br/> <span className="text-muted">Hi!</span>
+              </motion.h2>
+            </div>
+
+            {/* Quick Links */}
+            <div className="flex flex-col gap-4 mt-4">
+              <a
+                href="mailto:youssefabdelhakam99@gmail.com"
+                className="group inline-flex items-center gap-3 text-sm font-sans text-muted hover:text-foreground transition-colors"
+              >
+                <Mail size={16} />
+                <span>youssefabdelhakam99@gmail.com</span>
+                <ArrowUpRight size={12} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/youssef-abdelhakm-gamal-3b7km/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center gap-3 text-sm font-sans text-muted hover:text-foreground transition-colors"
+              >
+                <Linkedin size={16} />
+                <span>LinkedIn</span>
+                <ArrowUpRight size={12} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+              </a>
+            </div>
           </div>
 
-          {/* Timeline */}
-          <div className="max-w-2xl">
-            {experiences.map((item, idx) => (
-              <ExperienceItem key={idx} item={item} index={idx} />
-            ))}
+          {/* Right: Inline Contact Form */}
+          <div className="lg:col-span-6 lg:col-start-7 flex flex-col justify-center">
+            <form onSubmit={handleSubmit} className="flex flex-col gap-8">
+
+              {/* Name */}
+              <div className="relative group">
+                <label className="block text-xs font-sans uppercase tracking-widest text-muted mb-3">
+                  Name
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  placeholder="Your name"
+                  className="w-full bg-transparent border-b border-white/10 focus:border-foreground pb-3 text-lg font-syne text-foreground outline-none transition-colors placeholder:text-white/15"
+                />
+              </div>
+
+              {/* Email */}
+              <div className="relative group">
+                <label className="block text-xs font-sans uppercase tracking-widest text-muted mb-3">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  required
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  placeholder="you@company.com"
+                  className="w-full bg-transparent border-b border-white/10 focus:border-foreground pb-3 text-lg font-syne text-foreground outline-none transition-colors placeholder:text-white/15"
+                />
+              </div>
+
+              {/* Message */}
+              <div className="relative group">
+                <label className="block text-xs font-sans uppercase tracking-widest text-muted mb-3">
+                  Message
+                </label>
+                <textarea
+                  required
+                  rows={4}
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  placeholder="Tell me about your project..."
+                  className="w-full bg-transparent border-b border-white/10 focus:border-foreground pb-3 text-lg font-syne text-foreground outline-none transition-colors placeholder:text-white/15 resize-none"
+                />
+              </div>
+
+              {/* Submit Button */}
+              <motion.button
+                type="submit"
+                disabled={formState !== "idle"}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="self-start inline-flex items-center gap-3 px-8 py-4 bg-foreground text-background font-syne font-bold text-sm uppercase tracking-widest hover:bg-white/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed mt-4"
+              >
+                {formState === "idle" && (
+                  <>
+                    <Send size={14} />
+                    Send Message
+                  </>
+                )}
+                {formState === "sending" && (
+                  <>
+                    <motion.div
+                      animate={{ rotate: 360 }}
+                      transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                      className="w-4 h-4 border-2 border-background/30 border-t-background rounded-full"
+                    />
+                    Sending...
+                  </>
+                )}
+                {formState === "sent" && (
+                  <>
+                    <CheckCircle size={14} />
+                    Sent Successfully
+                  </>
+                )}
+              </motion.button>
+            </form>
           </div>
+
         </div>
-      </section>
-
-      {/* Contact Section */}
-      <section id="contact" className="relative w-full min-h-screen bg-background px-4 md:px-8 flex flex-col items-center justify-center overflow-hidden">
-        {/* 3D Background */}
-        <div className="absolute inset-0 opacity-30 hidden md:block">
-          <Canvas3D cameraPosition={[0, 0, 5]}>
-            <ParticleField />
-          </Canvas3D>
-        </div>
-
-        <div className="relative z-10 max-w-4xl mx-auto text-center space-y-12">
-          {/* Header */}
-          <div className="mb-8">
-            <h2 className="section-label mb-4">(06) CONTACT</h2>
-            <div className="divider mb-12"></div>
-          </div>
-
-          {/* Main Heading */}
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-4xl md:text-6xl lg:text-7xl font-grotesk font-bold leading-tight"
-          >
-            Let's build
-            <br />
-            something real.
-          </motion.h2>
-
-          {/* Buttons */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-            className="flex flex-col md:flex-row items-center justify-center gap-6"
-          >
-            <a
-              href="mailto:youssefabdelhakam99@gmail.com"
-              className="cursor-hover px-8 py-4 border border-foreground text-foreground hover:bg-foreground hover:text-background transition-all duration-300 font-grotesk flex items-center gap-2"
-            >
-              <Mail size={18} />
-              Email Me →
-            </a>
-            <a
-              href="tel:+201023329072"
-              className="cursor-hover px-8 py-4 border border-foreground text-foreground hover:bg-foreground hover:text-background transition-all duration-300 font-grotesk flex items-center gap-2"
-            >
-              <Phone size={18} />
-              +20 102 332 9072
-            </a>
-          </motion.div>
-
-          {/* Social Link */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ delay: 0.6, duration: 0.8 }}
-          >
-            <a
-              href="https://linkedin.com/in/youssef-abdelhakam"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm text-muted cursor-hover hover:text-foreground transition-colors"
-            >
-              <Linkedin size={16} />
-              LinkedIn
-            </a>
-          </motion.div>
-        </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 }

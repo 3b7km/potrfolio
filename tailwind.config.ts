@@ -17,8 +17,8 @@ export default {
         divider: "hsl(var(--divider))",
       },
       fontFamily: {
-        grotesk: ["Space Grotesk", "sans-serif"],
-        inter: ["Inter", "sans-serif"],
+        syne: ["Syne", "sans-serif"],
+        sans: ["DM Sans", "sans-serif"],
       },
       keyframes: {
         "accordion-down": {

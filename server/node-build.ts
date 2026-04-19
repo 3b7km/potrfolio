@@ -19,8 +19,33 @@ app.get("*", (req, res) => {
     return res.status(404).json({ error: "API endpoint not found" });
   }
 
-  res.sendFile(path.join(distPath, "index.html"));
+  const indexPath = path.join(distPath, "index.html");
+  res.sendFile(indexPath, (err) => {
+    if (err) {
+      console.error("Error sending index.html:", err);
+      res.status(500).json({
+        error: "Internal server error",
+        message: "Failed to load application",
+      });
+    }
+  });
 });
+
+// Global error handler
+app.use(
+  (
+    err: Error,
+    req: express.Request,
+    res: express.Response,
+    next: express.NextFunction
+  ) => {
+    console.error("Unhandled error:", err);
+    res.status(500).json({
+      error: "Internal server error",
+      message: process.env.NODE_ENV === "development" ? err.message : undefined,
+    });
+  }
+);
 
 app.listen(port, () => {
   console.log(`🚀 Fusion Starter server running on port ${port}`);

@@ -1,139 +1,64 @@
 import { motion } from "framer-motion";
-import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import Canvas3D from "../3d/Canvas3D";
-import HeroGeometry from "../3d/HeroGeometry";
 
 interface HeroProps {
   onNavigate: (section: string) => void;
 }
 
 export default function Hero({ onNavigate }: HeroProps) {
-  const headlineRef = useRef<HTMLDivElement>(null);
-  const scrollIndicatorRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    // Animate headline lines
-    if (headlineRef.current) {
-      const lines = headlineRef.current.querySelectorAll(".headline-line");
-      lines.forEach((line, index) => {
-        gsap.from(line, {
-          clipPath: "inset(100% 0 0 0)",
-          duration: 1,
-          delay: index * 0.2,
-          ease: "power2.out",
-        });
-      });
-    }
-
-    // Animate scroll indicator
-    if (scrollIndicatorRef.current) {
-      gsap.to(scrollIndicatorRef.current, {
-        y: 20,
-        opacity: 0.3,
-        duration: 1.5,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-      });
-    }
-  }, []);
-
   return (
-    <section className="relative w-full h-screen bg-background overflow-hidden">
-      {/* 3D Background */}
-      <div className="absolute inset-0 opacity-50 hidden md:block">
-        <Canvas3D cameraPosition={[0, 0, 4]}>
-          <HeroGeometry />
-        </Canvas3D>
-      </div>
-
-      {/* Top Navigation */}
-      <nav className="absolute top-8 left-8 right-8 z-20 flex items-center justify-between">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5, duration: 0.8 }}
-          className="text-sm font-grotesk font-bold"
-        >
-          Y.A©
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.6, duration: 0.8 }}
-          className="flex gap-12 text-sm"
-        >
-          <button
-            onClick={() => onNavigate("work")}
-            className="cursor-hover hover:text-accent transition-colors"
+    <section className="relative w-full min-h-screen bg-transparent flex flex-col justify-between pt-32 pb-8 px-6 md:px-12 pointer-events-none">
+      <div className="pointer-events-auto">
+        {/* Top Info Layout */}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mt-12 md:mt-24 w-full">
+          {/* Status & Location widget */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.8 }}
+            className="flex flex-col gap-2 text-xs md:text-sm font-sans tracking-wide text-muted"
           >
-            Work
-          </button>
-          <button
-            onClick={() => onNavigate("about")}
-            className="cursor-hover hover:text-accent transition-colors"
+            <div className="flex items-center gap-3">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+              </span>
+              <span>Available for 2026</span>
+            </div>
+            <span>REMOTE</span>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
+            className="max-w-xs text-xs md:text-sm text-secondary font-sans leading-relaxed"
           >
-            About
-          </button>
-          <a href="#skills" className="cursor-hover hover:text-accent transition-colors">
-            Skills
-          </a>
-          <a href="#contact" className="cursor-hover hover:text-accent transition-colors">
-            Contact
-          </a>
-        </motion.div>
-      </nav>
+            Full-stack web developer specializing in immersive, high-performance React and Three.js experiences.
+          </motion.div>
+        </div>
 
-      {/* Main Content */}
-      <div className="relative h-full flex flex-col items-center justify-center z-10 px-4">
-        <motion.div
-          ref={headlineRef}
-          className="text-center max-w-5xl"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-        >
-          <h1 className="text-5xl md:text-8xl font-grotesk font-bold leading-tight mb-4">
-            <div className="headline-line">Web Developer.</div>
-            <div className="headline-line">Problem Solver.</div>
-            <div className="headline-line">Builder.</div>
-          </h1>
-        </motion.div>
-
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8, duration: 0.8 }}
-          className="text-muted text-sm md:text-base mt-8 max-w-2xl"
-        >
-          Available for projects
-        </motion.p>
+        {/* 3D Typography Space (Handled in Canvas) */}
+        <div className="mt-[10vh] md:mt-[15vh] h-[30vh]">
+           {/* Space reserved for 3D Text rendered from the global Canvas */}
+        </div>
       </div>
 
-      {/* Bottom Elements */}
-      <div className="absolute bottom-8 left-8 right-8 z-20 flex items-end justify-between">
-        <motion.a
-          href="mailto:youssefabdelhakam99@gmail.com"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1 }}
-          className="text-xs text-muted cursor-hover hover:text-foreground transition-colors"
-        >
-          youssefabdelhakam99@gmail.com
-        </motion.a>
-
-        <motion.div
-          ref={scrollIndicatorRef}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2 }}
-          className="flex flex-col items-center gap-2"
-        >
-          <div className="w-px h-6 bg-foreground"></div>
-          <div className="w-1 h-1 bg-foreground rounded-full"></div>
-        </motion.div>
-      </div>
+      {/* Bottom Layout */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1, duration: 1 }}
+        className="flex justify-between items-end w-full pointer-events-auto mix-blend-difference text-foreground pb-4"
+      >
+        <span className="text-xs uppercase tracking-widest">Scroll to explore</span>
+        <div className="w-[1px] h-12 bg-foreground/50 overflow-hidden relative">
+          <motion.div 
+            animate={{ y: [0, 48, 48, 0] }} 
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            className="w-full h-1/3 bg-foreground absolute top-0"
+          />
+        </div>
+      </motion.div>
     </section>
   );
 }

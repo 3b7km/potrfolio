@@ -1,45 +1,7 @@
 import { useState, useRef, useEffect } from "react";
-import { motion } from "framer-motion";
-import gsap from "gsap";
-import { ExternalLink } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
-const projects = [
-  {
-    id: "a",
-    name: "Helwa Fashion",
-    platform: "Shopify",
-    tags: ["Shopify Development", "Luxury Positioning", "Brand Direction", "UX/UI"],
-    year: "2025©",
-    description:
-      "Premium women's fashion Shopify store with dark luxury theme. Built 4 distinct collections — fur jackets, check sets, dresses, and Ramadan kaftans.",
-    url: "https://helwafashion.com",
-    image:
-      "https://helwafashion.com/cdn/shop/files/WhatsAppImage2026-04-04at10.44.20PM_5.jpg?v=1775348224&width=1200",
-  },
-  {
-    id: "b",
-    name: "Djabi",
-    platform: "Shopify",
-    tags: ["Shopify Development", "Brand Identity", "Collections Architecture", "SEO Optimization"],
-    year: "2025©",
-    description:
-      "Full Shopify store for a modest fashion brand — prayer abayas, kaftans, and abayas. Designed and developed the SUJOOD Ramadan 2026 collection.",
-    url: "https://djabi-eg.com",
-    image:
-      "https://djabi-eg.com/cdn/shop/files/IMG_0953.jpg?v=1770860845&width=1200",
-  },
-  {
-    id: "c",
-    name: "Sneakrz King",
-    platform: "Next.js",
-    tags: ["E-commerce Development", "Custom Frontend", "Performance Optimization", "UX/UI"],
-    year: "2025©",
-    description:
-      "Custom-built sneaker e-commerce store for the Egyptian market. Features 3D animated hero logo, brand filtering, size selection, dual CTA system, and full mobile optimization.",
-    url: "https://sneakrz-king.vercel.app",
-    image: "https://images.unsplash.com/photo-1460353581641-37baddab0fa2?w=800&h=600&fit=crop",
-  },
-];
+import { projects } from "@/lib/data";
 
 interface ProjectRowProps {
   project: (typeof projects)[0];
@@ -47,84 +9,107 @@ interface ProjectRowProps {
 
 function ProjectRow({ project }: ProjectRowProps) {
   const [isHovered, setIsHovered] = useState(false);
-  const rowRef = useRef<HTMLDivElement>(null);
-  const imageRef = useRef<HTMLDivElement>(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
-    if (isHovered && imageRef.current) {
-      gsap.fromTo(
-        imageRef.current,
-        { x: 100, opacity: 0 },
-        { x: 0, opacity: 1, duration: 0.6, ease: "power2.out" }
-      );
+    let interval: NodeJS.Timeout;
+    if (isHovered && project.images.length > 1) {
+      interval = setInterval(() => {
+        setCurrentImageIndex((prev) => (prev + 1) % project.images.length);
+      }, 1500);
+    } else {
+      setCurrentImageIndex(0);
     }
-  }, [isHovered]);
+    return () => clearInterval(interval);
+  }, [isHovered, project.images.length]);
 
   return (
-    <motion.div
-      ref={rowRef}
-      onHoverStart={() => setIsHovered(true)}
-      onHoverEnd={() => setIsHovered(false)}
-      className="relative group border-b border-divider py-8 cursor-hover hover:bg-opacity-5 transition-colors"
+    <div
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className="relative group border-t border-border/10 py-10 transition-colors hover:bg-white/[0.02]"
     >
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-center">
-        {/* Index & Name */}
-        <div className="col-span-1 md:col-span-2">
-          <div className="text-sm text-muted font-grotesk mb-2">({project.id})</div>
-          <h3 className="text-2xl md:text-4xl font-grotesk font-bold">{project.name}</h3>
-          <p className="text-xs text-muted mt-2">{project.platform}</p>
-        </div>
+      <a href={project.url} target="_blank" rel="noopener noreferrer" className="block relative z-10">
+        <div className="grid grid-cols-12 gap-4 items-start px-4">
+          
+          {/* Index */}
+          <div className="col-span-12 md:col-span-1 text-sm font-sans text-muted mb-4 md:mb-0">
+            {project.id}
+          </div>
 
-        {/* Tags */}
-        <div className="hidden md:flex flex-col gap-1">
-          {project.tags.slice(0, 2).map((tag, idx) => (
-            <span key={idx} className="text-xs text-muted">
-              {tag}
-            </span>
-          ))}
-        </div>
+          {/* Title & Tags */}
+          <div className="col-span-12 md:col-span-6 flex flex-col gap-2">
+            <h3 className="text-3xl md:text-5xl font-syne font-bold uppercase tracking-tight text-foreground group-hover:pl-4 transition-all duration-300">
+              {project.name}
+            </h3>
+            <div className="flex flex-wrap gap-2 mt-2 group-hover:pl-4 transition-all duration-300 delay-75">
+              {project.tags.map((tag) => (
+                <span key={tag} className="text-xs uppercase px-2 py-1 bg-white/5 rounded-full border border-white/10 text-muted">
+                  {tag}
+                </span>
+              ))}
+            </div>
+            <p className="text-sm font-sans text-muted mt-4 max-w-sm group-hover:pl-4 transition-all duration-300 delay-100">
+              {project.platform}
+            </p>
+          </div>
 
-        {/* Year & Link */}
-        <div className="flex items-center justify-between md:justify-end gap-4">
-          <span className="text-xs text-muted font-grotesk">{project.year}</span>
-          <a
-            href={project.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-sm text-accent explore-hover opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center gap-2"
+          {/* Metrics Column */}
+          <div className="hidden md:block col-span-5 text-right font-sans">
+            <div className="text-sm text-muted mb-2 uppercase tracking-wide">Impact</div>
+            <div className="text-xl text-foreground font-syne">{project.metrics}</div>
+          </div>
+        </div>
+      </a>
+
+      {/* Floating Preview — Masked Reveal */}
+      <AnimatePresence>
+        {isHovered && (
+          <motion.div
+            initial={{ opacity: 0, clipPath: "inset(50% 0% 50% 0%)", scale: 0.92 }}
+            animate={{ opacity: 1, clipPath: "inset(0% 0% 0% 0%)", scale: 1 }}
+            exit={{ opacity: 0, clipPath: "inset(50% 0% 50% 0%)", scale: 0.92 }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            className="absolute top-1/2 -translate-y-1/2 right-[10%] w-72 md:w-96 aspect-[4/3] rounded-sm overflow-hidden pointer-events-none z-0 border border-white/10 shadow-2xl"
           >
-            Explore <ExternalLink size={14} />
-          </a>
-        </div>
-      </div>
-
-      {/* Project Thumbnail Preview */}
-      {isHovered && (
-        <motion.div
-          ref={imageRef}
-          className="absolute right-0 top-0 h-full w-64 md:w-96 rounded-lg overflow-hidden pointer-events-none"
-        >
-          <img src={project.image} alt={project.name} className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black to-transparent"></div>
-        </motion.div>
-      )}
-    </motion.div>
+            {project.images.map((img, idx) => (
+              <motion.img
+                key={img}
+                src={img}
+                alt={`${project.name} preview`}
+                initial={{ scale: 1.15 }}
+                animate={{ scale: idx === currentImageIndex ? 1 : 1.15 }}
+                transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+                  idx === currentImageIndex ? "opacity-100" : "opacity-0"
+                }`}
+              />
+            ))}
+            {/* Gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent" />
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
   );
 }
 
 export default function Projects() {
   return (
-    <section id="projects" className="relative w-full py-20 md:py-32 bg-background px-4 md:px-8">
-      <div className="max-w-6xl mx-auto">
+    <section id="work" className="relative w-full py-32 bg-transparent pointer-events-auto">
+      <div className="max-w-7xl mx-auto px-6 md:px-12">
         {/* Header */}
-        <div className="mb-16">
-          <h2 className="section-label mb-4">(02) WORK</h2>
-          <p className="text-lg md:text-2xl font-grotesk max-w-2xl">Selected projects. Built with precision.</p>
-          <div className="divider mt-8"></div>
+        <div className="mb-16 md:mb-24 flex flex-col md:flex-row justify-between items-start md:items-end gap-8">
+          <h2 className="text-4xl md:text-6xl font-syne font-bold uppercase tracking-tighter">
+            Selected<br/><span className="text-muted">Works</span>
+          </h2>
+          <p className="text-sm font-sans text-muted max-w-xs leading-relaxed">
+            A collection of robust, visually demanding digital experiences engineered for scale.
+          </p>
         </div>
 
         {/* Projects List */}
-        <div className="space-y-0">
+        <div className="border-b border-border/10">
           {projects.map((project) => (
             <ProjectRow key={project.id} project={project} />
           ))}

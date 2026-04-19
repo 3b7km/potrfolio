@@ -1,107 +1,71 @@
-import { useRef, useEffect } from "react";
-import { motion, useInView } from "framer-motion";
-import gsap from "gsap";
-import Canvas3D from "../3d/Canvas3D";
-import WireframeCube from "../3d/WireframeCube";
+import { motion } from "framer-motion";
 
-interface StatProps {
-  number: number | string;
-  label: string;
-}
-
-function Stat({ number, label }: StatProps) {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
-  useEffect(() => {
-    if (isInView && typeof number === "number" && ref.current) {
-      const target = { value: 0 };
-      gsap.to(target, {
-        value: number,
-        duration: 2,
-        ease: "power2.out",
-        onUpdate: () => {
-          const element = ref.current?.querySelector(".stat-number");
-          if (element) {
-            element.textContent = Math.floor(target.value).toString();
-          }
-        },
-      });
-    }
-  }, [isInView, number]);
-
-  return (
-    <div ref={ref} className="text-center">
-      <div className="stat-number text-3xl md:text-5xl font-grotesk font-bold">{number}</div>
-      <p className="text-xs text-muted mt-2 uppercase tracking-wider">{label}</p>
-    </div>
-  );
-}
+import { experiences, skills } from "@/lib/data";
 
 export default function About() {
-  const textRef = useRef<HTMLDivElement>(null);
-
-
   return (
-    <section id="about" className="relative w-full py-20 md:py-32 bg-background px-4 md:px-8">
-      <div className="max-w-6xl mx-auto">
-        {/* Header */}
-        <div className="mb-16">
-          <h2 className="section-label mb-4">(03) ABOUT</h2>
-          <div className="divider"></div>
-        </div>
+    <section id="about" className="relative w-full py-32 bg-transparent pointer-events-auto">
+      <div className="max-w-7xl mx-auto px-6 md:px-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8">
+          
+          {/* Left Column: Bio */}
+          <div className="lg:col-span-7 flex flex-col gap-8">
+            <h2 className="text-sm font-sans tracking-widest text-muted uppercase">
+              (About)
+            </h2>
+            
+            <div className="text-2xl md:text-4xl lg:text-5xl font-syne leading-tight text-foreground mix-blend-difference">
+              I'm Youssef — an independent web developer bridging the gap between rigorous engineering and high-end digital design. 
+            </div>
+            
+            <div className="text-base md:text-lg font-sans text-muted leading-relaxed max-w-2xl">
+              <p className="mb-6">
+                Currently pursuing a degree in Network & Cyber Security at ElSewedy University of Technology, my background provides a strict foundation in robust architecture and secure systems.
+              </p>
+              <p>
+                In practice, I build bespoke e-commerce platforms, complex web applications, and immersive 3D experiences. I don't just write code; I architect solutions that elevate brand perception and drive measurable business impact.
+              </p>
+            </div>
 
-        {/* Content Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-start">
-          {/* Left: Photo */}
-          <div className="h-64 md:h-96 rounded-lg overflow-hidden">
-            <img
-              src="https://cdn.builder.io/api/v1/image/assets%2F412054951e8b4d02957cdfe69d9f1d3c%2Fabab53a9ca4d4fcf85e04068b30e2924?format=webp&width=800&height=1200"
-              alt="Youssef Abdelhakam"
-              className="w-full h-full object-cover"
-            />
+
           </div>
 
-          {/* Right: Text & Stats */}
-          <div className="space-y-8">
-            {/* Age */}
-            <div className="flex items-baseline gap-4">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                className="text-5xl md:text-7xl font-grotesk font-bold"
-              >
-                21
-              </motion.div>
-              <p className="text-muted text-sm uppercase tracking-wider">years old</p>
+          {/* Right Column: Experience & Skills */}
+          <div className="lg:col-span-4 lg:col-start-9 flex flex-col gap-16">
+            
+            {/* Experience */}
+            <div>
+              <h3 className="text-sm font-sans tracking-widest text-muted uppercase mb-8 border-b border-border/10 pb-4">
+                Experience
+              </h3>
+              <div className="flex flex-col gap-6">
+                {experiences.map((exp, idx) => (
+                  <div key={idx} className="flex flex-col gap-1">
+                    <span className="text-xs font-sans text-muted">{exp.year}</span>
+                    <strong className="text-lg font-syne text-foreground font-semibold">{exp.role}</strong>
+                    <span className="text-sm font-sans text-muted">{exp.company}</span>
+                  </div>
+                ))}
+              </div>
             </div>
 
-            {/* Bio Text */}
-            <motion.div
-              ref={textRef}
-              className="space-y-4"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true, margin: "-100px" }}
-            >
-              <p className="text-base md:text-lg leading-relaxed">
-                {`I'm Youssef — a web developer and programmer. I build e-commerce stores, custom web applications, and digital products that actually work for real businesses. Currently studying Network & Cyber Security at ElSewedy University of Technology while taking on real client projects.`.split(" ").map((word, idx) => (
-                  <span key={idx} className="word inline-block mr-1">
-                    {word}
+            {/* Skills */}
+            <div>
+              <h3 className="text-sm font-sans tracking-widest text-muted uppercase mb-8 border-b border-border/10 pb-4">
+                Arsenal
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {skills.map((skill) => (
+                  <span 
+                    key={skill} 
+                    className="text-xs uppercase px-3 py-1.5 bg-white/5 rounded-full border border-white/10 text-muted"
+                  >
+                    {skill}
                   </span>
                 ))}
-              </p>
-            </motion.div>
-
-            {/* Stats */}
-            <div className="grid grid-cols-2 gap-8 pt-8 border-t border-divider">
-              <Stat number={3} label="Projects Launched" />
-              <Stat number={2} label="Shopify Stores" />
-              <Stat number={1} label="Custom Next.js Build" />
-              <Stat number={2025} label="First client year" />
+              </div>
             </div>
+
           </div>
         </div>
       </div>

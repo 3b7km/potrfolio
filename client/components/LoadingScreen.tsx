@@ -72,7 +72,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2, duration: 0.8 }}
-          className="text-4xl font-grotesk font-bold text-foreground"
+          className="text-4xl font-syne font-bold text-foreground"
         >
           Y.A
         </motion.div>

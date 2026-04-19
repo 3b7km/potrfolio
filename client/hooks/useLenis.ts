@@ -9,7 +9,7 @@ export function useLenis() {
       smooth: true,
       mouseMultiplier: 1,
       touchMultiplier: 2,
-    } as any);
+    });
 
     function raf(time: number) {
       lenis.raf(time);

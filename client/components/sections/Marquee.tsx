@@ -3,7 +3,7 @@ export default function Marquee() {
     "Next.js · Shopify · Python · SQL · Java · IoT Systems · React · OOP · Database Management · Oracle · Web Development · ";
 
   return (
-    <section className="relative w-full py-12 bg-background overflow-hidden border-y border-divider">
+    <section className="relative w-full py-12 bg-transparent overflow-hidden border-y border-divider">
       <div className="flex gap-4 whitespace-nowrap">
         {/* First loop */}
         <div className="marquee text-sm font-mono text-muted uppercase tracking-wider" style={{ "--duration": "30s" } as React.CSSProperties}>

@@ -1,19 +1,21 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import LoadingScreen from "@/components/LoadingScreen";
 import Hero from "@/components/sections/Hero";
 import Marquee from "@/components/sections/Marquee";
 import Projects from "@/components/sections/Projects";
 import About from "@/components/sections/About";
-import Skills from "@/components/sections/Skills";
 import ExperienceContact from "@/components/sections/ExperienceContact";
 import Footer from "@/components/Footer";
+import Canvas3D from "@/components/3d/Canvas3D";
+import ScrollSceneGeometry from "@/components/3d/ScrollSceneGeometry";
 import { useLenis } from "@/hooks/useLenis";
+import { Navigation } from "@/components/Navigation";
+import Hero3DText from "@/components/3d/Hero3DText";
+import CanvasLoader from "@/components/3d/CanvasLoader";
 
 export default function Index() {
   const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(true);
   const [showNav, setShowNav] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
@@ -49,53 +51,32 @@ export default function Index() {
   };
 
   return (
-    <div className="bg-background text-foreground overflow-x-hidden">
+    <div className="bg-transparent text-foreground overflow-x-hidden relative">
 
-      {/* Loading Screen */}
-      <AnimatePresence>
-        {isLoading && (
-          <LoadingScreen
-            onComplete={() => {
-              setIsLoading(false);
-            }}
-          />
-        )}
-      </AnimatePresence>
+      <div className="fixed inset-0 z-[-1] pointer-events-none">
+        <Canvas3D cameraPosition={[0, 0, 8]}>
+          <ScrollSceneGeometry />
+          <Hero3DText />
+        </Canvas3D>
+      </div>
+
+      {/* GPU-Aware 3D Preloader */}
+      <CanvasLoader />
 
       {/* Floating Navigation */}
-      <motion.nav
-        animate={{
-          y: showNav ? 0 : -100,
-          opacity: showNav ? 1 : 0,
-        }}
-        transition={{ duration: 0.3 }}
-        className="fixed top-8 right-8 z-20 flex gap-8 text-sm pointer-events-auto"
-      >
-        <button
-          onClick={() => handleNavigate("projects")}
-          className="cursor-hover hover:text-accent transition-colors"
-        >
-          Work
-        </button>
-        <button onClick={() => handleNavigate("about")} className="cursor-hover hover:text-accent transition-colors">
-          About
-        </button>
-        <a href="#skills" className="cursor-hover hover:text-accent transition-colors">
-          Skills
-        </a>
-        <a href="#contact" className="cursor-hover hover:text-accent transition-colors">
-          Contact
-        </a>
-      </motion.nav>
+      <AnimatePresence>
+        {showNav && <Navigation />}
+      </AnimatePresence>
 
-      {/* Sections */}
-      <Hero onNavigate={handleNavigate} />
-      <Marquee />
-      <Projects />
-      <About />
-      <Skills />
-      <ExperienceContact />
-      <Footer />
+      {/* Sections Overlay */}
+      <div className="relative z-10 w-full">
+        <Hero onNavigate={handleNavigate} />
+        <Marquee />
+        <Projects />
+        <About />
+        <ExperienceContact />
+        <Footer />
+      </div>
     </div>
   );
 }
