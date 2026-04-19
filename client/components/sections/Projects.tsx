@@ -44,7 +44,7 @@ function ProjectRow({ project }: ProjectRowProps) {
             </h3>
             <div className="flex flex-wrap gap-2 mt-2 group-hover:pl-4 transition-all duration-300 delay-75">
               {project.tags.map((tag) => (
-                <span key={tag} className="text-xs uppercase px-2 py-1 bg-white/5 rounded-full border border-white/10 text-secondary font-sans">
+                <span key={tag} className="text-xs uppercase px-2 py-1 bg-white/10 rounded-full border border-white/20 text-foreground/80 font-sans font-medium">
                   {tag}
                 </span>
               ))}
@@ -75,6 +75,13 @@ function ProjectRow({ project }: ProjectRowProps) {
             className="inline-flex items-center gap-2 text-sm font-sans uppercase tracking-wide text-foreground border border-foreground/30 px-4 py-2 rounded hover:border-foreground hover:bg-white/5 transition-all duration-300"
           >
             View Live Site
+            <ArrowUpRight size={16} />
+          </a>
+          <a
+            href="/work"
+            className="inline-flex items-center gap-2 text-sm font-sans uppercase tracking-wide text-muted border border-white/20 px-4 py-2 rounded hover:border-foreground hover:text-foreground hover:bg-white/5 transition-all duration-300"
+          >
+            View Case Study
             <ArrowUpRight size={16} />
           </a>
         </motion.div>

@@ -68,7 +68,7 @@ export default function ExperienceContact() {
   };
 
   return (
-    <section id="contact" className="relative w-full py-48 md:py-64 bg-transparent pointer-events-auto">
+    <section id="contact" className="relative w-full py-48 md:py-64 bg-transparent pointer-events-auto border-t border-border/10">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8">
           
@@ -86,6 +86,9 @@ export default function ExperienceContact() {
               >
                 Say <br/> <span className="text-muted">Hi!</span>
               </motion.h2>
+              <p className="text-sm font-sans text-muted mt-6 max-w-sm">
+                Whether you have a project in mind, want to discuss collaboration, or simply want to connect—I'm always open to opportunities. Reach out and let's create something extraordinary together.
+              </p>
             </div>
 
             {/* Quick Links */}
@@ -219,7 +222,10 @@ export default function ExperienceContact() {
                   className="mt-4 p-4 bg-green-400/10 border border-green-400/30 rounded text-sm text-green-300 flex items-center gap-2"
                 >
                   <CheckCircle size={16} />
-                  Message sent successfully! I'll get back to you soon.
+                  <div>
+                    <p className="font-semibold">Message sent successfully!</p>
+                    <p className="text-xs opacity-80">I'll review and get back to you within 24 hours.</p>
+                  </div>
                 </motion.div>
               )}
             </form>

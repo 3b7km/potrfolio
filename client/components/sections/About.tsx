@@ -1,10 +1,8 @@
-import { motion } from "framer-motion";
-
 import { experiences, skills } from "@/lib/data";
 
 export default function About() {
   return (
-    <section id="about" className="relative w-full py-32 bg-transparent pointer-events-auto">
+    <section id="about" className="relative w-full py-32 bg-transparent pointer-events-auto border-b border-border/10">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8">
 
@@ -75,7 +73,7 @@ export default function About() {
                 {skills.map((skill) => (
                   <span 
                     key={skill} 
-                    className="text-xs uppercase px-3 py-1.5 bg-white/5 rounded-full border border-white/10 text-muted"
+                    className="text-xs uppercase px-3 py-1.5 bg-white/10 rounded-full border border-white/20 text-foreground/90 font-medium hover:border-white/40 hover:bg-white/15 transition-all"
                   >
                     {skill}
                   </span>
