@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
+
+import { AnimatePresence } from "framer-motion";
 import Hero from "@/components/sections/Hero";
 import Marquee from "@/components/sections/Marquee";
 import Projects from "@/components/sections/Projects";
@@ -15,7 +15,6 @@ import Hero3DText from "@/components/3d/Hero3DText";
 import CanvasLoader from "@/components/3d/CanvasLoader";
 
 export default function Index() {
-  const navigate = useNavigate();
   const [showNav, setShowNav] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
@@ -39,17 +38,6 @@ export default function Index() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
-  const handleNavigate = (section: string) => {
-    if (section === "work") {
-      navigate("/work");
-    } else if (section === "about") {
-      navigate("/about");
-    } else {
-      const element = document.getElementById(section);
-      element?.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   return (
     <div className="bg-transparent overflow-x-hidden relative">
 
@@ -70,7 +58,7 @@ export default function Index() {
 
       {/* Sections Overlay */}
       <div className="relative z-10 w-full">
-        <Hero onNavigate={handleNavigate} />
+        <Hero />
         <Marquee />
         <Projects />
         <About />

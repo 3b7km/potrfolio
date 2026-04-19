@@ -14,7 +14,7 @@ export default function ParticleField() {
     return pos;
   }, []);
 
-  useFrame((state) => {
+  useFrame(() => {
     if (meshRef.current && meshRef.current.geometry.attributes.position) {
       const positions = meshRef.current.geometry.attributes.position.array as Float32Array;
       for (let i = 0; i < positions.length; i += 3) {

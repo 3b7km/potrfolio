@@ -1,6 +1,5 @@
 import { useRef, useEffect } from "react";
 import { useFrame } from "@react-three/fiber";
-import { IcosahedronGeometry, MeshStandardMaterial } from "three";
 import * as THREE from "three";
 
 export default function HeroGeometry() {

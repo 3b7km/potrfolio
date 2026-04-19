@@ -249,7 +249,7 @@ export default function Projects() {
 
         {/* Projects List */}
         <div>
-          {projects.map((project, idx) => (
+          {projects.map((project) => (
             <div key={project.id} className="border-b border-border/10">
               <ProjectRow project={project} />
               <ProjectDetails project={project} />

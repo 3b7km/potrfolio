@@ -1,10 +1,6 @@
 import { motion } from "framer-motion";
 
-interface HeroProps {
-  onNavigate: (section: string) => void;
-}
-
-export default function Hero({ onNavigate }: HeroProps) {
+export default function Hero() {
   return (
     <section className="relative w-full min-h-screen bg-transparent flex flex-col justify-between pt-32 pb-8 px-6 md:px-12 pointer-events-none">
       <div className="pointer-events-auto">

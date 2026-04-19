@@ -7,7 +7,7 @@ export function createServer() {
   const app = express();
 
   // Security middleware
-  app.use((req, res, next) => {
+  app.use((_req, res, next) => {
     res.setHeader("X-Content-Type-Options", "nosniff");
     res.setHeader("X-Frame-Options", "DENY");
     res.setHeader("X-XSS-Protection", "1; mode=block");
@@ -23,7 +23,7 @@ export function createServer() {
     "http://localhost:3000",
     "http://localhost:8080",
     process.env.ALLOWED_ORIGIN,
-  ].filter(Boolean);
+  ].filter((origin): origin is string => Boolean(origin));
 
   app.use(
     cors({
@@ -36,7 +36,7 @@ export function createServer() {
   app.use(express.urlencoded({ extended: true }));
 
   // Health check endpoint
-  app.get("/health", (req, res) => {
+  app.get("/health", (_req, res) => {
     res.json({ status: "ok", timestamp: new Date().toISOString() });
   });
 
