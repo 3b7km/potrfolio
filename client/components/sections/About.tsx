@@ -7,9 +7,20 @@ export default function About() {
     <section id="about" className="relative w-full py-32 bg-transparent pointer-events-auto">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8">
-          
-          {/* Left Column: Bio */}
-          <div className="lg:col-span-7 flex flex-col gap-8">
+
+          {/* Left Column: Photo */}
+          <div className="lg:col-span-4 flex flex-col gap-8">
+            <div className="rounded-lg overflow-hidden aspect-square">
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets%2F412054951e8b4d02957cdfe69d9f1d3c%2Fabab53a9ca4d4fcf85e04068b30e2924?format=webp&width=600&height=800"
+                alt="Youssef Abdelhakam"
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+
+          {/* Center Column: Bio */}
+          <div className="lg:col-span-5 flex flex-col gap-8">
             <h2 className="text-sm font-sans tracking-widest text-muted uppercase">
               (About)
             </h2>
@@ -31,7 +42,7 @@ export default function About() {
           </div>
 
           {/* Right Column: Experience & Skills */}
-          <div className="lg:col-span-4 lg:col-start-9 flex flex-col gap-16">
+          <div className="lg:col-span-3 flex flex-col gap-16">
             
             {/* Experience */}
             <div>
