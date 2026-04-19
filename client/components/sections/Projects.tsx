@@ -47,7 +47,7 @@ function ProjectRow({ project }: ProjectRowProps) {
 
           {/* Title & Tags */}
           <div className="col-span-12 md:col-span-6 flex flex-col gap-2">
-            <h3 className="text-2xl md:text-5xl font-syne font-bold uppercase tracking-tight text-white group-hover:pl-4 transition-all duration-300">
+            <h3 className="text-2xl md:text-5xl font-syne font-bold uppercase tracking-tight text-foreground group-hover:pl-4 transition-all duration-300">
               {project.name}
             </h3>
             <div className="flex flex-wrap gap-2 mt-2 group-hover:pl-4 transition-all duration-300 delay-75">
@@ -143,8 +143,8 @@ function ProjectDetails({ project }: { project: (typeof projects)[0] }) {
     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl">
       {/* Challenge */}
       <div>
-        <h4 className="text-xs font-sans uppercase tracking-widest text-muted mb-3">Challenge</h4>
-        <p className="text-sm font-sans text-foreground leading-relaxed">
+        <h4 className="text-xs font-sans font-bold uppercase tracking-widest text-foreground mb-3">Challenge</h4>
+        <p className="text-sm font-sans text-white/90 leading-relaxed">
           {project.id === "01"
             ? "Build a premium luxury fashion store that stands out in Egypt's competitive market, combining sophisticated design with technical excellence and high conversion rates."
             : project.id === "02"
@@ -155,8 +155,8 @@ function ProjectDetails({ project }: { project: (typeof projects)[0] }) {
 
       {/* Solution */}
       <div>
-        <h4 className="text-xs font-sans uppercase tracking-widest text-muted mb-3">Solution</h4>
-        <p className="text-sm font-sans text-foreground leading-relaxed">
+        <h4 className="text-xs font-sans font-bold uppercase tracking-widest text-foreground mb-3">Solution</h4>
+        <p className="text-sm font-sans text-white/90 leading-relaxed">
           {project.id === "01"
             ? "Crafted a dark luxury Shopify theme with custom liquid code, promotional workflows, and deep social media integration. Implemented conversion-focused UX patterns and optimized checkout flow."
             : project.id === "02"
@@ -167,12 +167,12 @@ function ProjectDetails({ project }: { project: (typeof projects)[0] }) {
 
       {/* Impact */}
       <div>
-        <h4 className="text-xs font-sans uppercase tracking-widest text-muted mb-3">Impact & Results</h4>
+        <h4 className="text-xs font-sans font-bold uppercase tracking-widest text-foreground mb-3">Impact & Results</h4>
         <div className="space-y-2">
-          <p className="text-sm font-sans text-foreground">
+          <p className="text-sm font-sans text-white">
             <span className="font-semibold text-accent">{project.metrics}</span>
           </p>
-          <p className="text-sm font-sans text-muted">
+          <p className="text-sm font-sans text-white/70">
             {project.id === "01"
               ? "Established a luxury brand presence with industry-leading conversion rates and customer retention."
               : project.id === "02"

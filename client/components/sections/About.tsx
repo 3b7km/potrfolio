@@ -8,21 +8,21 @@ export default function About() {
 
           {/* Center Column: Bio */}
           <div className="lg:col-span-7 flex flex-col gap-8">
-            <h2 className="text-sm font-sans tracking-widest text-muted uppercase">
+            <h2 className="text-sm font-sans font-bold tracking-widest text-foreground uppercase">
               (About)
             </h2>
             
-            <div className="text-2xl md:text-4xl lg:text-5xl font-syne leading-tight text-foreground mix-blend-difference">
+            <div className="text-2xl md:text-4xl lg:text-5xl font-syne leading-tight text-white/95">
               I'm Youssef — an independent web developer bridging the gap between rigorous engineering and high-end digital design. 
             </div>
             
-            <div className="text-base md:text-lg font-sans text-muted leading-relaxed max-w-2xl space-y-4">
+            <div className="text-base md:text-lg font-sans text-white/80 leading-relaxed max-w-2xl space-y-4">
               <div className="p-4 border border-white/10 rounded bg-white/[0.02]">
-                <p className="text-secondary font-sans font-medium mb-2 uppercase text-sm tracking-wide">
+                <p className="font-syne text-foreground font-bold mb-2 uppercase text-sm tracking-wide">
                   Unique Advantage
                 </p>
-                <p className="text-foreground">
-                  My background in <span className="font-semibold">Network & Cyber Security</span> at ElSewedy University of Technology uniquely positions me to build not just beautiful—but secure, robust, and scalable solutions. This translates to enterprise-grade applications that protect your users and data.
+                <p className="text-white/90">
+                  My background in <span className="font-semibold text-white">Network & Cyber Security</span> at ElSewedy University of Technology uniquely positions me to build not just beautiful—but secure, robust, and scalable solutions. This translates to enterprise-grade applications that protect your users and data.
                 </p>
               </div>
 
@@ -39,15 +39,15 @@ export default function About() {
             
             {/* Experience */}
             <div>
-              <h3 className="text-sm font-sans tracking-widest text-muted uppercase mb-8 border-b border-border/10 pb-4">
+              <h3 className="text-sm font-sans font-bold tracking-widest text-foreground uppercase mb-8 border-b border-border/10 pb-4">
                 Experience
               </h3>
               <div className="flex flex-col gap-6">
                 {experiences.map((exp, idx) => (
                   <div key={idx} className="flex flex-col gap-1">
-                    <span className="text-xs font-sans text-muted">{exp.year}</span>
+                    <span className="text-xs font-sans text-white/60">{exp.year}</span>
                     <strong className="text-lg font-syne text-foreground font-semibold">{exp.role}</strong>
-                    <span className="text-sm font-sans text-muted">{exp.company}</span>
+                    <span className="text-sm font-sans text-white/80">{exp.company}</span>
                   </div>
                 ))}
               </div>
@@ -55,7 +55,7 @@ export default function About() {
 
             {/* Skills */}
             <div>
-              <h3 className="text-sm font-sans tracking-widest text-muted uppercase mb-8 border-b border-border/10 pb-4">
+              <h3 className="text-sm font-sans font-bold tracking-widest text-foreground uppercase mb-8 border-b border-border/10 pb-4">
                 Arsenal
               </h3>
               <div className="flex flex-wrap gap-2">
