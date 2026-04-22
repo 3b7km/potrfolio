@@ -95,7 +95,8 @@ export default function ExperienceContact() {
             <div className="flex flex-col gap-4 mt-4">
               <a
                 href="mailto:youssefabdelhakam99@gmail.com"
-                className="tap-target group inline-flex items-center gap-3 text-sm font-sans text-muted hover:text-foreground transition-colors py-2"
+                aria-label="Email Me"
+                className="tap-target group inline-flex items-center gap-3 text-sm font-sans text-white/80 hover:text-white transition-colors py-2"
               >
                 <Mail size={16} />
                 <span>youssefabdelhakam99@gmail.com</span>
@@ -105,7 +106,8 @@ export default function ExperienceContact() {
                 href="https://www.linkedin.com/in/youssef-abdelhakm-gamal-3b7km/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="tap-target group inline-flex items-center gap-3 text-sm font-sans text-muted hover:text-foreground transition-colors py-2"
+                aria-label="LinkedIn Profile"
+                className="tap-target group inline-flex items-center gap-3 text-sm font-sans text-white/80 hover:text-white transition-colors py-2"
               >
                 <Linkedin size={16} />
                 <span>LinkedIn</span>
@@ -120,10 +122,11 @@ export default function ExperienceContact() {
 
               {/* Name */}
               <div className="relative group">
-                <label className="block text-xs font-sans uppercase tracking-widest text-muted mb-3">
+                <label htmlFor="contact-name" className="block text-xs font-sans uppercase tracking-widest text-white/80 mb-3">
                   Name
                 </label>
                 <input
+                  id="contact-name"
                   type="text"
                   required
                   value={formData.name}
@@ -141,10 +144,11 @@ export default function ExperienceContact() {
 
               {/* Email */}
               <div className="relative group">
-                <label className="block text-xs font-sans uppercase tracking-widest text-muted mb-3">
+                <label htmlFor="contact-email" className="block text-xs font-sans uppercase tracking-widest text-white/80 mb-3">
                   Email
                 </label>
                 <input
+                  id="contact-email"
                   type="email"
                   required
                   value={formData.email}
@@ -162,10 +166,11 @@ export default function ExperienceContact() {
 
               {/* Message */}
               <div className="relative group">
-                <label className="block text-xs font-sans uppercase tracking-widest text-muted mb-3">
+                <label htmlFor="contact-message" className="block text-xs font-sans uppercase tracking-widest text-white/80 mb-3">
                   Message
                 </label>
                 <textarea
+                  id="contact-message"
                   required
                   rows={4}
                   value={formData.message}

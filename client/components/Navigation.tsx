@@ -12,11 +12,13 @@ export function Navigation() {
       <Link to="/" className="font-syne font-bold text-xl tracking-tight">
         YA.
       </Link>
-      
-      <nav className="flex gap-2 md:gap-6 font-sans text-sm font-medium tracking-wide">
-        <a href="/#about" className="tap-target px-3 py-2 hover:opacity-60 transition-opacity rounded-md">About</a>
-        <Link to="/work" className="tap-target px-3 py-2 hover:opacity-60 transition-opacity rounded-md">Work</Link>
-        <a href="/#contact" className="tap-target px-3 py-2 hover:opacity-60 transition-opacity rounded-md">Contact</a>
+
+      <nav className="flex gap-2 md:gap-5 font-sans text-xs md:text-sm font-medium tracking-wide">
+        <a href="/#about" className="tap-target px-2 md:px-3 py-2 hover:opacity-60 transition-opacity rounded-md">About</a>
+        <Link to="/work" className="tap-target px-2 md:px-3 py-2 hover:opacity-60 transition-opacity rounded-md">Work</Link>
+        <a href="/#experience" className="tap-target px-2 md:px-3 py-2 hover:opacity-60 transition-opacity rounded-md">Experience</a>
+        <a href="/#testimonials" className="tap-target px-2 md:px-3 py-2 hover:opacity-60 transition-opacity rounded-md">Testimonials</a>
+        <a href="/#contact" className="tap-target px-2 md:px-3 py-2 hover:opacity-60 transition-opacity rounded-md">Contact</a>
       </nav>
 
       {/* Theme toggle indicator circle mockup */}

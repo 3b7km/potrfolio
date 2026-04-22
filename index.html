@@ -35,16 +35,33 @@
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Youssef Abdelhakam",
-        "alternateName": "Youssef Abdelhakm Gamal",
-        "url": "https://youssef-abdelhakam.vercel.app/",
-        "jobTitle": "Full Stack Web Developer",
-        "alumniOf": "ElSewedy University of Technology",
-        "sameAs": [
-          "https://www.linkedin.com/in/youssef-abdelhakm-gamal-3b7km/"
-        ],
-        "knowsAbout": ["Web Development", "React", "Next.js", "Network Security", "Shopify", "Tailwind CSS", "TypeScript"]
+        "@graph": [
+          {
+            "@type": "Person",
+            "@id": "https://youssef-abdelhakam.vercel.app/#person",
+            "name": "Youssef Abdelhakam",
+            "alternateName": "Youssef Abdelhakm Gamal",
+            "url": "https://youssef-abdelhakam.vercel.app/",
+            "jobTitle": "Full Stack Web Developer",
+            "alumniOf": {
+              "@type": "EducationalOrganization",
+              "name": "ElSewedy University of Technology"
+            },
+            "sameAs": [
+              "https://www.linkedin.com/in/youssef-abdelhakm-gamal-3b7km/"
+            ],
+            "knowsAbout": ["Secure Web Development", "E-Commerce", "React", "Next.js", "Network Security", "Shopify Theme Development", "Tailwind CSS", "TypeScript"]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://youssef-abdelhakam.vercel.app/#website",
+            "url": "https://youssef-abdelhakam.vercel.app/",
+            "name": "Youssef Abdelhakam | Creative Web Developer",
+            "publisher": {
+              "@id": "https://youssef-abdelhakam.vercel.app/#person"
+            }
+          }
+        ]
       }
     </script>
 

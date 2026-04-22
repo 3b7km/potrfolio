@@ -13,7 +13,7 @@ export default function About() {
             </h2>
             
             <div className="text-2xl md:text-4xl lg:text-5xl font-syne leading-tight text-white/95">
-              I'm Youssef — an independent web developer bridging the gap between rigorous engineering and high-end digital design. 
+              I'm Youssef — an independent web developer building secure, high-conversion e-commerce platforms and immersive 3D web experiences that drive actionable business impact.
             </div>
             
             <div className="text-base md:text-lg font-sans text-white/80 leading-relaxed max-w-2xl space-y-4">
@@ -25,10 +25,6 @@ export default function About() {
                   My background in <span className="font-semibold text-white">Network & Cyber Security</span> at ElSewedy University of Technology uniquely positions me to build not just beautiful—but secure, robust, and scalable solutions. This translates to enterprise-grade applications that protect your users and data.
                 </p>
               </div>
-
-              <p>
-                I build bespoke e-commerce platforms, complex web applications, and immersive 3D experiences. I don't just write code; I architect solutions that elevate brand perception, drive measurable business impact, and maintain security-first principles from the ground up.
-              </p>
             </div>
 
 
@@ -54,20 +50,27 @@ export default function About() {
             </div>
 
             {/* Skills */}
-            <div>
-              <h3 className="text-sm font-sans font-bold tracking-widest text-foreground uppercase mb-8 border-b border-border/10 pb-4">
+            <div className="flex flex-col gap-8">
+              <h3 className="text-sm font-sans font-bold tracking-widest text-foreground uppercase mb-2 border-b border-border/10 pb-4">
                 Arsenal
               </h3>
-              <div className="flex flex-wrap gap-2">
-                {skills.map((skill) => (
-                  <span 
-                    key={skill} 
-                    className="text-xs uppercase px-4 py-2.5 min-h-[36px] inline-flex items-center bg-white/10 rounded-full border border-white/20 text-white/90 font-medium hover:border-white/40 hover:bg-white/15 transition-all"
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
+              {Object.entries(skills).map(([category, items]) => (
+                <div key={category}>
+                  <p className="text-xs font-syne font-bold uppercase tracking-wide text-muted mb-3">
+                    {category}
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {items.map((skill) => (
+                      <span 
+                        key={skill} 
+                        className="text-xs uppercase px-4 py-2.5 min-h-[36px] inline-flex items-center bg-white/10 rounded-full border border-white/20 text-white/90 font-medium hover:border-white/40 hover:bg-white/15 transition-all"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
             </div>
 
           </div>

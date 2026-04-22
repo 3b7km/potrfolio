@@ -1,6 +1,6 @@
 import { Canvas } from "@react-three/fiber";
 import { Suspense, useEffect, useState } from "react";
-import { PerspectiveCamera, Environment } from "@react-three/drei";
+import { PerspectiveCamera, Environment, Preload } from "@react-three/drei";
 
 interface Canvas3DProps {
   children: React.ReactNode;
@@ -14,7 +14,6 @@ export default function Canvas3D({
   cameraPosition = [0, 0, 4],
 }: Canvas3DProps) {
   const [isMobile, setIsMobile] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -24,22 +23,10 @@ export default function Canvas3D({
     checkMobile();
     window.addEventListener("resize", checkMobile);
     
-    // Simulate 3D asset loading
-    const timer = setTimeout(() => setIsLoading(false), 500);
-    
     return () => {
       window.removeEventListener("resize", checkMobile);
-      clearTimeout(timer);
     };
   }, []);
-
-  if (isLoading) {
-    return (
-      <div className={`${className} flex items-center justify-center bg-gradient-to-br from-transparent to-white/[0.01]`}>
-        <div className="w-8 h-8 border-2 border-foreground/20 border-t-foreground rounded-full animate-spin" />
-      </div>
-    );
-  }
 
   return (
     <Canvas 
@@ -59,6 +46,7 @@ export default function Canvas3D({
         {/* Studio environment for realistic metalness reflections */}
         <Environment preset="studio" />
         
+        <Preload all />
         {children}
       </Suspense>
     </Canvas>

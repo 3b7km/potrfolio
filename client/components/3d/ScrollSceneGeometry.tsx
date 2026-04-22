@@ -52,9 +52,9 @@ export default function ScrollSceneGeometry() {
       groupRef.current.position.y = THREE.MathUtils.lerp(groupRef.current.position.y, targetY, 0.05);
       groupRef.current.position.x = THREE.MathUtils.lerp(groupRef.current.position.x, targetX, 0.05);
       
-      // Apply mouse influence
-      groupRef.current.rotation.x = mouseY.current;
-      groupRef.current.rotation.y = mouseX.current;
+      // Apply amplified mouse influence for interaction feedback
+      groupRef.current.rotation.x = mouseY.current * 1.5;
+      groupRef.current.rotation.y = mouseX.current * 1.5;
 
       // Base rotation scaling based on scroll
       if (outerRef.current) {

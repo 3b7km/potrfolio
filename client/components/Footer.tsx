@@ -14,7 +14,7 @@ export default function Footer() {
             >
               LinkedIn ↗
             </a>
-            <a href="tel:+2001023329072" className="tap-target px-3 py-2 hover:text-foreground transition-colors rounded-md">Phone</a>
+            <a href="https://wa.me/2001023329072" target="_blank" rel="noopener noreferrer" className="tap-target px-3 py-2 hover:text-foreground transition-colors rounded-md">WhatsApp</a>
           </div>
         </div>
       </div>

@@ -26,9 +26,10 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.8 }}
-            className="max-w-xs text-xs md:text-sm text-secondary font-sans leading-relaxed"
+            className="max-w-xs text-xs md:text-sm text-white/90 font-sans leading-relaxed relative z-10"
           >
-            Full-stack web developer specializing in immersive, high-performance React and Three.js experiences.
+            <div className="absolute inset-0 bg-background/40 blur-2xl -z-10 rounded-full" />
+            I build secure, high-conversion e-commerce platforms and immersive 3D web experiences that drive measurable business impact.
           </motion.div>
         </div>
 
@@ -42,15 +43,16 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.8 }}
-          className="mt-12 md:mt-16"
+          className="mt-16 md:mt-24 flex items-center justify-center relative z-10"
         >
+          <div className="absolute w-[200px] h-[40px] bg-white/20 blur-2xl -z-10" />
           <a
             href="#work"
-            className="inline-flex items-center gap-3 px-6 md:px-8 py-3 md:py-4 border border-white/40 rounded text-sm md:text-base font-sans uppercase tracking-wide text-white hover:border-white hover:bg-white/5 transition-all duration-300"
+            className="inline-flex items-center gap-3 px-8 md:px-12 py-4 md:py-5 bg-white text-background rounded-full text-sm md:text-base font-syne font-bold uppercase tracking-widest hover:bg-white/90 hover:scale-105 transition-all duration-300 shadow-[0_0_40px_rgba(255,255,255,0.2)]"
           >
-            View My Work
+            View Selected Works
             <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
             </svg>
           </a>
         </motion.div>

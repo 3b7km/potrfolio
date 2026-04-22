@@ -34,18 +34,18 @@ export default function Hero3DText() {
       const scrollY = window.scrollY;
       const progress = scrollMax > 0 ? scrollY / scrollMax : 0;
       
-      // Translate the text upwards as user scrolls down
-      groupRef.current.position.y = THREE.MathUtils.lerp(0, progress * 50, 0.1);
+      // Translate the text upwards as user scrolls down removed to keep it sticky
+      // groupRef.current.position.y = THREE.MathUtils.lerp(0, progress * 50, 0.1);
     }
   });
 
   return (
     <group ref={groupRef} position={[0, 0, 4]}>
-      <Float speed={2} rotationIntensity={0.1} floatIntensity={0.5}>
+      <Float speed={2.5} rotationIntensity={0.15} floatIntensity={0.8}>
         <Center>
           <Text3D
             font="https://unpkg.com/three@0.77.0/examples/fonts/helvetiker_bold.typeface.json"
-            scale={isMobile ? scale * 2 : scale * 2.5}
+            scale={isMobile ? scale * 1.8 : scale * 2.2}
             curveSegments={isMobile ? 12 : 24}
             bevelEnabled
             bevelSize={isMobile ? 0.02 : 0.04}
