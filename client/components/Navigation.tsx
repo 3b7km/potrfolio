@@ -13,9 +13,9 @@ export function Navigation() {
         YA.
       </Link>
 
-      <nav className="flex gap-2 md:gap-5 font-sans text-xs md:text-sm font-medium tracking-wide mix-blend-difference text-white">
+      <nav className="flex gap-2 md:gap-5 font-sans text-xs md:text-sm font-medium tracking-wide text-[#6366f1]">
         <a href="/#about" className="tap-target px-2 md:px-3 py-2 hover:opacity-60 transition-opacity rounded-md">About</a>
-        <Link to="/work" className="tap-target px-2 md:px-3 py-2 hover:opacity-60 transition-opacity rounded-md">Work</Link>
+        <a href="/#work" className="tap-target px-2 md:px-3 py-2 hover:opacity-60 transition-opacity rounded-md">Work</a>
         <a href="/#experience" className="tap-target px-2 md:px-3 py-2 hover:opacity-60 transition-opacity rounded-md">Experience</a>
         <a href="/#contact" className="tap-target px-2 md:px-3 py-2 hover:opacity-60 transition-opacity rounded-md">Contact</a>
       </nav>

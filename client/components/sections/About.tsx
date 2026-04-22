@@ -34,7 +34,7 @@ export default function About() {
           <div className="lg:col-span-3 flex flex-col gap-16">
             
             {/* Experience */}
-            <div>
+            <div id="experience">
               <h3 className="text-sm font-sans font-bold tracking-widest text-foreground uppercase mb-8 border-b border-border/10 pb-4">
                 Experience
               </h3>
