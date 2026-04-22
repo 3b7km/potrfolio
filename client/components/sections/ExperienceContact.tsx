@@ -135,8 +135,8 @@ export default function ExperienceContact() {
                     setErrors({ ...errors, name: "" });
                   }}
                   placeholder="Your name"
-                  className={`w-full bg-transparent border-b pb-3 text-lg font-syne text-white outline-none transition-colors placeholder:text-white/15 ${
-                    errors.name ? "border-red-400/50 focus:border-red-400" : "border-white/10 focus:border-white"
+                  className={`w-full bg-white/[0.03] border px-4 py-4 text-base font-sans text-white outline-none transition-all placeholder:text-white/20 rounded ${
+                    errors.name ? "border-red-400/50 focus:border-red-400" : "border-white/20 focus:border-white"
                   }`}
                 />
                 {errors.name && <p className="text-red-400/70 text-xs mt-2">{errors.name}</p>}
@@ -157,8 +157,8 @@ export default function ExperienceContact() {
                     setErrors({ ...errors, email: "" });
                   }}
                   placeholder="you@company.com"
-                  className={`w-full bg-transparent border-b pb-3 text-lg font-syne text-white outline-none transition-colors placeholder:text-white/15 ${
-                    errors.email ? "border-red-400/50 focus:border-red-400" : "border-white/10 focus:border-white"
+                  className={`w-full bg-white/[0.03] border px-4 py-4 text-base font-sans text-white outline-none transition-all placeholder:text-white/20 rounded ${
+                    errors.email ? "border-red-400/50 focus:border-red-400" : "border-white/20 focus:border-white"
                   }`}
                 />
                 {errors.email && <p className="text-red-400/70 text-xs mt-2">{errors.email}</p>}
@@ -179,8 +179,8 @@ export default function ExperienceContact() {
                     setErrors({ ...errors, message: "" });
                   }}
                   placeholder="Tell me about your project..."
-                  className={`w-full bg-transparent border-b pb-3 text-lg font-syne text-white outline-none transition-colors placeholder:text-white/15 resize-none ${
-                    errors.message ? "border-red-400/50 focus:border-red-400" : "border-white/10 focus:border-white"
+                  className={`w-full bg-white/[0.03] border px-4 py-4 text-base font-sans text-white outline-none transition-all placeholder:text-white/20 rounded resize-none ${
+                    errors.message ? "border-red-400/50 focus:border-red-400" : "border-white/20 focus:border-white"
                   }`}
                 />
                 {errors.message && <p className="text-red-400/70 text-xs mt-2">{errors.message}</p>}
