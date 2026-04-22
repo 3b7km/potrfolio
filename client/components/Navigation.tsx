@@ -7,17 +7,16 @@ export function Navigation() {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      className="fixed top-0 left-0 right-0 z-[100] px-6 py-6 flex items-center justify-between mix-blend-difference text-white"
+      className="fixed top-0 left-0 right-0 z-[100] px-6 py-6 flex items-center justify-between"
     >
-      <Link to="/" className="font-syne font-bold text-xl tracking-tight">
+      <Link to="/" className="font-syne font-bold text-xl tracking-tight text-primary">
         YA.
       </Link>
 
-      <nav className="flex gap-2 md:gap-5 font-sans text-xs md:text-sm font-medium tracking-wide">
+      <nav className="flex gap-2 md:gap-5 font-sans text-xs md:text-sm font-medium tracking-wide mix-blend-difference text-white">
         <a href="/#about" className="tap-target px-2 md:px-3 py-2 hover:opacity-60 transition-opacity rounded-md">About</a>
         <Link to="/work" className="tap-target px-2 md:px-3 py-2 hover:opacity-60 transition-opacity rounded-md">Work</Link>
         <a href="/#experience" className="tap-target px-2 md:px-3 py-2 hover:opacity-60 transition-opacity rounded-md">Experience</a>
-        <a href="/#testimonials" className="tap-target px-2 md:px-3 py-2 hover:opacity-60 transition-opacity rounded-md">Testimonials</a>
         <a href="/#contact" className="tap-target px-2 md:px-3 py-2 hover:opacity-60 transition-opacity rounded-md">Contact</a>
       </nav>
 

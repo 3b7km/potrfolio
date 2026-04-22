@@ -6,14 +6,12 @@ import Marquee from "@/components/sections/Marquee";
 import Projects from "@/components/sections/Projects";
 import About from "@/components/sections/About";
 import ExperienceContact from "@/components/sections/ExperienceContact";
-import Testimonials from "@/components/sections/Testimonials";
 import Footer from "@/components/Footer";
 import Canvas3D from "@/components/3d/Canvas3D";
 import ScrollSceneGeometry from "@/components/3d/ScrollSceneGeometry";
 import { useLenis } from "@/hooks/useLenis";
 import { Navigation } from "@/components/Navigation";
 import Hero3DText from "@/components/3d/Hero3DText";
-import CanvasLoader from "@/components/3d/CanvasLoader";
 import { FloatingWhatsApp } from "@/components/ui/FloatingWhatsApp";
 
 export default function Index() {
@@ -50,9 +48,6 @@ export default function Index() {
         </Canvas3D>
       </div>
 
-      {/* GPU-Aware 3D Preloader */}
-      <CanvasLoader />
-
       {/* Floating Navigation */}
       <AnimatePresence>
         {showNav && <Navigation />}
@@ -64,7 +59,6 @@ export default function Index() {
         <Marquee />
         <Projects />
         <About />
-        <Testimonials />
         <div id="experience">
           <ExperienceContact />
         </div>

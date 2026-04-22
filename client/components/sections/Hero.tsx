@@ -48,10 +48,10 @@ export default function Hero() {
           <div className="absolute w-[200px] h-[40px] bg-white/20 blur-2xl -z-10" />
           <a
             href="#work"
-            className="inline-flex items-center gap-3 px-8 md:px-12 py-4 md:py-5 bg-white text-background rounded-full text-sm md:text-base font-syne font-bold uppercase tracking-widest hover:bg-white/90 hover:scale-105 transition-all duration-300 shadow-[0_0_40px_rgba(255,255,255,0.2)]"
+            className="inline-flex items-center gap-3 px-8 md:px-12 py-4 md:py-5 border-2 border-primary text-white bg-transparent rounded-full text-sm md:text-base font-syne font-bold uppercase tracking-widest hover:bg-primary/10 hover:scale-105 transition-all duration-300 shadow-[0_0_40px_rgba(213,53,25,0.1)]"
           >
             View Selected Works
-            <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-4 h-4 md:w-5 md:h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
             </svg>
           </a>

@@ -21,13 +21,22 @@ function ProjectRow({ project }: ProjectRowProps) {
     <div className="relative group border-t border-border/10 py-8 md:py-12 transition-colors hover:bg-white/[0.02]">
       <div className="relative z-10 flex flex-col md:flex-row gap-8 items-start px-4">
         
-        {/* Project Thumbnail */}
-        <div className="w-full md:w-1/3 aspect-[4/3] rounded overflow-hidden border border-white/10 shrink-0">
-          <img 
-            src={project.images[0]} 
-            alt={project.name}
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-          />
+        {/* Project Thumbnails */}
+        <div className="w-full md:w-5/12 flex flex-col gap-4 shrink-0">
+          <div className="aspect-[4/3] rounded overflow-hidden border border-white/10">
+            <img 
+              src={project.images[0]} 
+              alt={`${project.name} view 1`}
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+          </div>
+          <div className="aspect-[4/3] rounded overflow-hidden border border-white/10">
+            <img 
+              src={project.images[1]} 
+              alt={`${project.name} view 2`}
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+          </div>
         </div>
 
         {/* Content */}
