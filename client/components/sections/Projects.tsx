@@ -10,11 +10,30 @@ interface ProjectRowProps {
 function ProjectRow({ project }: ProjectRowProps) {
   return (
     <article className="relative group border-t border-border/10 py-8 md:py-12 transition-colors hover:bg-white/[0.02]">
-      <div className="relative z-10 flex flex-col md:flex-row gap-8 items-start px-4">
+      <div className="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-y-8 md:gap-x-8 items-start px-4">
         
-        {/* Project Thumbnails — lazy loaded with dimensions to prevent CLS */}
-        {/* On mobile: comes after content (order-last), on desktop: comes first */}
-        <div className="w-full md:w-5/12 flex flex-col gap-4 shrink-0 order-last md:order-first">
+        {/* 1. Header (Title, Description, Tags) */}
+        <div className="flex flex-col gap-2 order-1 md:col-span-7 md:col-start-6 md:row-start-1">
+          <span className="text-sm md:text-sm font-sans text-muted mb-2">
+            {project.id} — {project.type}
+          </span>
+          <h3 className="text-4xl sm:text-4xl md:text-5xl font-syne font-bold uppercase tracking-tight text-foreground transition-all duration-300 leading-tight antialiased">
+            {project.name}
+          </h3>
+          <p className="text-base sm:text-base md:text-sm font-sans text-muted max-w-lg mt-2 leading-relaxed antialiased">
+            {project.description}
+          </p>
+          <div className="flex flex-wrap gap-2 mt-4" role="list" aria-label={`Technologies used in ${project.name}`}>
+            {project.tags.map((tag) => (
+              <span key={tag} role="listitem" className="text-xs sm:text-sm md:text-xs uppercase px-3 py-1.5 inline-flex items-center bg-white/10 rounded-full border border-white/20 text-white/90 font-sans font-medium antialiased">
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* 2. Photos */}
+        <div className="flex flex-col gap-4 order-2 md:col-span-5 md:col-start-1 md:row-start-1 md:row-span-2 w-full">
           <div className="aspect-[4/3] rounded overflow-hidden border border-white/10">
             <img 
               src={project.images[0]} 
@@ -39,42 +58,17 @@ function ProjectRow({ project }: ProjectRowProps) {
           </div>
         </div>
 
-        {/* Content */}
-        {/* On mobile: comes first (order-first), on desktop: comes after (default) */}
-        <div className="flex-1 flex flex-col grid-cols-12 gap-6 w-full order-first md:order-last">
-          
-          <div className="flex flex-col md:flex-row justify-between w-full gap-4">
-            <div className="flex flex-col gap-2">
-              <span className="text-sm md:text-sm font-sans text-muted mb-2">
-                {project.id} — {project.type}
-              </span>
-              <h3 className="text-4xl sm:text-4xl md:text-5xl font-syne font-bold uppercase tracking-tight text-foreground transition-all duration-300 leading-tight antialiased">
-                {project.name}
-              </h3>
-              <p className="text-base sm:text-base md:text-sm font-sans text-muted max-w-lg mt-2 leading-relaxed antialiased">
-                {project.description}
-              </p>
-              <div className="flex flex-wrap gap-2 mt-4" role="list" aria-label={`Technologies used in ${project.name}`}>
-                {project.tags.map((tag) => (
-                  <span key={tag} role="listitem" className="text-xs sm:text-sm md:text-xs uppercase px-3 py-1.5 inline-flex items-center bg-white/10 rounded-full border border-white/20 text-white/90 font-sans font-medium antialiased">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            {/* Metrics block */}
-            <div className="md:text-right font-sans shrink-0 min-w-[200px] mt-4 md:mt-0 p-4 border border-white/10 rounded bg-white/[0.01]">
-              <div className="text-xs text-muted mb-2 uppercase tracking-wide">Key Metric</div>
-              <div className="text-xl md:text-2xl text-accent font-syne font-bold">{project.metrics}</div>
-              <p className="text-xs text-white/70 mt-2 leading-relaxed">
-                {project.metricContext}
-              </p>
-            </div>
+        {/* 3. Footer (Key Metric, CTA) */}
+        <div className="flex flex-col gap-6 order-3 md:col-span-7 md:col-start-6 md:row-start-2 mt-4 md:mt-0">
+          <div className="font-sans p-4 border border-white/10 rounded bg-white/[0.01]">
+            <div className="text-xs text-muted mb-2 uppercase tracking-wide">Key Metric</div>
+            <div className="text-xl md:text-2xl text-accent font-syne font-bold">{project.metrics}</div>
+            <p className="text-xs text-white/70 mt-2 leading-relaxed">
+              {project.metricContext}
+            </p>
           </div>
 
-          {/* CTA Group */}
-          <div className="mt-2 flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-3">
             <a
               href={project.url}
               target="_blank"
@@ -86,8 +80,8 @@ function ProjectRow({ project }: ProjectRowProps) {
               <ArrowUpRight size={16} aria-hidden="true" />
             </a>
           </div>
-          
         </div>
+
       </div>
     </article>
   );
