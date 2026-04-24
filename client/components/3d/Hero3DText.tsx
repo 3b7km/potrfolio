@@ -7,6 +7,7 @@ export default function Hero3DText() {
   const groupRef = useRef<THREE.Group>(null);
   const { viewport } = useThree();
   const [isMobile, setIsMobile] = useState(false);
+  const [scrollOpacity, setScrollOpacity] = useState(1);
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
@@ -15,10 +16,24 @@ export default function Hero3DText() {
     return () => window.removeEventListener("resize", check);
   }, []);
 
-  // Responsive scaling — proportional to viewport
+  // Track scroll to hide name
+  useEffect(() => {
+    const handleScroll = () => {
+      // Fade out after 300px scroll
+      const scrollDistance = Math.max(0, window.scrollY - 300);
+      const maxDistance = 400; // Fully hidden at 700px
+      const opacity = Math.max(0, 1 - scrollDistance / maxDistance);
+      setScrollOpacity(opacity);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Responsive scaling — smaller than before, proportional to viewport
   const scale = isMobile
-    ? Math.min(1.8, viewport.width / 40)
-    : Math.min(2, viewport.width / 50);
+    ? Math.min(1.2, viewport.width / 50)
+    : Math.min(1.3, viewport.width / 65);
 
   useFrame((state) => {
     if (groupRef.current) {
@@ -28,14 +43,6 @@ export default function Hero3DText() {
       
       groupRef.current.rotation.y = THREE.MathUtils.lerp(groupRef.current.rotation.y, x * 0.1, 0.05);
       groupRef.current.rotation.x = THREE.MathUtils.lerp(groupRef.current.rotation.x, -y * 0.1, 0.05);
-
-      // Scroll effect - push it up as user scrolls down
-      const scrollMax = document.documentElement.scrollHeight - window.innerHeight;
-      const scrollY = window.scrollY;
-      const progress = scrollMax > 0 ? scrollY / scrollMax : 0;
-      
-      // Translate the text upwards as user scrolls down removed to keep it sticky
-      // groupRef.current.position.y = THREE.MathUtils.lerp(0, progress * 50, 0.1);
     }
   });
 
@@ -45,7 +52,7 @@ export default function Hero3DText() {
         <Center>
           <Text3D
             font="https://unpkg.com/three@0.77.0/examples/fonts/helvetiker_bold.typeface.json"
-            scale={isMobile ? scale * 1.8 : scale * 2.2}
+            scale={isMobile ? scale * 1.2 : scale * 1.5}
             curveSegments={isMobile ? 12 : 24}
             bevelEnabled
             bevelSize={isMobile ? 0.02 : 0.04}
@@ -60,6 +67,8 @@ export default function Hero3DText() {
               roughness={0.15}
               metalness={0.9}
               envMapIntensity={isMobile ? 1.5 : 2.5}
+              transparent
+              opacity={scrollOpacity}
             />
           </Text3D>
         </Center>

@@ -272,7 +272,7 @@ export default function Work() {
           </div>
 
           <div className="md:w-2/3 flex flex-wrap gap-4">
-            {skills.map((skill) => (
+            {Object.values(skills).flat().map((skill) => (
               <div
                 key={skill}
                 className="tap-target px-6 py-4 border border-white/5 bg-[#111] text-sm font-sans uppercase tracking-wider text-muted hover:text-white hover:border-white/20 transition-colors"

@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUpRight, ChevronDown } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { projects } from "@/lib/data";
 
 interface ProjectRowProps {
@@ -8,39 +8,40 @@ interface ProjectRowProps {
 }
 
 function ProjectRow({ project }: ProjectRowProps) {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 768);
-    check();
-    window.addEventListener("resize", check);
-    return () => window.removeEventListener("resize", check);
-  }, []);
-
   return (
-    <div className="relative group border-t border-border/10 py-8 md:py-12 transition-colors hover:bg-white/[0.02]">
+    <article className="relative group border-t border-border/10 py-8 md:py-12 transition-colors hover:bg-white/[0.02]">
       <div className="relative z-10 flex flex-col md:flex-row gap-8 items-start px-4">
         
-        {/* Project Thumbnails */}
-        <div className="w-full md:w-5/12 flex flex-col gap-4 shrink-0">
+        {/* Project Thumbnails — lazy loaded with dimensions to prevent CLS */}
+        {/* On mobile: comes after content (order-last), on desktop: comes first */}
+        <div className="w-full md:w-5/12 flex flex-col gap-4 shrink-0 order-last md:order-first">
           <div className="aspect-[4/3] rounded overflow-hidden border border-white/10">
             <img 
               src={project.images[0]} 
-              alt={`${project.name} view 1`}
+              alt={`${project.name} — primary screenshot`}
+              width={600}
+              height={450}
+              loading="lazy"
+              decoding="async"
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
           </div>
           <div className="aspect-[4/3] rounded overflow-hidden border border-white/10">
             <img 
               src={project.images[1]} 
-              alt={`${project.name} view 2`}
+              alt={`${project.name} — secondary screenshot`}
+              width={600}
+              height={450}
+              loading="lazy"
+              decoding="async"
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
           </div>
         </div>
 
         {/* Content */}
-        <div className="flex-1 flex flex-col grid-cols-12 gap-6 w-full">
+        {/* On mobile: comes first (order-first), on desktop: comes after (default) */}
+        <div className="flex-1 flex flex-col grid-cols-12 gap-6 w-full order-first md:order-last">
           
           <div className="flex flex-col md:flex-row justify-between w-full gap-4">
             <div className="flex flex-col gap-2">
@@ -53,9 +54,9 @@ function ProjectRow({ project }: ProjectRowProps) {
               <p className="text-sm font-sans text-muted max-w-lg mt-2 leading-relaxed">
                 {project.description}
               </p>
-              <div className="flex flex-wrap gap-2 mt-4">
+              <div className="flex flex-wrap gap-2 mt-4" role="list" aria-label={`Technologies used in ${project.name}`}>
                 {project.tags.map((tag) => (
-                  <span key={tag} className="text-xs uppercase px-3 py-1.5 inline-flex items-center bg-white/10 rounded-full border border-white/20 text-white/90 font-sans font-medium">
+                  <span key={tag} role="listitem" className="text-xs uppercase px-3 py-1.5 inline-flex items-center bg-white/10 rounded-full border border-white/20 text-white/90 font-sans font-medium">
                     {tag}
                   </span>
                 ))}
@@ -78,16 +79,17 @@ function ProjectRow({ project }: ProjectRowProps) {
               href={project.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="tap-target inline-flex items-center gap-2 text-sm font-sans uppercase tracking-wide text-background bg-white px-5 py-3 rounded hover:bg-white/90 transition-all duration-300 font-bold"
+              aria-label={`View ${project.name} live site (opens in new tab)`}
+              className="tap-target inline-flex items-center gap-2 text-sm font-sans uppercase tracking-wide text-background bg-white px-5 py-3 rounded hover:bg-white/90 transition-all duration-300 font-bold focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
             >
               View Live Site
-              <ArrowUpRight size={16} />
+              <ArrowUpRight size={16} aria-hidden="true" />
             </a>
           </div>
           
         </div>
       </div>
-    </div>
+    </article>
   );
 }
 
@@ -99,7 +101,7 @@ export default function Projects() {
   const filteredProjects = projects.filter(p => filter === "All" ? true : p.type.includes(filter));
 
   return (
-    <section id="work" className="relative w-full py-32 bg-transparent pointer-events-auto">
+    <section id="work" aria-label="Selected works and portfolio projects" className="relative w-full py-32 bg-transparent pointer-events-auto">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         {/* Header */}
         <div className="mb-16 md:mb-20 flex flex-col md:flex-row justify-between items-start md:items-end gap-8">
@@ -112,12 +114,13 @@ export default function Projects() {
         </div>
 
         {/* Filters */}
-        <div className="flex flex-wrap gap-2 mb-12">
+        <div className="flex flex-wrap gap-2 mb-12" role="group" aria-label="Filter projects by category">
           {categories.map(cat => (
             <button
               key={cat}
               onClick={() => setFilter(cat)}
-              className={`text-xs uppercase px-5 py-2.5 rounded-full border font-sans font-medium transition-all ${
+              aria-pressed={filter === cat}
+              className={`text-xs uppercase px-5 py-2.5 rounded-full border font-sans font-medium transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white ${
                 filter === cat 
                   ? "bg-white text-background border-white" 
                   : "bg-transparent text-white/70 border-white/20 hover:border-white/50"
