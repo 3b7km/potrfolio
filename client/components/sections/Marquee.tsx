@@ -1,6 +1,6 @@
 export default function Marquee() {
   const marqueeText =
-    "Next.js · Shopify · Python · SQL · Java · IoT Systems · React · OOP · Database Management · Oracle · Web Development · ";
+    "React · Next.js · TypeScript · Tailwind CSS · Web Development · Node.js · PHP · Laravel · REST APIs · SQL · Eloquent ORM · Backend Development · Shopify · Shopify Theme Development · Blade Templates · MVC Architecture · ";
 
   return (
     <section className="relative w-full py-12 bg-transparent overflow-hidden border-y border-divider">

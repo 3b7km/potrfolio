@@ -53,50 +53,54 @@ export default function Hero3DText() {
     <group ref={groupRef} position={[0, 0, 4]}>
       <Float speed={2.5} rotationIntensity={0.15} floatIntensity={0.8}>
         <group>
-          <Center position={[0, yOffset, 0]}>
-            <Text3D
-              font="https://unpkg.com/three@0.77.0/examples/fonts/helvetiker_bold.typeface.json"
-              scale={textScale}
-              curveSegments={isMobile ? 24 : 24}
-              bevelEnabled
-              bevelSize={isMobile ? 0.02 : 0.04}
-              bevelThickness={isMobile ? 0.05 : 0.1}
-              height={isMobile ? 0.3 : 0.5}
-              letterSpacing={-0.05}
-            >
-              YOUSSEF
-              <meshStandardMaterial
-                color="#1e3b60"
-                roughness={0.15}
-                metalness={0.9}
-                envMapIntensity={isMobile ? 1.5 : 2.5}
-                transparent
-                opacity={scrollOpacity}
-              />
-            </Text3D>
-          </Center>
-          <Center position={[0, -yOffset, 0]}>
-            <Text3D
-              font="https://unpkg.com/three@0.77.0/examples/fonts/helvetiker_bold.typeface.json"
-              scale={textScale}
-              curveSegments={isMobile ? 24 : 24}
-              bevelEnabled
-              bevelSize={isMobile ? 0.02 : 0.04}
-              bevelThickness={isMobile ? 0.05 : 0.1}
-              height={isMobile ? 0.3 : 0.5}
-              letterSpacing={-0.05}
-            >
-              ABDELHAKAM
-              <meshStandardMaterial
-                color="#1e3b60"
-                roughness={0.15}
-                metalness={0.9}
-                envMapIntensity={isMobile ? 1.5 : 2.5}
-                transparent
-                opacity={scrollOpacity}
-              />
-            </Text3D>
-          </Center>
+          <group position={[0, yOffset, 0]}>
+            <Center>
+              <Text3D
+                font="https://unpkg.com/three@0.77.0/examples/fonts/helvetiker_bold.typeface.json"
+                scale={textScale}
+                curveSegments={isMobile ? 24 : 24}
+                bevelEnabled
+                bevelSize={isMobile ? 0.02 : 0.04}
+                bevelThickness={isMobile ? 0.05 : 0.1}
+                height={isMobile ? 0.3 : 0.5}
+                letterSpacing={-0.05}
+              >
+                YOUSSEF
+                <meshStandardMaterial
+                  color="#1e3b60"
+                  roughness={0.15}
+                  metalness={0.9}
+                  envMapIntensity={isMobile ? 1.5 : 2.5}
+                  transparent
+                  opacity={scrollOpacity}
+                />
+              </Text3D>
+            </Center>
+          </group>
+          <group position={[0, -yOffset, 0]}>
+            <Center>
+              <Text3D
+                font="https://unpkg.com/three@0.77.0/examples/fonts/helvetiker_bold.typeface.json"
+                scale={textScale}
+                curveSegments={isMobile ? 24 : 24}
+                bevelEnabled
+                bevelSize={isMobile ? 0.02 : 0.04}
+                bevelThickness={isMobile ? 0.05 : 0.1}
+                height={isMobile ? 0.3 : 0.5}
+                letterSpacing={-0.05}
+              >
+                ABDELHAKAM
+                <meshStandardMaterial
+                  color="#1e3b60"
+                  roughness={0.15}
+                  metalness={0.9}
+                  envMapIntensity={isMobile ? 1.5 : 2.5}
+                  transparent
+                  opacity={scrollOpacity}
+                />
+              </Text3D>
+            </Center>
+          </group>
         </group>
       </Float>
 
