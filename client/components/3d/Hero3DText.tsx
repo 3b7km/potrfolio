@@ -30,9 +30,9 @@ export default function Hero3DText() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Responsive scaling — smaller than before, proportional to viewport
+  // Responsive scaling — proportional to viewport
   const scale = isMobile
-    ? Math.min(1.2, viewport.width / 50)
+    ? Math.min(1.8, viewport.width / 35)
     : Math.min(1.3, viewport.width / 65);
 
   useFrame((state) => {
@@ -52,8 +52,8 @@ export default function Hero3DText() {
         <Center>
           <Text3D
             font="https://unpkg.com/three@0.77.0/examples/fonts/helvetiker_bold.typeface.json"
-            scale={isMobile ? scale * 1.2 : scale * 1.5}
-            curveSegments={isMobile ? 12 : 24}
+            scale={isMobile ? scale * 1.6 : scale * 1.5}
+            curveSegments={isMobile ? 24 : 24}
             bevelEnabled
             bevelSize={isMobile ? 0.02 : 0.04}
             bevelThickness={isMobile ? 0.05 : 0.1}

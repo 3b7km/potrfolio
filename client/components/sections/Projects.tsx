@@ -45,18 +45,18 @@ function ProjectRow({ project }: ProjectRowProps) {
           
           <div className="flex flex-col md:flex-row justify-between w-full gap-4">
             <div className="flex flex-col gap-2">
-              <span className="text-sm font-sans text-muted mb-2">
+              <span className="text-sm md:text-sm font-sans text-muted mb-2">
                 {project.id} — {project.type}
               </span>
-              <h3 className="text-3xl md:text-5xl font-syne font-bold uppercase tracking-tight text-foreground transition-all duration-300">
+              <h3 className="text-4xl sm:text-4xl md:text-5xl font-syne font-bold uppercase tracking-tight text-foreground transition-all duration-300 leading-tight antialiased">
                 {project.name}
               </h3>
-              <p className="text-sm font-sans text-muted max-w-lg mt-2 leading-relaxed">
+              <p className="text-base sm:text-base md:text-sm font-sans text-muted max-w-lg mt-2 leading-relaxed antialiased">
                 {project.description}
               </p>
               <div className="flex flex-wrap gap-2 mt-4" role="list" aria-label={`Technologies used in ${project.name}`}>
                 {project.tags.map((tag) => (
-                  <span key={tag} role="listitem" className="text-xs uppercase px-3 py-1.5 inline-flex items-center bg-white/10 rounded-full border border-white/20 text-white/90 font-sans font-medium">
+                  <span key={tag} role="listitem" className="text-xs sm:text-sm md:text-xs uppercase px-3 py-1.5 inline-flex items-center bg-white/10 rounded-full border border-white/20 text-white/90 font-sans font-medium antialiased">
                     {tag}
                   </span>
                 ))}

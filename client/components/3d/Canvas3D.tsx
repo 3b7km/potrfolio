@@ -31,9 +31,9 @@ export default function Canvas3D({
   return (
     <Canvas 
       className={`${className} canvas-touch-passthrough`}
-      dpr={isMobile ? 1 : [1, 2]} 
+      dpr={[1, 2]} 
       performance={{ min: 0.5 }}
-      gl={{ antialias: !isMobile, alpha: true }}
+      gl={{ antialias: true, alpha: true }}
       style={{ touchAction: 'auto', pointerEvents: 'none' }}
     >
       <Suspense fallback={null}>
