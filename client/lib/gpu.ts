@@ -22,23 +22,46 @@ export function isWebGLSupported(): boolean {
 export function getGPUTier(): "low" | "mid" | "high" {
   try {
     const canvas = document.createElement("canvas");
-    const gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
+    const gl =
+      canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
     if (!gl) return "low";
 
-    const debugInfo = (gl as WebGLRenderingContext).getExtension("WEBGL_debug_renderer_info");
+    const debugInfo = (gl as WebGLRenderingContext).getExtension(
+      "WEBGL_debug_renderer_info",
+    );
     if (!debugInfo) return "mid";
 
-    const renderer = (gl as WebGLRenderingContext)
-      .getParameter(debugInfo.UNMASKED_RENDERER_WEBGL)
-      ?.toString()
-      .toLowerCase() || "";
+    const renderer =
+      (gl as WebGLRenderingContext)
+        .getParameter(debugInfo.UNMASKED_RENDERER_WEBGL)
+        ?.toString()
+        .toLowerCase() || "";
 
     // Known low-end indicators
-    const lowEnd = ["mali-4", "mali-t", "adreno 3", "adreno 4", "powervr", "intel hd 4", "intel hd 5", "swiftshader", "llvmpipe"];
+    const lowEnd = [
+      "mali-4",
+      "mali-t",
+      "adreno 3",
+      "adreno 4",
+      "powervr",
+      "intel hd 4",
+      "intel hd 5",
+      "swiftshader",
+      "llvmpipe",
+    ];
     if (lowEnd.some((marker) => renderer.includes(marker))) return "low";
 
     // Known high-end indicators
-    const highEnd = ["rtx", "radeon rx", "geforce gtx 10", "geforce gtx 16", "geforce rtx", "apple gpu", "adreno 7", "mali-g7"];
+    const highEnd = [
+      "rtx",
+      "radeon rx",
+      "geforce gtx 10",
+      "geforce gtx 16",
+      "geforce rtx",
+      "apple gpu",
+      "adreno 7",
+      "mali-g7",
+    ];
     if (highEnd.some((marker) => renderer.includes(marker))) return "high";
 
     return "mid";

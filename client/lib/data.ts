@@ -8,7 +8,8 @@ export const projects = [
     description:
       "A premium women's fashion Shopify store with a dark luxury theme. Includes promotional pop-ups, policy pages, account management, and deep integration with Facebook, Instagram, TikTok, and WhatsApp for marketing reach.",
     metrics: "+42% Conversion Rate",
-    metricContext: "Achieved by optimizing mobile checkout flow and introducing targeted promotional pop-ups.",
+    metricContext:
+      "Achieved by optimizing mobile checkout flow and introducing targeted promotional pop-ups.",
     url: "https://helwafashion.com",
     images: ["/photos/helwa-1.png", "/photos/helwa-2.png"],
     features: [
@@ -45,7 +46,8 @@ export const projects = [
     description:
       "A complete e-commerce store for a modest fashion brand featuring the SUJOOD collection. Built with categorized product navigation (Prayer Isdals, Kaftans, Umara Abayas), email subscription for new arrivals, and full social media marketing integration.",
     metrics: "2x Organic Traffic",
-    metricContext: "Result of implementing strict technical SEO practices, semantic HTML, and rapid page load speeds.",
+    metricContext:
+      "Result of implementing strict technical SEO practices, semantic HTML, and rapid page load speeds.",
     url: "https://djabi-eg.com",
     images: ["/photos/djabi-1.png", "/photos/djabi-2.png"],
     features: [
@@ -79,11 +81,18 @@ export const projects = [
     name: "Sneakrz King",
     platform: "Next.js / Vercel",
     type: "E-Commerce — Sneaker Store",
-    tags: ["React.js", "Next.js", "Tailwind CSS", "Vercel", "Responsive Design"],
+    tags: [
+      "React.js",
+      "Next.js",
+      "Tailwind CSS",
+      "Vercel",
+      "Responsive Design",
+    ],
     description:
       "A custom-built sneaker e-commerce platform deployed on Vercel. Features advanced product filtering by brand, real-time search, a dynamic shopping cart, and seamless social media integration with Instagram and WhatsApp.",
     metrics: "<1.2s Load Time",
-    metricContext: "Measured globally via Vercel Edge caching and aggressive lazy-loading of high-resolution sneaker images.",
+    metricContext:
+      "Measured globally via Vercel Edge caching and aggressive lazy-loading of high-resolution sneaker images.",
     url: "https://sneakrz-king.vercel.app",
     images: ["/photos/king-1.png", "/photos/king-2.png"],
     features: [
@@ -95,7 +104,14 @@ export const projects = [
       "Social media integration (Instagram, WhatsApp)",
     ],
     techStack: {
-      frontend: ["React.js", "Next.js", "HTML5", "CSS3", "Tailwind CSS", "JavaScript"],
+      frontend: [
+        "React.js",
+        "Next.js",
+        "HTML5",
+        "CSS3",
+        "Tailwind CSS",
+        "JavaScript",
+      ],
       backend: ["Node.js", "Serverless Functions"],
       database: ["NoSQL (MongoDB / Firebase)"],
       deployment: ["Vercel"],
@@ -125,12 +141,12 @@ export const experiences = [
 ];
 
 export const skills = {
-  "Frontend": [
+  Frontend: [
     "React",
     "Next.js",
     "TypeScript",
     "Tailwind CSS",
-    "Web Development"
+    "Web Development",
   ],
   "Backend & DB": [
     "Node.js",
@@ -139,12 +155,12 @@ export const skills = {
     "REST APIs",
     "SQL",
     "Eloquent ORM",
-    "Backend Development"
+    "Backend Development",
   ],
   "E-Commerce & Platforms": [
     "Shopify",
     "Shopify Theme Development",
     "Blade Templates",
-    "MVC Architecture"
-  ]
+    "MVC Architecture",
+  ],
 };

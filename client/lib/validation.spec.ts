@@ -1,5 +1,9 @@
 import { describe, it, expect } from "vitest";
-import { ContactFormSchema, ProjectSchema, NewsletterSchema } from "./validation";
+import {
+  ContactFormSchema,
+  ProjectSchema,
+  NewsletterSchema,
+} from "./validation";
 
 describe("Contact Form Validation", () => {
   it("should validate a valid contact form", () => {

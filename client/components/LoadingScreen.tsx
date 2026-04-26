@@ -60,7 +60,9 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
 
       {/* Counter */}
       <motion.div
-        animate={count >= 100 ? { opacity: 0, scale: 0.8 } : { opacity: 1, scale: 1 }}
+        animate={
+          count >= 100 ? { opacity: 0, scale: 0.8 } : { opacity: 1, scale: 1 }
+        }
         transition={{ duration: 0.5 }}
         className="relative z-10 text-center"
       >

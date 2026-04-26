@@ -14,7 +14,7 @@ export default function CanvasLoader() {
           className="fixed inset-0 z-[200] bg-[#050505] flex flex-col items-center justify-center gap-8"
         >
           {/* Brand Mark */}
-          <motion.div 
+          <motion.div
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.6 }}

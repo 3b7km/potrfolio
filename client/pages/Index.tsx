@@ -1,20 +1,25 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, lazy, Suspense } from "react";
 
 import { AnimatePresence } from "framer-motion";
 import Hero from "@/components/sections/Hero";
 import Marquee from "@/components/sections/Marquee";
-import Projects from "@/components/sections/Projects";
-import About from "@/components/sections/About";
-import ExperienceContact from "@/components/sections/ExperienceContact";
 import Footer from "@/components/Footer";
-import Canvas3D from "@/components/3d/Canvas3D";
-import ScrollSceneGeometry from "@/components/3d/ScrollSceneGeometry";
 import { useLenis } from "@/hooks/useLenis";
 import { Navigation } from "@/components/Navigation";
-import Hero3DText from "@/components/3d/Hero3DText";
 import { FloatingWhatsApp } from "@/components/ui/FloatingWhatsApp";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { isWebGLSupported } from "@/lib/gpu";
+
+const Projects = lazy(() => import("@/components/sections/Projects"));
+const About = lazy(() => import("@/components/sections/About"));
+const ExperienceContact = lazy(
+  () => import("@/components/sections/ExperienceContact"),
+);
+const Canvas3D = lazy(() => import("@/components/3d/Canvas3D"));
+const ScrollSceneGeometry = lazy(
+  () => import("@/components/3d/ScrollSceneGeometry"),
+);
+const Hero3DText = lazy(() => import("@/components/3d/Hero3DText"));
 
 export default function Index() {
   const [showNav, setShowNav] = useState(true);
@@ -45,7 +50,6 @@ export default function Index() {
 
   return (
     <div className="bg-transparent overflow-x-hidden relative">
-
       {/* Skip to main content — accessibility */}
       <a
         href="#main-content"
@@ -57,39 +61,43 @@ export default function Index() {
       {/* Background 3D Scene — behind all content */}
       {webGLSupported && (
         <ErrorBoundary fallback={null}>
-          <div className="fixed inset-0 z-[-1] pointer-events-none">
-            <Canvas3D cameraPosition={[0, 0, 8]}>
-              <ScrollSceneGeometry />
-            </Canvas3D>
-          </div>
+          <Suspense fallback={null}>
+            <div className="fixed inset-0 z-[-1] pointer-events-none">
+              <Canvas3D cameraPosition={[0, 0, 8]}>
+                <ScrollSceneGeometry />
+              </Canvas3D>
+            </div>
+          </Suspense>
         </ErrorBoundary>
       )}
 
       {/* Floating Navigation */}
-      <AnimatePresence>
-        {showNav && <Navigation />}
-      </AnimatePresence>
+      <AnimatePresence>{showNav && <Navigation />}</AnimatePresence>
 
       {/* Sections Overlay */}
       <main id="main-content" className="relative z-10 w-full">
         <Hero />
         <Marquee />
-        <Projects />
-        <About />
-        <div id="experience">
-          <ExperienceContact />
-        </div>
+        <Suspense fallback={<div className="h-screen w-full" />}>
+          <Projects />
+          <About />
+          <div id="experience">
+            <ExperienceContact />
+          </div>
+        </Suspense>
         <Footer />
       </main>
 
       {/* Sticky 3D Name — above all scrolling content */}
       {webGLSupported && (
         <ErrorBoundary fallback={null}>
-          <div className="fixed inset-0 z-20 pointer-events-none">
-            <Canvas3D cameraPosition={[0, 0, 8]}>
-              <Hero3DText />
-            </Canvas3D>
-          </div>
+          <Suspense fallback={null}>
+            <div className="fixed inset-0 z-20 pointer-events-none">
+              <Canvas3D cameraPosition={[0, 0, 8]}>
+                <Hero3DText />
+              </Canvas3D>
+            </div>
+          </Suspense>
         </ErrorBoundary>
       )}
 

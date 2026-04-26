@@ -5,6 +5,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Project Overview
 
 This is a portfolio site optimized for visual impact with advanced 3D graphics, built with:
+
 - **Frontend**: React 18 + React Router 6 (SPA) + TypeScript + Vite + TailwindCSS 3
 - **Development Backend**: Express server with Vite integration (dev-only; not used in production)
 - **Production**: Netlify static deployment + serverless functions (currently unused)
@@ -81,17 +82,18 @@ Root:
 
 **This is the single most important thing to understand about this codebase.**
 
-| Aspect | Development | Production |
-|--------|-------------|-----------|
-| **Server** | Express (Node.js) | Netlify (Static + Serverless) |
-| **Port** | `8080` | N/A (CDN) |
-| **API Routes** | `/api/*` served by Express | Would be `/api/*` → `/.netlify/functions/api/*` (currently unused) |
-| **Build** | `pnpm dev` (Vite + Express plugin) | `npm run build:client` (client-only) |
-| **Where It Runs** | Local machine | Netlify platform |
+| Aspect            | Development                        | Production                                                         |
+| ----------------- | ---------------------------------- | ------------------------------------------------------------------ |
+| **Server**        | Express (Node.js)                  | Netlify (Static + Serverless)                                      |
+| **Port**          | `8080`                             | N/A (CDN)                                                          |
+| **API Routes**    | `/api/*` served by Express         | Would be `/api/*` → `/.netlify/functions/api/*` (currently unused) |
+| **Build**         | `pnpm dev` (Vite + Express plugin) | `npm run build:client` (client-only)                               |
+| **Where It Runs** | Local machine                      | Netlify platform                                                   |
 
 **Critical**: The Express server in `server/` is **never used in production**. It exists only for local development. Production is a static SPA deployed to Netlify.
 
 **Netlify Configuration** (`netlify.toml`):
+
 ```toml
 [build]
 command = "npm run build:client"  # Only builds frontend
@@ -104,18 +106,22 @@ publish = "dist/spa"              # Publishes the SPA
 ---
 
 ### SPA Routing
+
 - Routes defined in `client/App.tsx` using React Router 6
 - Page components in `client/pages/` (Index = /, Work = /work, About = /about)
 - No lazy-loading currently implemented (all routes eagerly loaded)
 
 ### 3D Rendering Pipeline
+
 The portfolio uses React Three Fiber for interactive 3D graphics:
+
 - **Hero3DText.tsx**: Canvas-based 3D text animation in hero section
 - **ParticleField.tsx**: Particle system for visual effects
 - **ScrollSceneGeometry.tsx**: Geometry that responds to scroll events
 - Three.js handles rendering, GSAP handles animations
 
 ### Styling System
+
 - **TailwindCSS 3**: Primary styling approach
 - **`cn()` utility**: Combines `clsx` + `tailwind-merge` for class merging with priority (in `client/lib/`)
 - **Global styles**: Theme tokens and design system in `client/global.css`
@@ -136,12 +142,14 @@ The Express server is **development-only**. Here's how it works locally:
 **Note**: In production, this server doesn't exist. All API calls use external services (currently only Web3Forms).
 
 ### Type Safety
+
 - **Path aliases**: `@/*` → client, `@shared/*` → shared folder (configured in `tsconfig.json` and both vite configs)
 - **Strict TypeScript**: `noUnusedLocals`, `noUnusedParameters`, `strictNullChecks` enabled
 - **Zod**: Installed as dependency but NOT currently used (reserved for future form/API validation)
 - **API types**: Shared between client and server via `shared/api.ts` (e.g., `DemoResponse` type)
 
 ### Component Library
+
 - **Radix UI**: Headless component primitives (Dialog, Select, Tabs, etc.)
 - **Pre-built UI components**: Located in `client/components/ui/`
 - **Customizable**: Each Radix component wrapped with TailwindCSS styling
@@ -162,12 +170,14 @@ The Express server is **development-only**. Here's how it works locally:
 **Security Note**: API key is exposed in frontend code. This is acceptable for Web3Forms (public service) but represents a trust model risk. If key rotation is needed, the component must be updated manually.
 
 **When Modifying Contact Form**:
+
 - Email validation is client-side regex only: `/^[^\s@]+@[^\s@]+\.[^\s@]+$/` (permissive; may accept invalid emails)
 - No server-side validation (form submits directly to Web3Forms)
 - Form state: `idle` → `sending` → `sent` → auto-reset after 3 seconds
 - Do not change recipient email without updating component AND environment if vars are ever introduced
 
 ### Component Library
+
 - **Radix UI**: Headless component primitives (Dialog, Select, Tabs, etc.)
 - **Pre-built UI components**: Located in `client/components/ui/`
 - **Customizable**: Each Radix component wrapped with TailwindCSS styling
@@ -175,6 +185,7 @@ The Express server is **development-only**. Here's how it works locally:
 ## Development Workflow
 
 ### Adding a New Page
+
 1. Create a new component in `client/pages/PageName.tsx`
 2. Add route in `client/App.tsx`: `<Route path="/path" element={<PageName />} />`
 3. Import components from `client/components/sections/` for sections
@@ -190,12 +201,14 @@ The Express server is **development-only**. Here's how it works locally:
 4. Wrap in try-catch with 500 error response (no error details leaked)
 
 ### Working with 3D Components
+
 - Use React Three Fiber (`@react-three/fiber`) and Three.js
 - GSAP (`gsap`) for animations
 - Lenis for smooth scrolling integration
 - Components are canvas-based; test in browser for performance
 
 ### Styling Guidelines
+
 - Use Tailwind utility classes first
 - Use `cn()` for conditional classes (from `client/lib/utils.ts`): `cn("base", { "conditional": condition })`
 - Extract repeated patterns into reusable UI components in `client/components/ui/`
@@ -206,12 +219,14 @@ The Express server is **development-only**. Here's how it works locally:
 ---
 
 ### Working with 3D Components
+
 - Use React Three Fiber (`@react-three/fiber`) and Three.js
 - GSAP (`gsap`) for animations
 - Lenis for smooth scrolling integration
 - Components are canvas-based; test in browser for performance
 
 ### Styling Guidelines
+
 - Use Tailwind utility classes first
 - Use `cn()` for conditional classes (from `client/lib/utils.ts`): `cn("base", { "conditional": condition })`
 - Extract repeated patterns into reusable UI components in `client/components/ui/`
@@ -224,16 +239,19 @@ The Express server is **development-only**. Here's how it works locally:
 ### Environment Variables
 
 **Frontend Variables** (prefixed `VITE_` to expose to browser):
+
 - `VITE_CONTACT_PHONE`: Phone number displayed in header/contact section
 - `VITE_LINKEDIN_URL`, `VITE_GITHUB_URL`, `VITE_TWITTER_URL`: Social media links in footer
 
 **Backend Variables** (dev-only; ignored in production):
+
 - `PORT`: Dev server port (default 3000; overridden by Vite's 8080)
 - `NODE_ENV`: Auto-set by build tools; do not manually configure
 - `PING_MESSAGE`: Response for `/api/ping` endpoint (dev testing)
 - `ALLOWED_ORIGIN`: CORS origin (dev-only; unused in Netlify production)
 
 **Unused**:
+
 - `VITE_PUBLIC_BUILDER_KEY`: Placeholder for Builder.io integration; no active integration
 - `VITE_CONTACT_EMAIL`: Hardcoded in component instead; not used as env var
 
@@ -244,12 +262,14 @@ The Express server is **development-only**. Here's how it works locally:
 ### Testing Strategy
 
 **Current State**: Minimal test coverage.
+
 - Only test file: `client/lib/utils.spec.ts` (32 lines; tests `cn()` utility only)
 - No component tests, integration tests, or API route tests
 - Vitest is configured but rarely exercised
 - `pnpm test` runs Vitest in single-run mode (no watch mode)
 
 **When Adding Tests**:
+
 1. Create `*.test.ts` or `*.spec.ts` files colocated with source
 2. Use Vitest (already configured; see existing test for imports)
 3. Testing patterns:
@@ -265,6 +285,7 @@ The Express server is **development-only**. Here's how it works locally:
 ### Error Handling Patterns
 
 **Server Endpoints** (Express):
+
 ```typescript
 app.get("/api/endpoint", (req, res) => {
   try {
@@ -272,24 +293,27 @@ app.get("/api/endpoint", (req, res) => {
     res.status(200).json({ data });
   } catch (error) {
     console.error("Endpoint error:", error);
-    res.status(500).json({ 
-      error: "Internal server error", 
-      message: "Failed to process request" 
+    res.status(500).json({
+      error: "Internal server error",
+      message: "Failed to process request",
     });
   }
 });
 ```
+
 - All errors return generic `500` responses (no error detail leakage)
 - Errors logged to console for debugging
 - No validation error responses (e.g., 400 Bad Request)
 
 **Client (React)**:
+
 - Forms use `.catch()` on fetch; failures fallback to `mailto:` link
 - Web3Forms API errors trigger `mailto:` fallback (no retry logic)
 - Toast notifications available via `useToast()` hook
 - No error boundaries currently implemented
 
 **Gaps**:
+
 - No centralized error logging or reporting
 - No error boundary components for React
 - No validation error responses from server
@@ -310,6 +334,7 @@ Located in `client/hooks/`:
 ### Performance Considerations & Gotchas
 
 **Known Issues**:
+
 1. **Hero3DText.tsx**: Large Canvas component rendering 3D text. On slower devices or mobile, consider lazy-loading or progressive rendering.
 2. **Particle systems** (`ParticleField.tsx`): May leak WebGL context if unmounted abruptly during route changes. Test cleanup on navigation.
 3. **No code splitting**: All routes eagerly loaded. If bundle exceeds ~500KB, consider React.lazy() + Suspense.
@@ -317,12 +342,14 @@ Located in `client/hooks/`:
 5. **Canvas rendering**: Renders immediately but content may load after; consider splash screen or skeleton loader.
 
 **Optimization Techniques**:
+
 - Use React Query caching (configured but unused; see QueryClient in `App.tsx`)
 - Profile on mobile using Chrome DevTools (throttle CPU and network)
 - Test on actual devices (simulator ≠ reality for GPU performance)
 - Monitor Time to Interactive (TTI) and First Contentful Paint (FCP)
 
 **Metrics to Monitor**:
+
 - Bundle size: Currently ~300KB+ (unverified)
 - Time to Interactive: Untracked
 - Canvas render time: Profile with Chrome DevTools Performance tab
@@ -332,6 +359,7 @@ Located in `client/hooks/`:
 ### Code Conventions
 
 **Component Structure**:
+
 - **Pages** (`client/pages/`): Full route components; typically contain useEffect for data loading; exported as default
 - **Sections** (`client/components/sections/`): Reusable page sections (Hero, Projects, etc.); exported as default
 - **UI** (`client/components/ui/`): Radix UI + Tailwind wrappers; primitive building blocks; typically exported as named export
@@ -339,17 +367,20 @@ Located in `client/hooks/`:
 - **Utilities** (`client/lib/`): Pure functions and constants; avoid React hooks
 
 **Naming Conventions**:
+
 - **Files**: PascalCase for components (e.g., `Hero.tsx`), camelCase for utilities (e.g., `utils.ts`)
 - **Variables**: camelCase
 - **CSS classes**: kebab-case (Tailwind standard)
 - **React component props**: camelCase
 
 **State Management**:
+
 - **Local component state**: `useState()` for form inputs, UI toggles, temporary state
 - **Shared state**: None currently (React Query available but unused; no context providers)
 - **Data**: Hardcoded in `client/lib/data.ts` (projects, team, testimonials); update manually to change content
 
 **Comments**:
+
 - Inline comments only for non-obvious logic (regex patterns, GSAP callbacks, workarounds)
 - No file headers or docstrings
 - Example: `ExperienceContact.tsx` has inline comment explaining Web3Forms API

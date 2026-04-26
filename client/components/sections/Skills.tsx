@@ -5,7 +5,14 @@ import { useInView } from "framer-motion";
 const skillCategories = [
   {
     title: "PROGRAMMING",
-    skills: ["Java", "Python", "SQL", "Object-Oriented Programming (OOP)", "Database Management", "Oracle E-Business Suite"],
+    skills: [
+      "Java",
+      "Python",
+      "SQL",
+      "Object-Oriented Programming (OOP)",
+      "Database Management",
+      "Oracle E-Business Suite",
+    ],
   },
   {
     title: "WEB & E-COMMERCE",
@@ -43,7 +50,9 @@ function SkillItem({ skill, index }: SkillItemProps) {
 
   useEffect(() => {
     if (isInView && ref.current) {
-      const underline = ref.current.querySelector(".skill-underline") as HTMLElement;
+      const underline = ref.current.querySelector(
+        ".skill-underline",
+      ) as HTMLElement;
       if (underline) {
         gsap.fromTo(
           underline,
@@ -53,7 +62,7 @@ function SkillItem({ skill, index }: SkillItemProps) {
             duration: 0.8,
             delay: index * 0.05,
             ease: "power2.out",
-          }
+          },
         );
       }
     }
@@ -69,7 +78,10 @@ function SkillItem({ skill, index }: SkillItemProps) {
 
 export default function Skills() {
   return (
-    <section id="skills" className="relative w-full py-20 md:py-32 bg-transparent px-4 md:px-8">
+    <section
+      id="skills"
+      className="relative w-full py-20 md:py-32 bg-transparent px-4 md:px-8"
+    >
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="mb-16">
@@ -81,7 +93,9 @@ export default function Skills() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16">
           {skillCategories.map((category) => (
             <div key={category.title} className="space-y-6">
-              <h3 className="text-xs font-grotesk font-bold uppercase tracking-widest">{category.title}</h3>
+              <h3 className="text-xs font-grotesk font-bold uppercase tracking-widest">
+                {category.title}
+              </h3>
               <div className="space-y-2">
                 {category.skills.map((skill, idx) => (
                   <SkillItem key={skill} skill={skill} index={idx} />

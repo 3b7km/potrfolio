@@ -18,11 +18,34 @@ export function Navigation() {
         YA.
       </Link>
 
-      <nav aria-label="Main navigation" className="flex gap-2 md:gap-5 font-sans text-xs md:text-sm font-medium tracking-wide text-white/90">
-        <a href="/#about" className="tap-target px-2 md:px-3 py-2 hover:opacity-60 transition-opacity rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">About</a>
-        <a href="/#work" className="tap-target px-2 md:px-3 py-2 hover:opacity-60 transition-opacity rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">Work</a>
-        <a href="/#experience" className="tap-target px-2 md:px-3 py-2 hover:opacity-60 transition-opacity rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">Experience</a>
-        <a href="/#contact" className="tap-target px-2 md:px-3 py-2 hover:opacity-60 transition-opacity rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">Contact</a>
+      <nav
+        aria-label="Main navigation"
+        className="flex gap-2 md:gap-5 font-sans text-xs md:text-sm font-medium tracking-wide text-white/90"
+      >
+        <a
+          href="/#about"
+          className="tap-target px-2 md:px-3 py-2 hover:opacity-60 transition-opacity rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+        >
+          About
+        </a>
+        <a
+          href="/#work"
+          className="tap-target px-2 md:px-3 py-2 hover:opacity-60 transition-opacity rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+        >
+          Work
+        </a>
+        <a
+          href="/#experience"
+          className="tap-target px-2 md:px-3 py-2 hover:opacity-60 transition-opacity rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+        >
+          Experience
+        </a>
+        <a
+          href="/#contact"
+          className="tap-target px-2 md:px-3 py-2 hover:opacity-60 transition-opacity rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+        >
+          Contact
+        </a>
       </nav>
 
       {/* Theme toggle indicator circle mockup */}

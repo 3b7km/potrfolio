@@ -44,13 +44,29 @@ export default function Hero3DText() {
         // Subtle parallax mapped to mouse movement
         const x = (state.pointer.x * viewport.width) / 15;
         const y = (state.pointer.y * viewport.height) / 15;
-        
-        groupRef.current.rotation.y = THREE.MathUtils.lerp(groupRef.current.rotation.y, x * 0.1, 0.05);
-        groupRef.current.rotation.x = THREE.MathUtils.lerp(groupRef.current.rotation.x, -y * 0.1, 0.05);
+
+        groupRef.current.rotation.y = THREE.MathUtils.lerp(
+          groupRef.current.rotation.y,
+          x * 0.1,
+          0.05,
+        );
+        groupRef.current.rotation.x = THREE.MathUtils.lerp(
+          groupRef.current.rotation.x,
+          -y * 0.1,
+          0.05,
+        );
       } else {
         // Force reset rotation on mobile to keep it perfectly centered
-        groupRef.current.rotation.y = THREE.MathUtils.lerp(groupRef.current.rotation.y, 0, 0.1);
-        groupRef.current.rotation.x = THREE.MathUtils.lerp(groupRef.current.rotation.x, 0, 0.1);
+        groupRef.current.rotation.y = THREE.MathUtils.lerp(
+          groupRef.current.rotation.y,
+          0,
+          0.1,
+        );
+        groupRef.current.rotation.x = THREE.MathUtils.lerp(
+          groupRef.current.rotation.x,
+          0,
+          0.1,
+        );
       }
     }
   });
@@ -63,8 +79,9 @@ export default function Hero3DText() {
             <Text3D
               font="https://unpkg.com/three@0.77.0/examples/fonts/helvetiker_bold.typeface.json"
               scale={textScale}
-              curveSegments={isMobile ? 24 : 24}
+              curveSegments={isMobile ? 8 : 24}
               bevelEnabled
+              bevelSegments={isMobile ? 2 : 5}
               bevelSize={isMobile ? 0.02 : 0.04}
               bevelThickness={isMobile ? 0.05 : 0.1}
               height={isMobile ? 0.3 : 0.5}
@@ -86,8 +103,9 @@ export default function Hero3DText() {
             <Text3D
               font="https://unpkg.com/three@0.77.0/examples/fonts/helvetiker_bold.typeface.json"
               scale={textScale}
-              curveSegments={isMobile ? 24 : 24}
+              curveSegments={isMobile ? 8 : 24}
               bevelEnabled
+              bevelSegments={isMobile ? 2 : 5}
               bevelSize={isMobile ? 0.02 : 0.04}
               bevelThickness={isMobile ? 0.05 : 0.1}
               height={isMobile ? 0.3 : 0.5}
@@ -109,7 +127,13 @@ export default function Hero3DText() {
       </Float>
 
       {/* Local lighting to make the text pop */}
-      <spotLight position={[5, 5, 5]} intensity={2} color="#ffffff" penumbra={1} castShadow />
+      <spotLight
+        position={[5, 5, 5]}
+        intensity={2}
+        color="#ffffff"
+        penumbra={1}
+        castShadow
+      />
       <spotLight position={[-5, -5, 5]} intensity={1} color="#aaaaaa" />
     </group>
   );

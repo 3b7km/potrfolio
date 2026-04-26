@@ -3,6 +3,7 @@
 ## Before Going to Production
 
 ### Environment Setup
+
 - [ ] Copy `.env.example` to `.env.local`
 - [ ] Update contact email in `.env.local`
 - [ ] Update phone number in `.env.local`
@@ -11,6 +12,7 @@
 - [ ] Never commit `.env.local` to version control
 
 ### Code Verification
+
 - [ ] Run `npm run typecheck` (or `pnpm typecheck`)
 - [ ] Run `npm run test` (or `pnpm test`)
 - [ ] Run `npm run dev` and test locally
@@ -20,6 +22,7 @@
 - [ ] Test health check: visit `/health`
 
 ### Build & Deployment
+
 - [ ] Run `npm run build` (or `pnpm build`)
 - [ ] Verify `dist/` folder is created
 - [ ] Test production build locally: `npm run start`
@@ -27,6 +30,7 @@
 - [ ] Deploy to Netlify/Vercel
 
 ### Post-Deployment
+
 - [ ] Test all pages in production
 - [ ] Test all links and navigation
 - [ ] Check SEO meta tags in browser
@@ -68,6 +72,7 @@ npm run format.fix
 ## Environment Variables Reference
 
 **Frontend Variables** (prefixed with `VITE_`):
+
 - `VITE_CONTACT_EMAIL` - Email for contact links
 - `VITE_CONTACT_PHONE` - Phone number for contact links
 - `VITE_LINKEDIN_URL` - LinkedIn profile URL
@@ -75,6 +80,7 @@ npm run format.fix
 - `VITE_TWITTER_URL` - Twitter profile URL (if needed)
 
 **Backend Variables**:
+
 - `PORT` - Server port (default: 3000)
 - `NODE_ENV` - Environment mode (development/production)
 - `PING_MESSAGE` - Custom ping response
@@ -85,18 +91,23 @@ npm run format.fix
 ## Common Issues & Solutions
 
 ### Issue: Type errors when running typecheck
+
 **Solution**: Make sure all dependencies are installed with `npm install` or `pnpm install`
 
 ### Issue: 404 Page shows old styling
+
 **Solution**: Clear browser cache or do a hard refresh (Ctrl+Shift+R or Cmd+Shift+R)
 
 ### Issue: Contact links not working
+
 **Solution**: Verify `.env.local` has `VITE_CONTACT_EMAIL` and `VITE_CONTACT_PHONE` set
 
 ### Issue: CORS errors in console
+
 **Solution**: Check that API origin is in `ALLOWED_ORIGIN` environment variable
 
 ### Issue: Port 8080 already in use
+
 **Solution**: Change PORT in `.env.local` or kill process using port 8080
 
 ---
@@ -104,6 +115,7 @@ npm run format.fix
 ## Testing Checklist
 
 ### Functional Testing
+
 - [ ] Homepage loads without errors
 - [ ] All navigation links work
 - [ ] 404 page appears for invalid routes
@@ -111,6 +123,7 @@ npm run format.fix
 - [ ] Contact links open email/phone apps
 
 ### Visual Testing
+
 - [ ] Page looks good on desktop
 - [ ] Page looks good on tablet
 - [ ] Page looks good on mobile
@@ -118,12 +131,14 @@ npm run format.fix
 - [ ] Animations are smooth
 
 ### Performance Testing
+
 - [ ] Page loads in under 3 seconds
 - [ ] API responds in under 500ms
 - [ ] No console errors
 - [ ] No console warnings (except expected)
 
 ### Security Testing
+
 - [ ] Security headers are present
 - [ ] CORS is restricted
 - [ ] No sensitive data in console
@@ -134,17 +149,20 @@ npm run format.fix
 ## Monitoring & Maintenance
 
 ### Weekly
+
 - [ ] Check error logs
 - [ ] Review API performance
 - [ ] Monitor uptime
 
 ### Monthly
+
 - [ ] Update dependencies
 - [ ] Review security updates
 - [ ] Test all features
 - [ ] Check analytics
 
 ### Quarterly
+
 - [ ] Performance audit
 - [ ] Security audit
 - [ ] Code review
@@ -161,7 +179,7 @@ npm run format.fix
 ✅ React best practices  
 ✅ SEO meta tags  
 ✅ Environment variables  
-✅ Beautiful error pages  
+✅ Beautiful error pages
 
 See `IMPROVEMENTS_SUMMARY.md` for detailed information.
 

@@ -8,19 +8,28 @@ export default function AboutPage() {
     <div className="min-h-screen bg-background">
       {/* Navigation */}
       <nav className="fixed top-8 left-8 right-8 z-20 flex items-center justify-between">
-        <button onClick={() => navigate("/")} className="text-sm font-grotesk font-bold cursor-hover hover:text-accent">
+        <button
+          onClick={() => navigate("/")}
+          className="text-sm font-grotesk font-bold cursor-hover hover:text-accent"
+        >
           Y.A©
         </button>
-        <button onClick={() => navigate("/")} className="text-sm cursor-hover hover:text-accent">
+        <button
+          onClick={() => navigate("/")}
+          className="text-sm cursor-hover hover:text-accent"
+        >
           Back
         </button>
       </nav>
 
       {/* Placeholder Content */}
       <div className="h-screen flex flex-col items-center justify-center px-4">
-        <h1 className="text-5xl md:text-7xl font-grotesk font-bold mb-8 text-center">About</h1>
+        <h1 className="text-5xl md:text-7xl font-grotesk font-bold mb-8 text-center">
+          About
+        </h1>
         <p className="text-lg text-muted max-w-2xl text-center mb-8">
-          This page is coming soon. Learn more about Youssef in the About section on the homepage.
+          This page is coming soon. Learn more about Youssef in the About
+          section on the homepage.
         </p>
         <button
           onClick={() => navigate("/")}

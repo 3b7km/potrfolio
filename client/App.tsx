@@ -24,7 +24,9 @@ function RouteLoader() {
     <div className="min-h-screen bg-background flex items-center justify-center">
       <div className="text-center space-y-4">
         <div className="w-8 h-8 border-2 border-white/20 border-t-white rounded-full animate-spin mx-auto" />
-        <p className="text-xs text-white/40 font-sans tracking-widest uppercase">Loading</p>
+        <p className="text-xs text-white/40 font-sans tracking-widest uppercase">
+          Loading
+        </p>
       </div>
     </div>
   );
@@ -55,7 +57,7 @@ const App = () => (
 const rootElement = document.getElementById("root");
 if (!rootElement) {
   throw new Error(
-    "Failed to find root element. Ensure #root exists in index.html"
+    "Failed to find root element. Ensure #root exists in index.html",
   );
 }
 createRoot(rootElement).render(<App />);

@@ -10,7 +10,7 @@ const NotFound = () => {
   useEffect(() => {
     if (import.meta.env.DEV) {
       console.warn(
-        `404 Error: User attempted to access non-existent route: ${location.pathname}`
+        `404 Error: User attempted to access non-existent route: ${location.pathname}`,
       );
     }
   }, [location.pathname]);
@@ -41,12 +41,15 @@ const NotFound = () => {
             transition={{ delay: 0.2, duration: 0.6 }}
             className="space-y-2"
           >
-            <p className="text-2xl md:text-4xl font-syne font-bold">Page Not Found</p>
+            <p className="text-2xl md:text-4xl font-syne font-bold">
+              Page Not Found
+            </p>
             <p className="text-muted text-base md:text-lg">
               The page you are looking for doesn't exist or has been moved.
             </p>
             <p className="text-xs text-muted/60 font-mono">
-              Attempted route: <span className="text-accent">{location.pathname}</span>
+              Attempted route:{" "}
+              <span className="text-accent">{location.pathname}</span>
             </p>
           </motion.div>
 

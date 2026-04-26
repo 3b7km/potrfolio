@@ -7,11 +7,11 @@ import Footer from "@/components/Footer";
 import { useLenis } from "@/hooks/useLenis";
 
 /** Collapsible wrapper — accordion on mobile, always-visible on desktop */
-function CollapsibleSection({ 
-  title, 
-  children 
-}: { 
-  title: string; 
+function CollapsibleSection({
+  title,
+  children,
+}: {
+  title: string;
   children: React.ReactNode;
 }) {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -53,9 +53,7 @@ function CollapsibleSection({
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
             className="overflow-hidden"
           >
-            <div className="pb-6">
-              {children}
-            </div>
+            <div className="pb-6">{children}</div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -72,13 +70,18 @@ export default function Work() {
 
   return (
     <div className="bg-background min-h-screen text-white overflow-x-hidden selection:bg-foreground selection:text-background relative">
-
       {/* Editorial Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 px-6 md:px-12 py-8 mix-blend-difference pointer-events-auto flex justify-between items-center text-white">
-        <Link to="/" className="tap-target text-sm font-syne font-bold uppercase tracking-widest">
+        <Link
+          to="/"
+          className="tap-target text-sm font-syne font-bold uppercase tracking-widest"
+        >
           Y.A ©
         </Link>
-        <Link to="/" className="tap-target text-sm font-sans tracking-wide opacity-70 hover:opacity-100 transition-opacity">
+        <Link
+          to="/"
+          className="tap-target text-sm font-sans tracking-wide opacity-70 hover:opacity-100 transition-opacity"
+        >
           Close (X)
         </Link>
       </nav>
@@ -100,7 +103,8 @@ export default function Work() {
             transition={{ delay: 0.3, duration: 0.8 }}
             className="text-sm md:text-base font-sans text-muted max-w-md leading-relaxed"
           >
-            A comprehensive overview of massive-scale e-commerce architectures, 3D web experiences, and brand platforms currently in production.
+            A comprehensive overview of massive-scale e-commerce architectures,
+            3D web experiences, and brand platforms currently in production.
           </motion.p>
         </div>
       </header>
@@ -111,12 +115,15 @@ export default function Work() {
           const isEven = idx % 2 === 0;
 
           return (
-            <article key={project.id} className="w-full border-b border-border/5 py-24 md:py-40 px-6 md:px-12 group">
+            <article
+              key={project.id}
+              className="w-full border-b border-border/5 py-24 md:py-40 px-6 md:px-12 group"
+            >
               <div className="max-w-7xl mx-auto">
-
                 {/* Top Row: Image + Core Info */}
-                <div className={`flex flex-col ${isEven ? "lg:flex-row" : "lg:flex-row-reverse"} gap-12 lg:gap-24 items-start`}>
-
+                <div
+                  className={`flex flex-col ${isEven ? "lg:flex-row" : "lg:flex-row-reverse"} gap-12 lg:gap-24 items-start`}
+                >
                   {/* Image Showcase */}
                   <div className="w-full lg:w-3/5 overflow-hidden relative aspect-[4/3] md:aspect-[16/10] bg-[#111]">
                     <motion.div
@@ -157,12 +164,20 @@ export default function Work() {
 
                     <div className="grid grid-cols-2 gap-6 mb-8 pb-8 border-b border-border/10">
                       <div>
-                        <span className="block text-xs font-sans text-muted uppercase tracking-widest mb-2">Platform</span>
-                        <span className="text-sm font-sans">{project.platform}</span>
+                        <span className="block text-xs font-sans text-muted uppercase tracking-widest mb-2">
+                          Platform
+                        </span>
+                        <span className="text-sm font-sans">
+                          {project.platform}
+                        </span>
                       </div>
                       <div>
-                        <span className="block text-xs font-sans text-muted uppercase tracking-widest mb-2">Impact</span>
-                        <span className="text-sm font-sans">{project.metrics}</span>
+                        <span className="block text-xs font-sans text-muted uppercase tracking-widest mb-2">
+                          Impact
+                        </span>
+                        <span className="text-sm font-sans">
+                          {project.metrics}
+                        </span>
                       </div>
                     </div>
 
@@ -195,7 +210,6 @@ export default function Work() {
                 {/* Bottom Row: Features + Tech Stack + Skills — Collapsible on mobile */}
                 <CollapsibleSection title="Technical Details">
                   <div className="mt-16 pt-16 border-t border-border/5 grid grid-cols-1 md:grid-cols-3 gap-12">
-
                     {/* Key Features */}
                     <div>
                       <h3 className="text-xs font-sans tracking-widest text-muted uppercase mb-6 pb-3 border-b border-border/10">
@@ -203,8 +217,13 @@ export default function Work() {
                       </h3>
                       <ul className="flex flex-col gap-3">
                         {project.features.map((feature, i) => (
-                          <li key={i} className="text-sm font-sans text-muted leading-relaxed flex items-start gap-2">
-                            <span className="text-white/30 mt-1 text-xs">◆</span>
+                          <li
+                            key={i}
+                            className="text-sm font-sans text-muted leading-relaxed flex items-start gap-2"
+                          >
+                            <span className="text-white/30 mt-1 text-xs">
+                              ◆
+                            </span>
                             {feature}
                           </li>
                         ))}
@@ -217,23 +236,25 @@ export default function Work() {
                         Tech Stack
                       </h3>
                       <div className="flex flex-col gap-5">
-                        {Object.entries(project.techStack).map(([category, items]) => (
-                          <div key={category}>
-                            <span className="block text-xs font-sans text-white/50 uppercase tracking-widest mb-2">
-                              {category}
-                            </span>
-                            <div className="flex flex-wrap gap-1.5">
-                              {items.map((item) => (
-                                <span
-                                  key={item}
-                                  className="text-xs font-sans px-2 py-1 bg-white/5 border border-white/5 text-muted"
-                                >
-                                  {item}
-                                </span>
-                              ))}
+                        {Object.entries(project.techStack).map(
+                          ([category, items]) => (
+                            <div key={category}>
+                              <span className="block text-xs font-sans text-white/50 uppercase tracking-widest mb-2">
+                                {category}
+                              </span>
+                              <div className="flex flex-wrap gap-1.5">
+                                {items.map((item) => (
+                                  <span
+                                    key={item}
+                                    className="text-xs font-sans px-2 py-1 bg-white/5 border border-white/5 text-muted"
+                                  >
+                                    {item}
+                                  </span>
+                                ))}
+                              </div>
                             </div>
-                          </div>
-                        ))}
+                          ),
+                        )}
                       </div>
                     </div>
 
@@ -244,8 +265,13 @@ export default function Work() {
                       </h3>
                       <ul className="flex flex-col gap-3">
                         {project.skills.map((skill, i) => (
-                          <li key={i} className="text-sm font-sans text-muted leading-relaxed flex items-start gap-2">
-                            <span className="text-white/30 mt-1 text-xs">→</span>
+                          <li
+                            key={i}
+                            className="text-sm font-sans text-muted leading-relaxed flex items-start gap-2"
+                          >
+                            <span className="text-white/30 mt-1 text-xs">
+                              →
+                            </span>
                             {skill}
                           </li>
                         ))}
@@ -267,19 +293,22 @@ export default function Work() {
               Technical <br /> Arsenal
             </h2>
             <p className="mt-6 text-sm font-sans text-muted max-w-xs">
-              The infrastructure utilized to construct and deploy the architectures above.
+              The infrastructure utilized to construct and deploy the
+              architectures above.
             </p>
           </div>
 
           <div className="md:w-2/3 flex flex-wrap gap-4">
-            {Object.values(skills).flat().map((skill) => (
-              <div
-                key={skill}
-                className="tap-target px-6 py-4 border border-white/5 bg-[#111] text-sm font-sans uppercase tracking-wider text-muted hover:text-white hover:border-white/20 transition-colors"
-              >
-                {skill}
-              </div>
-            ))}
+            {Object.values(skills)
+              .flat()
+              .map((skill) => (
+                <div
+                  key={skill}
+                  className="tap-target px-6 py-4 border border-white/5 bg-[#111] text-sm font-sans uppercase tracking-wider text-muted hover:text-white hover:border-white/20 transition-colors"
+                >
+                  {skill}
+                </div>
+              ))}
           </div>
         </div>
       </section>

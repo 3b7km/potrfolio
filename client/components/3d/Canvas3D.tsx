@@ -22,30 +22,35 @@ export default function Canvas3D({
 
     checkMobile();
     window.addEventListener("resize", checkMobile);
-    
+
     return () => {
       window.removeEventListener("resize", checkMobile);
     };
   }, []);
 
   return (
-    <Canvas 
+    <Canvas
       className={`${className} canvas-touch-passthrough`}
-      dpr={[1, 2]} 
+      dpr={isMobile ? 1 : [1, 1.5]}
       performance={{ min: 0.5 }}
-      gl={{ antialias: true, alpha: true }}
-      style={{ touchAction: 'auto', pointerEvents: 'none' }}
+      gl={{ antialias: !isMobile, alpha: true, powerPreference: "high-performance" }}
+      style={{ touchAction: "auto", pointerEvents: "none" }}
     >
       <Suspense fallback={null}>
         <PerspectiveCamera position={cameraPosition} makeDefault />
         <ambientLight intensity={0.2} />
         {/* Stark cool tone rim lights for metallic pop */}
-        <spotLight position={[10, 10, 10]} intensity={1.5} color="#ffffff" penumbra={1} />
+        <spotLight
+          position={[10, 10, 10]}
+          intensity={1.5}
+          color="#ffffff"
+          penumbra={1}
+        />
         <pointLight position={[-10, -10, -5]} intensity={0.8} color="#e5e5e5" />
-        
+
         {/* Studio environment for realistic metalness reflections */}
         <Environment preset="studio" />
-        
+
         <Preload all />
         {children}
       </Suspense>

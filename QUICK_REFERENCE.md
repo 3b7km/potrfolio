@@ -59,11 +59,13 @@ if (!validation.success) {
 ## Testing
 
 ### Run all tests
+
 ```bash
 npm run test
 ```
 
 ### Test structure
+
 ```
 ✓ client/lib/utils.spec.ts (5 tests)
 ✓ client/lib/validation.spec.ts (11 tests)
@@ -72,6 +74,7 @@ Total: 16 tests passing ✅
 ```
 
 ### Add new tests
+
 ```typescript
 // Create file: component.spec.ts
 import { describe, it, expect } from "vitest";
@@ -112,6 +115,7 @@ Fallback to mailto: ← If API fails
 ## Accessibility Checklist
 
 When adding features:
+
 - ✅ Add aria-label to buttons
 - ✅ Add role="list" to lists
 - ✅ Add role="alert" to errors
@@ -167,21 +171,25 @@ NODE_ENV=development
 ## Troubleshooting
 
 ### Tests failing?
+
 ```bash
 npm run test -- --reporter=verbose
 ```
 
 ### Type errors?
+
 ```bash
 npm run typecheck
 ```
 
 ### Build failing?
+
 ```bash
 npm run build:client
 ```
 
 ### Port in use?
+
 ```bash
 # Kill process on port 8080
 lsof -ti:8080 | xargs kill -9  # macOS/Linux

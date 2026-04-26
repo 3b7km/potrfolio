@@ -15,7 +15,10 @@ interface ErrorBoundaryState {
  * Critical for wrapping 3D Canvas components that may crash
  * on devices without WebGL support or during GPU context loss.
  */
-export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
+export class ErrorBoundary extends Component<
+  ErrorBoundaryProps,
+  ErrorBoundaryState
+> {
   constructor(props: ErrorBoundaryProps) {
     super(props);
     this.state = { hasError: false, error: null };

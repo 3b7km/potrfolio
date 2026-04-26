@@ -13,7 +13,7 @@ export function createServer() {
     res.setHeader("X-XSS-Protection", "1; mode=block");
     res.setHeader(
       "Strict-Transport-Security",
-      "max-age=31536000; includeSubDomains"
+      "max-age=31536000; includeSubDomains",
     );
     next();
   });
@@ -29,7 +29,7 @@ export function createServer() {
     cors({
       origin: allowedOrigins,
       credentials: true,
-    })
+    }),
   );
 
   app.use(express.json());

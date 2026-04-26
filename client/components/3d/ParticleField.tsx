@@ -16,7 +16,8 @@ export default function ParticleField() {
 
   useFrame(() => {
     if (meshRef.current && meshRef.current.geometry.attributes.position) {
-      const positions = meshRef.current.geometry.attributes.position.array as Float32Array;
+      const positions = meshRef.current.geometry.attributes.position
+        .array as Float32Array;
       for (let i = 0; i < positions.length; i += 3) {
         positions[i + 1] += 0.002;
         if (positions[i + 1] > 2.5) {
@@ -37,7 +38,13 @@ export default function ParticleField() {
           itemSize={3}
         />
       </bufferGeometry>
-      <pointsMaterial color="#0066FF" size={0.05} opacity={0.3} transparent sizeAttenuation />
+      <pointsMaterial
+        color="#0066FF"
+        size={0.05}
+        opacity={0.3}
+        transparent
+        sizeAttenuation
+      />
     </points>
   );
 }

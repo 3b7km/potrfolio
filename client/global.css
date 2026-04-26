@@ -10,9 +10,9 @@
     --background: 0 0% 0%;
     --foreground: 213 53% 25%;
     --primary: 213 53% 25%;
-    --secondary: 48 8% 58%;  /* Improved contrast from 50 5% 53% */
+    --secondary: 48 8% 58%; /* Improved contrast from 50 5% 53% */
     --accent: 217 100% 50%;
-    --muted: 48 8% 58%;      /* Improved contrast from 50 5% 53% */
+    --muted: 48 8% 58%; /* Improved contrast from 50 5% 53% */
     --border: 0 0% 8.5%;
     --divider: 0 0% 13%;
   }
