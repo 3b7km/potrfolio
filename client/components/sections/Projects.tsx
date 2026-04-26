@@ -1,50 +1,15 @@
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { projects } from "@/lib/data";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
 
 interface ProjectRowProps {
   project: (typeof projects)[0];
 }
 
 function ProjectRow({ project }: ProjectRowProps) {
-  const rowRef = useRef<HTMLElement>(null);
-  const img1Ref = useRef<HTMLImageElement>(null);
-  const img2Ref = useRef<HTMLImageElement>(null);
-
-  useEffect(() => {
-    const row = rowRef.current;
-    const img1 = img1Ref.current;
-    const img2 = img2Ref.current;
-
-    if (!row || !img1 || !img2 || window.innerWidth < 768) return;
-
-    // Create a scrubbed parallax effect for the images as the user scrolls
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: row,
-        start: "top bottom",
-        end: "bottom top",
-        scrub: 1, // Smooth scrubbing
-      },
-    });
-
-    // Move img1 up and img2 down to create depth
-    tl.fromTo(img1, { yPercent: -15 }, { yPercent: 15 }, 0);
-    tl.fromTo(img2, { yPercent: 15 }, { yPercent: -15 }, 0);
-
-    return () => {
-      tl.scrollTrigger?.kill();
-      tl.kill();
-    };
-  }, []);
-
   return (
-    <article ref={rowRef} className="relative group border-t border-border/10 py-8 md:py-12 transition-colors hover:bg-white/[0.02]">
+    <article className="relative group border-t border-border/10 py-8 md:py-12 transition-colors hover:bg-white/[0.02]">
       <div className="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-y-8 md:gap-x-8 items-start px-4">
         {/* 1. Header (Title, Description, Tags) */}
         <div className="flex flex-col gap-2 order-1 md:col-span-7 md:col-start-6 md:row-start-1">
@@ -76,28 +41,26 @@ function ProjectRow({ project }: ProjectRowProps) {
 
         {/* 2. Photos */}
         <div className="flex flex-col gap-4 order-2 md:col-span-5 md:col-start-1 md:row-start-1 md:row-span-2 w-full">
-          <div className="aspect-[4/3] rounded overflow-hidden border border-white/10 relative">
+          <div className="aspect-[4/3] rounded overflow-hidden border border-white/10">
             <img
-              ref={img1Ref}
               src={project.images[0]}
               alt={`${project.name} — primary screenshot`}
               width={600}
               height={450}
               loading="lazy"
               decoding="async"
-              className="absolute inset-0 w-full h-full object-cover scale-[1.35] transition-transform duration-700 group-hover:scale-[1.4]"
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
           </div>
-          <div className="aspect-[4/3] rounded overflow-hidden border border-white/10 relative">
+          <div className="aspect-[4/3] rounded overflow-hidden border border-white/10">
             <img
-              ref={img2Ref}
               src={project.images[1]}
               alt={`${project.name} — secondary screenshot`}
               width={600}
               height={450}
               loading="lazy"
               decoding="async"
-              className="absolute inset-0 w-full h-full object-cover scale-[1.35] transition-transform duration-700 group-hover:scale-[1.4]"
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
           </div>
         </div>
