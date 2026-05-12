@@ -1,24 +1,29 @@
 import { useEffect } from "react";
-import Lenis from "lenis";
 
 export function useLenis() {
   useEffect(() => {
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      wheelMultiplier: 1,
-      touchMultiplier: 2,
+    // Lazy-load Lenis — it's a UX enhancement, not critical for first paint
+    import("lenis").then(({ default: Lenis }) => {
+      const lenis = new Lenis({
+        duration: 1.2,
+        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        wheelMultiplier: 1,
+        touchMultiplier: 2,
+      });
+
+      function raf(time: number) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+
+      requestAnimationFrame(raf);
+
+      // Store cleanup ref on window for unmount
+      (window as any).__lenisCleanup = () => lenis.destroy();
     });
 
-    function raf(time: number) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-
-    requestAnimationFrame(raf);
-
     return () => {
-      lenis.destroy();
+      (window as any).__lenisCleanup?.();
     };
   }, []);
 }
