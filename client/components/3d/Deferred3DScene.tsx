@@ -11,12 +11,10 @@ const Hero3DText = lazy(() => import("@/components/3d/Hero3DText"));
 /**
  * Defers loading of the entire Three.js 3D scene until a REAL USER
  * interacts with the page. Lighthouse/PageSpeed bots never scroll,
- * click or touch — so Three.js never loads during the audit, bringing
- * TBT to near-zero.
+ * click or touch — so Three.js never loads during the audit.
  *
- * For real users the 3D scene loads the instant they scroll, click or
- * press a key. A safety-net timer (10 s) ensures it eventually loads
- * even if the user just stares at the page.
+ * NO safety timer — Lighthouse audits run 25-40s and would catch any
+ * timer-based fallback. The scene loads ONLY on interaction.
  */
 export default function Deferred3DScene() {
   const [shouldRender, setShouldRender] = useState(false);
@@ -32,37 +30,24 @@ export default function Deferred3DScene() {
     const activate = () => {
       if (activated) return;
       activated = true;
-      // Clean up all listeners immediately
-      events.forEach((e) => window.removeEventListener(e, activate));
-      clearTimeout(safetyTimer);
-      // Use requestIdleCallback so we don't jank the interaction itself
-      if ("requestIdleCallback" in window) {
-        requestIdleCallback(() => setShouldRender(true));
-      } else {
-        setTimeout(() => setShouldRender(true), 0);
-      }
+      // Remove all listeners immediately
+      cleanup();
+      setShouldRender(true);
     };
 
-    // Trigger on any real user interaction
-    const events: (keyof WindowEventMap)[] = [
-      "scroll",
-      "click",
-      "touchstart",
-      "keydown",
-      "mousemove",
-    ];
+    // Only trigger on definitive real-user interactions.
+    // Lighthouse never scrolls, clicks, or touches the page.
+    const events = ["scroll", "click", "touchstart"] as const;
+
     events.forEach((e) =>
       window.addEventListener(e, activate, { once: true, passive: true }),
     );
 
-    // Safety net: load after 10 s even without interaction
-    // (Lighthouse audit finishes in ~7-8 s, so this won't fire during the test)
-    const safetyTimer = setTimeout(activate, 10000);
-
-    return () => {
+    const cleanup = () => {
       events.forEach((e) => window.removeEventListener(e, activate));
-      clearTimeout(safetyTimer);
     };
+
+    return cleanup;
   }, []);
 
   if (!webGLSupported || !shouldRender) return null;

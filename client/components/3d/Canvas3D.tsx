@@ -48,10 +48,10 @@ export default function Canvas3D({
         />
         <pointLight position={[-10, -10, -5]} intensity={0.8} color="#e5e5e5" />
 
-        {/* Studio environment for realistic metalness reflections.
-            Safe to load here — entire 3D scene is deferred via requestIdleCallback,
-            so this HDR fetch won't block FCP/LCP/TBT. */}
-        <Environment preset="studio" />
+        {/* Self-hosted studio HDR for metalness reflections.
+            Loaded from /public/hdri/ instead of raw.githubusercontent.com
+            for faster CDN delivery via Vercel. */}
+        <Environment files="/hdri/studio_small_03_1k.hdr" />
 
         {children}
       </Suspense>
