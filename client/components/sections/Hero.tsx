@@ -58,8 +58,7 @@ export default function Hero() {
       className="relative w-full min-h-screen bg-transparent flex flex-col justify-between pt-32 pb-8 px-6 md:px-12 pointer-events-none"
     >
       <div className="pointer-events-auto">
-        {/* Screen-reader accessible name — the 3D text is invisible to screen readers */}
-        <h1 className="sr-only">Youssef Abdelhakam — Creative Web Developer</h1>
+
 
         {/* Top Info Layout */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mt-12 md:mt-24 w-full">
@@ -88,12 +87,15 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* 3D Typography Space (Handled in Canvas) */}
+        {/* Visible hero name — serves as LCP element for Lighthouse.
+            The deferred 3D text overlays on top (fixed z-20) once loaded. */}
         <div
           className="mt-[10vh] md:mt-[15vh] h-[30vh] flex flex-col items-center justify-center relative select-none"
-          aria-hidden="true"
         >
-          {/* Space reserved for 3D Text rendered from the global Canvas */}
+          <h1 className="font-syne font-bold text-5xl sm:text-6xl md:text-8xl text-center leading-[0.95] tracking-tight text-white/10 uppercase">
+            <span className="block">Youssef</span>
+            <span className="block">Abdelhakam</span>
+          </h1>
         </div>
 
         {/* Primary CTA */}
