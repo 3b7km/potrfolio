@@ -1,13 +1,46 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { projects } from "@/lib/data";
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface ProjectRowProps {
   project: (typeof projects)[0];
 }
 
 function ProjectRow({ project }: ProjectRowProps) {
+  const imagesRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!imagesRef.current) return;
+
+    const ctx = gsap.context(() => {
+      // GSAP ScrollTrigger animation for the images
+      gsap.fromTo(
+        ".project-img",
+        { opacity: 0, y: 50, scale: 0.95 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 1,
+          stagger: 0.2,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: imagesRef.current,
+            start: "top 85%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      );
+    }, imagesRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <article className="relative group border-t border-border/10 py-8 md:py-12 transition-colors hover:bg-white/[0.02]">
       <div className="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-y-8 md:gap-x-8 items-start px-4">
@@ -40,8 +73,11 @@ function ProjectRow({ project }: ProjectRowProps) {
         </div>
 
         {/* 2. Photos */}
-        <div className="flex flex-col gap-4 order-2 md:col-span-5 md:col-start-1 md:row-start-1 md:row-span-2 w-full">
-          <div className="aspect-[4/3] rounded overflow-hidden border border-white/10">
+        <div 
+          ref={imagesRef}
+          className="flex flex-col gap-4 order-2 md:col-span-5 md:col-start-1 md:row-start-1 md:row-span-2 w-full"
+        >
+          <div className="project-img aspect-[4/3] rounded overflow-hidden border border-white/10">
             <img
               src={project.images[0]}
               alt={`${project.name} — primary screenshot`}
@@ -52,7 +88,7 @@ function ProjectRow({ project }: ProjectRowProps) {
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
           </div>
-          <div className="aspect-[4/3] rounded overflow-hidden border border-white/10">
+          <div className="project-img aspect-[4/3] rounded overflow-hidden border border-white/10">
             <img
               src={project.images[1]}
               alt={`${project.name} — secondary screenshot`}

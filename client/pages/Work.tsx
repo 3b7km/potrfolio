@@ -210,21 +210,21 @@ export default function Work() {
                 {/* Bottom Row: Features + Tech Stack + Skills — Collapsible on mobile */}
                 <CollapsibleSection title="Technical Details">
                   <div className="mt-16 pt-16 border-t border-border/5 grid grid-cols-1 md:grid-cols-3 gap-12">
-                    {/* Key Features */}
+                    {/* Business Impact & Achievements */}
                     <div>
                       <h3 className="text-xs font-sans tracking-widest text-muted uppercase mb-6 pb-3 border-b border-border/10">
-                        Key Features
+                        Business Impact & Achievements
                       </h3>
-                      <ul className="flex flex-col gap-3">
-                        {project.features.map((feature, i) => (
+                      <ul className="flex flex-col gap-4">
+                        {project.impact.map((item, i) => (
                           <li
                             key={i}
-                            className="text-sm font-sans text-muted leading-relaxed flex items-start gap-2"
+                            className="text-sm font-sans text-muted leading-relaxed flex items-start gap-3"
                           >
-                            <span className="text-white/30 mt-1 text-xs">
+                            <span className="text-accent mt-1 text-xs">
                               ◆
                             </span>
-                            {feature}
+                            {item}
                           </li>
                         ))}
                       </ul>
