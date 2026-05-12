@@ -1,6 +1,4 @@
 import { useState, useEffect, lazy, Suspense } from "react";
-
-import { AnimatePresence } from "framer-motion";
 import Hero from "@/components/sections/Hero";
 import Marquee from "@/components/sections/Marquee";
 import Footer from "@/components/Footer";
@@ -56,8 +54,16 @@ export default function Index() {
         <Deferred3DScene />
       </Suspense>
 
-      {/* Floating Navigation */}
-      <AnimatePresence>{showNav && <Navigation />}</AnimatePresence>
+      {/* Floating Navigation — CSS transition for show/hide */}
+      <div
+        className={`transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+          showNav
+            ? "opacity-100 translate-y-0"
+            : "opacity-0 -translate-y-full pointer-events-none"
+        }`}
+      >
+        <Navigation />
+      </div>
 
       {/* Sections Overlay */}
       <main id="main-content" className="relative z-10 w-full">

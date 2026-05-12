@@ -1,13 +1,9 @@
-import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
 export function Navigation() {
   return (
-    <motion.header
-      initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      className="fixed top-0 left-0 right-0 z-[100] px-6 py-6 flex items-center justify-between"
+    <header
+      className="fixed top-0 left-0 right-0 z-[100] px-6 py-6 flex items-center justify-between animate-[slideDown_0.8s_cubic-bezier(0.16,1,0.3,1)_both]"
       role="banner"
     >
       <Link
@@ -56,6 +52,6 @@ export function Navigation() {
       >
         <div className="w-2.5 h-2.5 rounded-full bg-white" aria-hidden="true" />
       </button>
-    </motion.header>
+    </header>
   );
 }

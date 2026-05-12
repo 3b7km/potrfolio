@@ -1,34 +1,52 @@
-import { motion } from "framer-motion";
 import { useRef, useEffect } from "react";
-import gsap from "gsap";
+
 export default function Hero() {
   const buttonRef = useRef<HTMLAnchorElement>(null);
 
-  // GSAP Magnetic Button Effect
+  // Vanilla magnetic button effect (replaces gsap.quickTo)
   useEffect(() => {
     const btn = buttonRef.current;
-    if (!btn || window.innerWidth < 768) return; // Disable on mobile
+    if (!btn || window.innerWidth < 768) return;
 
-    const xTo = gsap.quickTo(btn, "x", { duration: 1, ease: "elastic.out(1, 0.3)" });
-    const yTo = gsap.quickTo(btn, "y", { duration: 1, ease: "elastic.out(1, 0.3)" });
+    let rafId = 0;
+    let targetX = 0;
+    let targetY = 0;
+    let currentX = 0;
+    let currentY = 0;
+
+    const lerp = (start: number, end: number, factor: number) =>
+      start + (end - start) * factor;
+
+    const animate = () => {
+      currentX = lerp(currentX, targetX, 0.08);
+      currentY = lerp(currentY, targetY, 0.08);
+      btn.style.transform = `translate(${currentX}px, ${currentY}px)`;
+
+      if (Math.abs(currentX - targetX) > 0.1 || Math.abs(currentY - targetY) > 0.1) {
+        rafId = requestAnimationFrame(animate);
+      }
+    };
 
     const handleMouseMove = (e: MouseEvent) => {
       const rect = btn.getBoundingClientRect();
-      const x = e.clientX - (rect.left + rect.width / 2);
-      const y = e.clientY - (rect.top + rect.height / 2);
-      xTo(x * 0.4); // Magnetic pull strength
-      yTo(y * 0.4);
+      targetX = (e.clientX - (rect.left + rect.width / 2)) * 0.4;
+      targetY = (e.clientY - (rect.top + rect.height / 2)) * 0.4;
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(animate);
     };
 
     const handleMouseLeave = () => {
-      xTo(0);
-      yTo(0);
+      targetX = 0;
+      targetY = 0;
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(animate);
     };
 
     btn.addEventListener("mousemove", handleMouseMove);
     btn.addEventListener("mouseleave", handleMouseLeave);
 
     return () => {
+      cancelAnimationFrame(rafId);
       btn.removeEventListener("mousemove", handleMouseMove);
       btn.removeEventListener("mouseleave", handleMouseLeave);
     };
@@ -46,11 +64,8 @@ export default function Hero() {
         {/* Top Info Layout */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mt-12 md:mt-24 w-full">
           {/* Status & Location widget */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="flex flex-col gap-2 text-xs md:text-sm font-sans tracking-wide text-muted"
+          <div
+            className="flex flex-col gap-2 text-xs md:text-sm font-sans tracking-wide text-muted animate-[fadeIn_0.6s_ease-out_both]"
           >
             <div className="flex items-center gap-3">
               <span className="relative flex h-2 w-2" aria-hidden="true">
@@ -59,7 +74,7 @@ export default function Hero() {
               </span>
               <span>Available for projects</span>
             </div>
-          </motion.div>
+          </div>
 
           <div
             className="max-w-xs text-xs md:text-sm text-white/90 font-sans leading-relaxed relative z-10 animate-[fadeIn_0.6s_ease-out_0.1s_both]"
@@ -82,11 +97,8 @@ export default function Hero() {
         </div>
 
         {/* Primary CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.6 }}
-          className="mt-16 md:mt-24 flex items-center justify-center relative z-10"
+        <div
+          className="mt-16 md:mt-24 flex items-center justify-center relative z-10 animate-[fadeIn_0.6s_ease-out_0.2s_both]"
         >
           <div
             className="absolute w-[200px] h-[40px] bg-white/20 blur-2xl -z-10"
@@ -114,28 +126,23 @@ export default function Hero() {
               />
             </svg>
           </a>
-        </motion.div>
+        </div>
       </div>
 
       {/* Bottom Layout */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.3, duration: 0.8 }}
-        className="flex justify-between items-end w-full pointer-events-auto mix-blend-difference text-white pb-4"
+      <div
+        className="flex justify-between items-end w-full pointer-events-auto mix-blend-difference text-white pb-4 animate-[fadeIn_0.8s_ease-out_0.3s_both]"
         aria-hidden="true"
       >
         <span className="text-xs uppercase tracking-widest">
           Scroll to explore
         </span>
         <div className="w-[1px] h-12 bg-white/50 overflow-hidden relative">
-          <motion.div
-            animate={{ y: [0, 48, 48, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            className="w-full h-1/3 bg-white absolute top-0"
+          <div
+            className="w-full h-1/3 bg-white absolute top-0 animate-[scrollIndicator_2s_ease-in-out_infinite]"
           />
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }
