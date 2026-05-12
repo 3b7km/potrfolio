@@ -92,6 +92,10 @@ export default function Hero() {
         <div
           className="mt-[10vh] md:mt-[15vh] h-[30vh] flex flex-col items-center justify-center relative select-none"
         >
+          <h1 className="font-syne font-bold text-5xl sm:text-6xl md:text-8xl text-center leading-[0.95] tracking-tight text-white/10 uppercase">
+            <span className="block">Youssef</span>
+            <span className="block">Abdelhakam</span>
+          </h1>
         </div>
 
         {/* Primary CTA */}
