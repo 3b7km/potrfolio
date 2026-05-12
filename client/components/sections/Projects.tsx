@@ -75,30 +75,63 @@ function ProjectRow({ project }: ProjectRowProps) {
         {/* 2. Photos */}
         <div 
           ref={imagesRef}
-          className="flex flex-col gap-4 order-2 md:col-span-5 md:col-start-1 md:row-start-1 md:row-span-2 w-full"
+          className={`order-2 md:col-span-5 md:col-start-1 md:row-start-1 md:row-span-2 w-full ${
+            project.id === "01" || project.id === "02" 
+              ? "flex flex-row gap-4" 
+              : "flex flex-col gap-4"
+          }`}
         >
-          <div className="project-img aspect-[4/3] rounded overflow-hidden border border-white/10">
-            <img
-              src={project.images[0]}
-              alt={`${project.name} — primary screenshot`}
-              width={600}
-              height={450}
-              loading="lazy"
-              decoding="async"
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-            />
-          </div>
-          <div className="project-img aspect-[4/3] rounded overflow-hidden border border-white/10">
-            <img
-              src={project.images[1]}
-              alt={`${project.name} — secondary screenshot`}
-              width={600}
-              height={450}
-              loading="lazy"
-              decoding="async"
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-            />
-          </div>
+          {project.id === "01" || project.id === "02" ? (
+            /* Mobile View Format (Helwa & ZAD) */
+            <>
+              <div 
+                className="project-img w-1/2 rounded-xl overflow-hidden border border-white/10 bg-black/20 shadow-2xl"
+                style={{ aspectRatio: "9/16" }}
+              >
+                <img
+                  src={project.images[0]}
+                  alt={`${project.name} — primary screenshot`}
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+              </div>
+              <div 
+                className="project-img w-1/2 rounded-xl overflow-hidden border border-white/10 bg-black/20 shadow-2xl mt-8 md:mt-12"
+                style={{ aspectRatio: "9/16" }}
+              >
+                <img
+                  src={project.images[1]}
+                  alt={`${project.name} — secondary screenshot`}
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+              </div>
+            </>
+          ) : (
+            /* Desktop View Format (Djabi & Sneakrz King) */
+            <>
+              <div className="project-img aspect-[4/3] rounded overflow-hidden border border-white/10">
+                <img
+                  src={project.images[0]}
+                  alt={`${project.name} — primary screenshot`}
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+              </div>
+              <div className="project-img aspect-[4/3] rounded overflow-hidden border border-white/10">
+                <img
+                  src={project.images[1]}
+                  alt={`${project.name} — secondary screenshot`}
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+              </div>
+            </>
+          )}
         </div>
 
         {/* 3. Footer (Key Metric, CTA) */}

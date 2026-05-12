@@ -11,7 +11,7 @@ export const projects = [
     metricContext:
       "Achieved by optimizing mobile checkout flow and introducing targeted promotional pop-ups.",
     url: "https://helwafashion.com",
-    images: ["/photos/helwa-1.png", "/photos/helwa-2.png"],
+    images: ["/photos/helwa-1.jpeg", "/photos/helwa-2.jpeg"],
     impact: [
       "Engineered a fully customized Shopify frontend architecture to deliver a high-end dark luxury aesthetic, improving brand perception and user engagement.",
       "Integrated and optimized promotional pop-ups mapped to dynamic discount algorithms, directly contributing to a 42% increase in conversion rates.",
@@ -41,9 +41,9 @@ export const projects = [
     tags: ["Shopify", "Liquid", "CSS3", "JavaScript", "SEO", "UI/UX"],
     description:
       "Arabic luxury fragrance store featuring men's, niche, designer, and oriental collections. Required deep theme optimization, UI/UX refinement, and extensive Arabic copywriting for SEO.",
-    metrics: "Enhanced Trust",
+    metrics: "100+ Verified Orders",
     metricContext:
-      "Achieved through structured FAQs, unified luxury aesthetics, and frictionless bilingual navigation.",
+      "Generated real sales traction and over 100 orders through unified luxury aesthetics, and frictionless bilingual navigation.",
     url: "https://zad-9478.myshopify.com",
     images: ["/photos/zad-1.png", "/photos/zad-2.png"],
     impact: [
