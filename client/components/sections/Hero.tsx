@@ -90,6 +90,12 @@ export default function Hero() {
         {/* Screen-reader accessible name — invisible to users, read by bots/screen readers */}
         <h1 className="sr-only">Youssef Abdelhakam — Creative Web Developer</h1>
 
+        {/* Space reserved for 3D Text rendered from the global Canvas */}
+        <div
+          className="mt-[10vh] md:mt-[15vh] h-[30vh] w-full relative pointer-events-none"
+          aria-hidden="true"
+        />
+
         {/* Primary CTA */}
         <div
           className="mt-16 md:mt-24 flex items-center justify-center relative z-10 animate-[fadeIn_0.6s_ease-out_0.2s_both]"
