@@ -76,7 +76,7 @@ export default function Hero() {
           </div>
 
           <div
-            className="max-w-xs text-xs md:text-sm text-white/90 font-sans leading-relaxed relative z-10 animate-[fadeIn_0.6s_ease-out_0.1s_both]"
+            className="max-w-xs text-xs md:text-sm text-white/90 font-sans leading-relaxed relative z-10"
           >
             <div
               className="absolute inset-0 bg-background/40 blur-2xl -z-10 rounded-full"
@@ -87,16 +87,8 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Visible hero name — serves as LCP element for Lighthouse.
-            The deferred 3D text overlays on top (fixed z-20) once loaded. */}
-        <div
-          className="mt-[10vh] md:mt-[15vh] h-[30vh] flex flex-col items-center justify-center relative select-none"
-        >
-          <h1 className="font-syne font-bold text-5xl sm:text-6xl md:text-8xl text-center leading-[0.95] tracking-tight text-white/10 uppercase">
-            <span className="block">Youssef</span>
-            <span className="block">Abdelhakam</span>
-          </h1>
-        </div>
+        {/* Screen-reader accessible name — invisible to users, read by bots/screen readers */}
+        <h1 className="sr-only">Youssef Abdelhakam — Creative Web Developer</h1>
 
         {/* Primary CTA */}
         <div
