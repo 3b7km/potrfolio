@@ -21,9 +21,15 @@ export function useLenis() {
       }
 
       requestAnimationFrame(raf);
+      
+      // Store instance on window for other components to access
+      (window as any).lenis = lenis;
 
       // Store cleanup ref on window for unmount
-      (window as any).__lenisCleanup = () => lenis.destroy();
+      (window as any).__lenisCleanup = () => {
+        lenis.destroy();
+        (window as any).lenis = null;
+      };
     });
 
     return () => {
