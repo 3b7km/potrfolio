@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
+import { useGSAP } from "@gsap/react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import gsap from "gsap";
@@ -12,51 +13,75 @@ interface ProjectRowProps {
 }
 
 function ProjectRow({ project }: ProjectRowProps) {
+  const rowRef = useRef<HTMLElement>(null);
   const imagesRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (!imagesRef.current) return;
+  useGSAP(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
 
-    const ctx = gsap.context(() => {
-      // GSAP ScrollTrigger animation for the images
-      gsap.fromTo(
-        ".project-img",
-        { opacity: 0, y: 50, scale: 0.95 },
-        {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          duration: 1,
-          stagger: 0.2,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: imagesRef.current,
-            start: "top 85%",
-            toggleActions: "play none none reverse",
-          },
-        }
-      );
-    }, imagesRef);
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: rowRef.current,
+        start: "top 85%",
+        toggleActions: "play none none reverse",
+      }
+    });
 
-    return () => ctx.revert();
-  }, []);
+    // Animate text elements
+    tl.fromTo(
+      ".project-text",
+      { opacity: 0, y: 30, filter: "blur(4px)" },
+      {
+        opacity: 1,
+        y: 0,
+        filter: "blur(0px)",
+        duration: 1.2,
+        stagger: 0.1,
+        ease: "expo.out",
+        clearProps: "filter"
+      }
+    );
+
+    // GSAP ScrollTrigger animation for the images (runs slightly after text starts)
+    tl.fromTo(
+      ".project-img",
+      { opacity: 0, y: 50, scale: 0.95 },
+      {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 1.4,
+        stagger: 0.15,
+        ease: "expo.out",
+      },
+      "-=1.0" // overlap with text animation
+    );
+
+    // Refresh ScrollTrigger after Framer Motion layout animations finish
+    const timer = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, { scope: rowRef });
 
   return (
-    <article className="relative group border-t border-border/10 py-8 md:py-12 transition-colors hover:bg-white/[0.02]">
+    <article ref={rowRef} className="relative group border-t border-border/10 py-8 md:py-12 transition-all duration-400 ease-out hover:bg-white/[0.02] hover:-translate-y-1 hover:border-white/20">
       <div className="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-y-8 md:gap-x-8 items-start px-4">
         {/* 1. Header (Title, Description, Tags) */}
         <div className="flex flex-col gap-2 order-1 md:col-span-7 md:col-start-6 md:row-start-1">
-          <span className="text-sm md:text-sm font-sans text-muted mb-2">
+          <span className="project-text opacity-0 text-sm md:text-sm font-sans text-muted mb-2">
             {project.id} — {project.type}
           </span>
-          <h3 className="text-4xl sm:text-4xl md:text-5xl font-syne font-bold uppercase tracking-tight text-foreground transition-all duration-300 leading-tight antialiased">
+          <h3 className="project-text opacity-0 text-4xl sm:text-4xl md:text-5xl font-syne font-bold uppercase tracking-tight text-foreground transition-all duration-300 leading-tight antialiased">
             {project.name}
           </h3>
-          <p className="text-base sm:text-base md:text-sm font-sans text-muted max-w-lg mt-2 leading-relaxed antialiased">
+          <p className="project-text opacity-0 text-base sm:text-base md:text-sm font-sans text-muted max-w-lg mt-2 leading-relaxed antialiased">
             {project.description}
           </p>
           <div
-            className="flex flex-wrap gap-2 mt-4"
+            className="project-text opacity-0 flex flex-wrap gap-2 mt-4"
             role="list"
             aria-label={`Technologies used in ${project.name}`}
           >
@@ -97,7 +122,7 @@ function ProjectRow({ project }: ProjectRowProps) {
                 />
               </div>
               <div 
-                className="project-img w-1/2 rounded-xl overflow-hidden border border-white/10 bg-black/20 shadow-2xl mt-8 md:mt-12"
+                className="project-img w-1/2 rounded-xl overflow-hidden border border-white/10 bg-black/20 shadow-2xl"
                 style={{ aspectRatio: "9/16" }}
               >
                 <img
@@ -136,7 +161,7 @@ function ProjectRow({ project }: ProjectRowProps) {
 
         {/* 3. Footer (Key Metric, CTA) */}
         <div className="flex flex-col gap-6 order-3 md:col-span-7 md:col-start-6 md:row-start-2 mt-4 md:mt-0">
-          <div className="font-sans p-4 border border-white/10 rounded bg-white/[0.01]">
+          <div className="project-text opacity-0 font-sans p-4 border border-white/10 rounded bg-white/[0.01]">
             <div className="text-xs text-muted mb-2 uppercase tracking-wide">
               Key Metric
             </div>
@@ -154,7 +179,7 @@ function ProjectRow({ project }: ProjectRowProps) {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`View ${project.name} live site (opens in new tab)`}
-              className="tap-target inline-flex items-center gap-2 text-sm font-sans uppercase tracking-wide text-background bg-white px-5 py-3 rounded hover:bg-white/90 transition-all duration-300 font-bold focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+              className="project-text opacity-0 tap-target inline-flex items-center gap-2 text-sm font-sans uppercase tracking-wide text-background bg-white px-5 py-3 rounded hover:bg-white/90 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-white/10 transition-all duration-300 font-bold focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
             >
               View Live Site
               <ArrowUpRight size={16} aria-hidden="true" />
@@ -212,7 +237,7 @@ export default function Projects() {
               className={`text-xs uppercase px-5 py-2.5 rounded-full border font-sans font-medium transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white ${
                 filter === cat
                   ? "bg-white text-background border-white"
-                  : "bg-transparent text-white/70 border-white/20 hover:border-white/50"
+                  : "bg-transparent text-white/70 border-white/20 hover:border-white/50 hover:scale-105"
               }`}
             >
               {cat}

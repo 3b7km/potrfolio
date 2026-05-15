@@ -1,9 +1,40 @@
 import { useRef, useEffect } from "react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 
 export default function Hero() {
   const buttonRef = useRef<HTMLAnchorElement>(null);
+  const containerRef = useRef<HTMLElement>(null);
 
-  // Vanilla magnetic button effect (replaces gsap.quickTo)
+  // Orchestrated Brand Page-Load Sequence
+  useGSAP(() => {
+    // Check for reduced motion
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) {
+      gsap.set(".hero-anim", { opacity: 1, y: 0, filter: "blur(0px)" });
+      return;
+    }
+
+    const tl = gsap.timeline({ 
+      defaults: { ease: "expo.out", duration: 1.4 } 
+    });
+
+    // Staggered reveal with blur for a premium cinematic feel
+    tl.fromTo(
+      ".hero-anim",
+      { y: 40, opacity: 0, filter: "blur(12px)" },
+      { 
+        y: 0, 
+        opacity: 1, 
+        filter: "blur(0px)", 
+        stagger: 0.15, 
+        delay: 0.2,
+        clearProps: "filter" // cleanup for performance
+      }
+    );
+  }, { scope: containerRef });
+
+  // Vanilla magnetic button effect
   useEffect(() => {
     const btn = buttonRef.current;
     if (!btn || window.innerWidth < 768) return;
@@ -54,17 +85,16 @@ export default function Hero() {
 
   return (
     <section
+      ref={containerRef}
       aria-label="Hero introduction"
       className="relative w-full min-h-screen bg-transparent flex flex-col justify-between pt-32 pb-8 px-6 md:px-12 pointer-events-none"
     >
       <div className="pointer-events-auto">
-
-
         {/* Top Info Layout */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mt-12 md:mt-24 w-full">
           {/* Status & Location widget */}
           <div
-            className="flex flex-col gap-2 text-xs md:text-sm font-sans tracking-wide text-muted animate-[fadeIn_0.6s_ease-out_both]"
+            className="hero-anim opacity-0 flex flex-col gap-2 text-xs md:text-sm font-sans tracking-wide text-muted"
           >
             <div className="flex items-center gap-3">
               <span className="relative flex h-2 w-2" aria-hidden="true">
@@ -76,7 +106,7 @@ export default function Hero() {
           </div>
 
           <div
-            className="max-w-xs text-xs md:text-sm text-white/90 font-sans leading-relaxed relative z-10"
+            className="hero-anim opacity-0 max-w-xs text-xs md:text-sm text-white/90 font-sans leading-relaxed relative z-10"
           >
             <div
               className="absolute inset-0 bg-background/40 blur-2xl -z-10 rounded-full"
@@ -98,7 +128,7 @@ export default function Hero() {
 
         {/* Primary CTA */}
         <div
-          className="mt-16 md:mt-24 flex items-center justify-center relative z-10 animate-[fadeIn_0.6s_ease-out_0.2s_both]"
+          className="hero-anim opacity-0 mt-16 md:mt-24 flex items-center justify-center relative z-10"
         >
           <div
             className="absolute w-[200px] h-[40px] bg-white/20 blur-2xl -z-10"
@@ -131,7 +161,7 @@ export default function Hero() {
 
       {/* Bottom Layout */}
       <div
-        className="flex justify-between items-end w-full pointer-events-auto mix-blend-difference text-white pb-4 animate-[fadeIn_0.8s_ease-out_0.3s_both]"
+        className="hero-anim opacity-0 flex justify-between items-end w-full pointer-events-auto mix-blend-difference text-white pb-4"
         aria-hidden="true"
       >
         <span className="text-xs uppercase tracking-widest">

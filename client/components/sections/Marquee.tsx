@@ -7,16 +7,16 @@ export default function Marquee() {
       <div className="flex gap-4 whitespace-nowrap">
         {/* First loop */}
         <div
-          className="marquee text-sm font-mono text-muted uppercase tracking-wider"
-          style={{ "--duration": "30s" } as React.CSSProperties}
+          className="marquee text-sm font-mono text-muted/60 uppercase tracking-wider"
+          style={{ "--duration": "45s" } as React.CSSProperties}
         >
           {marqueeText}
         </div>
 
         {/* Second loop for seamless effect */}
         <div
-          className="marquee text-sm font-mono text-muted uppercase tracking-wider"
-          style={{ "--duration": "30s" } as React.CSSProperties}
+          className="marquee text-sm font-mono text-muted/60 uppercase tracking-wider"
+          style={{ "--duration": "45s" } as React.CSSProperties}
           aria-hidden="true"
         >
           {marqueeText}

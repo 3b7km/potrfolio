@@ -9,7 +9,7 @@ export default function Footer() {
           <div className="flex items-center gap-2 md:gap-6">
             <a
               href="mailto:youssefabdelhakam99@gmail.com"
-              className="tap-target px-3 py-2 hover:text-foreground transition-colors rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              className="tap-target px-3 py-2 hover:text-foreground hover:-translate-y-0.5 transition-all rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             >
               Email
             </a>
@@ -17,7 +17,7 @@ export default function Footer() {
               href="https://www.linkedin.com/in/youssef-abdelhakm-gamal-3b7km/"
               target="_blank"
               rel="noopener noreferrer"
-              className="tap-target px-3 py-2 hover:text-foreground transition-colors rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              className="tap-target px-3 py-2 hover:text-foreground hover:-translate-y-0.5 transition-all rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             >
               LinkedIn ↗
             </a>
@@ -25,7 +25,7 @@ export default function Footer() {
               href="https://wa.me/201023329072"
               target="_blank"
               rel="noopener noreferrer"
-              className="tap-target px-3 py-2 hover:text-foreground transition-colors rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              className="tap-target px-3 py-2 hover:text-foreground hover:-translate-y-0.5 transition-all rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             >
               WhatsApp
             </a>

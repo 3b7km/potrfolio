@@ -2,6 +2,10 @@ import { useEffect } from "react";
 
 export function useLenis() {
   useEffect(() => {
+    // Check if user prefers reduced motion
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
     // Lazy-load Lenis — it's a UX enhancement, not critical for first paint
     import("lenis").then(({ default: Lenis }) => {
       const lenis = new Lenis({

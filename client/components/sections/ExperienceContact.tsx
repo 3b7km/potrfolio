@@ -89,10 +89,10 @@ export default function ExperienceContact() {
         setFormData({ name: "", email: "", message: "" });
         setErrors({ name: "", email: "", message: "" });
 
-        // Auto-reset after 3 seconds
+        // Auto-reset after 6 seconds (give user time to read)
         setTimeout(() => {
           setFormState("idle");
-        }, 3000);
+        }, 6000);
       } else {
         throw new Error("Web3Forms submission failed");
       }
@@ -108,8 +108,8 @@ export default function ExperienceContact() {
       setFormState("idle");
     }
 
-    // Reset after 4 seconds
-    setTimeout(() => setFormState("idle"), 4000);
+    // Reset after 7 seconds
+    setTimeout(() => setFormState("idle"), 7000);
   };
 
   return (
@@ -359,14 +359,14 @@ export default function ExperienceContact() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
-                  className="mt-4 p-4 bg-green-400/10 border border-green-400/30 rounded text-sm text-green-300 flex items-center gap-2"
+                  className="mt-6 p-6 bg-green-400/10 border border-green-400/30 rounded-lg text-sm text-green-300 flex items-start gap-3"
                   role="status"
                 >
-                  <CheckCircle size={16} aria-hidden="true" />
+                  <CheckCircle size={20} className="flex-shrink-0 mt-0.5" aria-hidden="true" />
                   <div>
-                    <p className="font-semibold">Message sent successfully!</p>
-                    <p className="text-xs opacity-80">
-                      I'll review and get back to you within 24 hours.
+                    <p className="font-semibold text-base">Message sent successfully!</p>
+                    <p className="text-xs opacity-80 mt-1">
+                      Thank you for reaching out. I'll review your message and get back to you within 24 hours.
                     </p>
                   </div>
                 </motion.div>
