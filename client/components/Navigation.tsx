@@ -43,7 +43,7 @@ export function Navigation() {
           onClick={(e) => scrollToSection(e, "work")}
           className="tap-target px-2 sm:px-3 py-2 whitespace-nowrap hover:opacity-60 hover:-translate-y-0.5 transition-all rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
         >
-          Work
+          Selected Work
         </a>
         <a
           href="#experience"
