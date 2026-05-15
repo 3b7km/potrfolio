@@ -27,10 +27,12 @@
     @apply bg-background font-sans;
     color: white;
     overflow-x: hidden;
+    overscroll-behavior: none;
   }
 
   html {
     scroll-behavior: smooth;
+    overscroll-behavior: none;
   }
 
   /* Typography defaults — headings use navy foreground */

@@ -39,8 +39,18 @@ export default function Index() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
+  useEffect(() => {
+    // Refresh ScrollTrigger when components are likely to have mounted
+    const timer = setTimeout(() => {
+      import("gsap/ScrollTrigger").then(({ ScrollTrigger }) => {
+        ScrollTrigger.refresh();
+      });
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <div className="bg-transparent overflow-x-hidden relative">
+    <div className="bg-transparent overflow-x-hidden relative min-h-screen">
       {/* Skip to main content — accessibility */}
       <a
         href="#main-content"
@@ -66,10 +76,10 @@ export default function Index() {
       </div>
 
       {/* Sections Overlay */}
-      <main id="main-content" className="relative z-10 w-full">
+      <main id="main-content" className="relative z-10 w-full flex flex-col">
         <Hero />
         <Marquee />
-        <Suspense fallback={<div className="h-screen w-full" />}>
+        <Suspense fallback={<div className="h-32 w-full" />}>
           <Projects />
           <About />
           <div id="experience">
