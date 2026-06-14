@@ -101,27 +101,38 @@ function ProjectRow({ project }: ProjectRowProps) {
         <div 
           ref={imagesRef}
           className={`order-2 md:col-span-5 md:col-start-1 md:row-start-1 md:row-span-2 w-full ${
-            project.id === "01" || project.id === "02" || project.id === "06" || project.id === "07" || project.id === "08"
+            project.id === "01" || project.id === "02" || project.id === "03" || project.id === "04" || project.id === "06"
               ? "flex flex-row gap-4" 
               : "flex flex-col gap-4"
           }`}
         >
-          {project.id === "01" || project.id === "02" || project.id === "06" || project.id === "07" || project.id === "08" ? (
+          {project.id === "01" || project.id === "02" || project.id === "03" || project.id === "04" || project.id === "06" ? (
             /* Mobile View Format (Helwa & ZAD & Dethar) */
             <>
               {project.images.map((img, idx) => (
                 <div 
                   key={img}
-                  className={`project-img ${project.images.length === 1 ? "w-full max-w-sm mx-auto" : "w-1/2"} rounded-xl overflow-hidden border border-white/10 bg-black/20 shadow-2xl`}
+                  className={`project-img ${project.images.length === 1 ? "w-full max-w-sm mx-auto" : "w-1/2"} rounded-xl overflow-hidden border border-white/10 bg-black/20 shadow-2xl relative`}
                   style={{ aspectRatio: "9/16" }}
                 >
-                  <img
-                    src={img}
-                    alt={`${project.name} — screenshot ${idx + 1}`}
-                    loading="lazy"
-                    decoding="async"
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
+                  {img.endsWith(".mp4") ? (
+                    <video
+                      src={img}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                  ) : (
+                    <img
+                      src={img}
+                      alt={`${project.name} — screenshot ${idx + 1}`}
+                      loading="lazy"
+                      decoding="async"
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                  )}
                 </div>
               ))}
             </>
@@ -129,14 +140,25 @@ function ProjectRow({ project }: ProjectRowProps) {
             /* Desktop View Format */
             <>
               {project.images.map((img, idx) => (
-                <div key={img} className="project-img aspect-[4/3] rounded overflow-hidden border border-white/10">
-                  <img
-                    src={img}
-                    alt={`${project.name} — screenshot ${idx + 1}`}
-                    loading="lazy"
-                    decoding="async"
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
+                <div key={img} className="project-img aspect-[4/3] rounded overflow-hidden border border-white/10 relative">
+                  {img.endsWith(".mp4") ? (
+                    <video
+                      src={img}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                  ) : (
+                    <img
+                      src={img}
+                      alt={`${project.name} — screenshot ${idx + 1}`}
+                      loading="lazy"
+                      decoding="async"
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                  )}
                 </div>
               ))}
             </>
