@@ -101,12 +101,12 @@ function ProjectRow({ project }: ProjectRowProps) {
         <div 
           ref={imagesRef}
           className={`order-2 md:col-span-5 md:col-start-1 md:row-start-1 md:row-span-2 w-full ${
-            project.id === "01" || project.id === "02" 
+            project.id === "01" || project.id === "02" || project.id === "06" || project.id === "07" || project.id === "08"
               ? "flex flex-row gap-4" 
               : "flex flex-col gap-4"
           }`}
         >
-          {project.id === "01" || project.id === "02" || project.id === "08" ? (
+          {project.id === "01" || project.id === "02" || project.id === "06" || project.id === "07" || project.id === "08" ? (
             /* Mobile View Format (Helwa & ZAD & Dethar) */
             <>
               {project.images.map((img, idx) => (
