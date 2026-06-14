@@ -102,15 +102,16 @@ export default function CaseStudies() {
             <motion.div variants={fadeIn} className="order-1 lg:order-2 lg:col-span-6 relative w-full h-full min-h-[400px] flex items-center justify-center">
               <div className="relative w-full max-w-sm aspect-[9/16] mx-auto">
                 <img 
-                  src="/photos/dethar-1.webp" 
+                  src="/photos/dethar-2.webp" 
                   alt="Dethar Mobile Before" 
                   className="absolute inset-0 w-full h-full object-cover rounded-2xl border border-white/10 shadow-2xl z-10 translate-x-[-20%] translate-y-[-10%] scale-90 opacity-60"
                 />
                 <img 
-                  src="/photos/dethar-2.webp" 
+                  src="/photos/dethar-1.webp" 
                   alt="Dethar Mobile After" 
                   className="absolute inset-0 w-full h-full object-cover rounded-2xl border border-white/20 shadow-[0_0_50px_rgba(0,0,0,0.5)] z-20"
                 />
+                
                 <div className="absolute -bottom-6 -right-6 bg-background border border-white/10 p-4 rounded-xl shadow-xl z-30">
                   <div className="text-xs font-bold uppercase tracking-wider text-muted mb-1">Impact</div>
                   <div className="text-2xl font-syne font-bold text-accent">+30% Speed</div>
@@ -169,7 +170,7 @@ export default function CaseStudies() {
               </div>
 
               {/* Website Screenshot */}
-              <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden border border-[#de5c88]/20 shadow-xl group">
+              <div className="relative w-full max-w-sm mx-auto aspect-[9/16] rounded-2xl overflow-hidden border border-[#de5c88]/20 shadow-xl group">
                 <img 
                   src="/photos/floof-2.webp" 
                   alt="Floof Website UI" 
