@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useGSAP } from "@gsap/react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
@@ -208,6 +208,14 @@ export default function Projects() {
   const filteredProjects = projects.filter((p) =>
     filter === "All" ? true : p.type.includes(filter),
   );
+
+  useEffect(() => {
+    // Refresh ScrollTrigger after Framer Motion layout animations finish
+    const timer = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 500);
+    return () => clearTimeout(timer);
+  }, [filter]);
 
   return (
     <section
