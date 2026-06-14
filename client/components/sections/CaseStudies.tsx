@@ -132,29 +132,29 @@ export default function CaseStudies() {
             {/* Visuals (Left) */}
             <motion.div variants={fadeIn} className="lg:col-span-6 w-full flex flex-col gap-6">
               {/* Branding Board (CSS Based) */}
-              <div className="p-8 border border-white/10 rounded-2xl bg-white/[0.02] flex flex-col gap-8 shadow-2xl relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-64 h-64 bg-[#f8f5f2] rounded-full blur-[100px] opacity-10 mix-blend-screen pointer-events-none"></div>
-                <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#e8e0d5] rounded-full blur-[100px] opacity-10 mix-blend-screen pointer-events-none"></div>
+              <div className="p-8 border border-[#de5c88]/20 rounded-2xl bg-[#fff1f6]/5 flex flex-col gap-8 shadow-2xl relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-[#de5c88] rounded-full blur-[100px] opacity-10 mix-blend-screen pointer-events-none"></div>
+                <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#fff1f6] rounded-full blur-[100px] opacity-10 mix-blend-screen pointer-events-none"></div>
                 
                 <div>
-                  <h4 className="text-xs font-bold uppercase tracking-widest text-muted mb-4">Brand Identity: Floof</h4>
-                  <div className="text-5xl font-serif tracking-tight text-[#f8f5f2] lowercase italic">floof.</div>
+                  <h4 className="text-xs font-bold uppercase tracking-widest text-[#de5c88] mb-4">Brand Identity: Floof</h4>
+                  <div className="text-5xl font-serif tracking-tight text-[#fff1f6] lowercase italic">floof.</div>
                 </div>
 
                 <div>
                   <h4 className="text-xs font-bold uppercase tracking-widest text-muted mb-4">Color Palette</h4>
                   <div className="flex gap-4">
                     <div className="flex flex-col gap-2">
-                      <div className="w-12 h-12 rounded-full bg-[#f8f5f2] shadow-inner border border-white/10"></div>
-                      <span className="text-[10px] text-muted font-mono uppercase">Cloud</span>
+                      <div className="w-12 h-12 rounded-full bg-[#fff1f6] shadow-inner border border-white/10"></div>
+                      <span className="text-[10px] text-muted font-mono uppercase">Cloud Pink</span>
                     </div>
                     <div className="flex flex-col gap-2">
-                      <div className="w-12 h-12 rounded-full bg-[#e8e0d5] shadow-inner border border-white/10"></div>
-                      <span className="text-[10px] text-muted font-mono uppercase">Oat</span>
+                      <div className="w-12 h-12 rounded-full bg-[#de5c88] shadow-inner border border-white/10"></div>
+                      <span className="text-[10px] text-muted font-mono uppercase">Deep Pink</span>
                     </div>
                     <div className="flex flex-col gap-2">
-                      <div className="w-12 h-12 rounded-full bg-[#2c2c2c] shadow-inner border border-white/10"></div>
-                      <span className="text-[10px] text-muted font-mono uppercase">Charcoal</span>
+                      <div className="w-12 h-12 rounded-full bg-[#343031] shadow-inner border border-white/10"></div>
+                      <span className="text-[10px] text-muted font-mono uppercase">Dark Roast</span>
                     </div>
                   </div>
                 </div>
@@ -162,16 +162,16 @@ export default function CaseStudies() {
                 <div>
                   <h4 className="text-xs font-bold uppercase tracking-widest text-muted mb-4">Typography</h4>
                   <div className="flex flex-col gap-2">
-                    <div className="text-2xl font-serif text-[#f8f5f2]">Playfair Display</div>
+                    <div className="text-2xl font-serif text-[#fff1f6]">Playfair Display</div>
                     <div className="text-sm font-sans text-muted">Inter (Sans-Serif)</div>
                   </div>
                 </div>
               </div>
 
               {/* Website Screenshot */}
-              <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden border border-white/10 shadow-xl group">
+              <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden border border-[#de5c88]/20 shadow-xl group">
                 <img 
-                  src="/photos/floof-1.webp" 
+                  src="/photos/floof-2.webp" 
                   alt="Floof Website UI" 
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
