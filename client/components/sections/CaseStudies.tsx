@@ -16,33 +16,9 @@ const staggerContainer = {
 
 export default function CaseStudies() {
   return (
-    <section 
-      id="case-studies"
-      aria-label="In-depth case studies"
-      className="relative w-full py-32 bg-transparent pointer-events-auto border-t border-border/10"
-    >
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
-        {/* Header */}
-        <motion.div 
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-10%" }}
-          variants={fadeIn}
-          className="mb-20 flex flex-col gap-6"
-        >
-          <h2 className="text-fluid-section font-syne font-bold uppercase tracking-tighter">
-            Case
-            <br />
-            <span className="text-muted">Studies</span>
-          </h2>
-          <p className="text-sm font-sans text-muted max-w-md leading-relaxed">
-            A deeper dive into the technical challenges, architectural decisions, and performance engineering that separate standard builds from premium experiences.
-          </p>
-        </motion.div>
-
-        <div className="flex flex-col gap-32">
-          {/* Case Study 1: Dethar */}
-          <motion.article 
+    <div className="flex flex-col gap-32 pt-8 w-full">
+      {/* Case Study 1: Dethar */}
+      <motion.article 
             initial="hidden"
             whileInView="visible"
             viewport={{ once: false, margin: "-10%" }}
@@ -271,7 +247,5 @@ export default function CaseStudies() {
             </div>
           </motion.article>
         </div>
-      </div>
-    </section>
   );
 }

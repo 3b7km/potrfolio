@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { projects } from "@/lib/data";
+import CaseStudies from "./CaseStudies";
 
 interface ProjectRowProps {
   project: (typeof projects)[0];
@@ -169,6 +170,7 @@ export default function Projects() {
   const categories = [
     "All",
     ...Array.from(new Set(projects.map((p) => p.type.split("—")[0].trim()))),
+    "Case Studies"
   ];
 
   const filteredProjects = projects.filter((p) =>
@@ -219,19 +221,31 @@ export default function Projects() {
 
         {/* Projects List */}
         <div className="border-b border-border/10">
-          <AnimatePresence>
-            {filteredProjects.map((project) => (
+          <AnimatePresence mode="wait">
+            {filter === "Case Studies" ? (
               <motion.div
-                key={project.id}
-                layout
+                key="case-studies-view"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.95 }}
+                exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.4 }}
               >
-                <ProjectRow project={project} />
+                <CaseStudies />
               </motion.div>
-            ))}
+            ) : (
+              filteredProjects.map((project) => (
+                <motion.div
+                  key={project.id}
+                  layout
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.4 }}
+                >
+                  <ProjectRow project={project} />
+                </motion.div>
+              ))
+            )}
           </AnimatePresence>
         </div>
       </div>
