@@ -166,6 +166,94 @@ export const projects = [
       "UI/UX Design"
     ],
   },
+  {
+    id: "06",
+    name: "Floof",
+    platform: "Shopify / Custom Theme",
+    type: "E-Commerce — Premium Body Pillows",
+    tags: ["Shopify", "Liquid", "CSS3", "JavaScript", "UI/UX"],
+    description: "A custom-built Shopify store for Floof, a premium body pillow brand. The store features a highly responsive, custom-designed theme built entirely from scratch, focusing on conveying ultimate comfort and an inviting aesthetic.",
+    metrics: "Custom Architecture",
+    metricContext: "Engineered a fast, lightweight theme without heavy third-party dependencies.",
+    url: "https://fl00f.myshopify.com/",
+    images: ["/photos/floof-1.webp", "/photos/floof-2.webp"],
+    impact: [
+      "Built a complete custom Shopify theme from scratch to match Floof's brand identity, resulting in a unique, premium storefront.",
+      "Optimized the user journey for frictionless shopping, highlighting product comfort and features intuitively.",
+      "Implemented seamless animations and responsive design elements to ensure a flawless mobile and desktop experience."
+    ],
+    techStack: {
+      frontend: ["HTML5", "CSS3", "JavaScript", "Shopify Liquid"],
+      backend: ["Shopify (Ruby on Rails)"],
+      database: ["Shopify Integrated"],
+      deployment: ["Shopify Hosting"],
+    },
+    skills: [
+      "E-Commerce Platform Customization",
+      "UI/UX Design",
+      "Frontend Development",
+      "Shopify Liquid Programming"
+    ],
+  },
+  {
+    id: "07",
+    name: "The Dancing Co.",
+    platform: "Shopify / Custom Theme",
+    type: "E-Commerce — Artisanal Food",
+    tags: ["Shopify", "Liquid", "CSS3", "JavaScript", "UI/UX"],
+    description: "A visually striking Shopify store built from scratch for The Dancing Co, specializing in artisanal butter, ghee, and natural food products. The site balances a playful brand identity with premium product presentation.",
+    metrics: "Brand Centric Design",
+    metricContext: "Developed an entirely custom, tailored experience directly reflecting the brand's aesthetic.",
+    url: "https://the-dancing-cow.myshopify.com/",
+    images: ["/photos/dancing-cow-1.webp"],
+    impact: [
+      "Developed a custom Shopify theme from the ground up, avoiding off-the-shelf templates to ensure absolute brand consistency.",
+      "Designed and developed engaging product pages that highlight the quality and artisanal nature of the food products.",
+      "Streamlined the checkout and cart processes to minimize drop-off rates and improve overall conversion."
+    ],
+    techStack: {
+      frontend: ["HTML5", "CSS3", "JavaScript", "Shopify Liquid"],
+      backend: ["Shopify (Ruby on Rails)"],
+      database: ["Shopify Integrated"],
+      deployment: ["Shopify Hosting"],
+    },
+    skills: [
+      "E-Commerce Platform Customization",
+      "UI/UX Design",
+      "Frontend Development",
+      "Shopify Liquid Programming"
+    ],
+  },
+  {
+    id: "08",
+    name: "Dethar",
+    platform: "Shopify Optimization",
+    type: "E-Commerce — Islamic Products",
+    tags: ["Shopify", "Liquid", "Performance", "SEO", "Optimization"],
+    description: "A premium Islamic products store offering medical prayer mats, gemstone misbahas, and Qurans. The project focused heavily on technical SEO, accessibility, and aggressive performance optimization.",
+    metrics: "90+ PageSpeed",
+    metricContext: "Boosted performance scores from a sluggish 60 to a high-performing 90+, while achieving 100/100 on SEO and Accessibility.",
+    url: "https://detharshop.com/",
+    images: ["/photos/dethar-1.webp", "/photos/dethar-2.webp"],
+    impact: [
+      "Conducted a comprehensive performance audit and technical overhaul, elevating the Google PageSpeed Insights score from the 60s to a consistent 90+.",
+      "Achieved a perfect 100/100 score in SEO and Accessibility through semantic HTML restructuring and meticulous metadata optimization.",
+      "Significantly reduced image payloads and optimized theme scripts to deliver a lightning-fast browsing experience for users.",
+      "Refined existing UI components to elevate the premium feel of the luxury prayer mats and gemstone products."
+    ],
+    techStack: {
+      frontend: ["HTML5", "CSS3", "JavaScript", "Shopify Liquid"],
+      backend: ["Shopify (Ruby on Rails)"],
+      database: ["Shopify Integrated"],
+      deployment: ["Shopify Hosting"],
+    },
+    skills: [
+      "Performance Optimization",
+      "Technical SEO",
+      "Web Accessibility",
+      "Shopify Optimization"
+    ],
+  }
 ];
 
 export const experiences = [

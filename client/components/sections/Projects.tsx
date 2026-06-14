@@ -106,55 +106,39 @@ function ProjectRow({ project }: ProjectRowProps) {
               : "flex flex-col gap-4"
           }`}
         >
-          {project.id === "01" || project.id === "02" ? (
-            /* Mobile View Format (Helwa & ZAD) */
+          {project.id === "01" || project.id === "02" || project.id === "08" ? (
+            /* Mobile View Format (Helwa & ZAD & Dethar) */
             <>
-              <div 
-                className="project-img w-1/2 rounded-xl overflow-hidden border border-white/10 bg-black/20 shadow-2xl"
-                style={{ aspectRatio: "9/16" }}
-              >
-                <img
-                  src={project.images[0]}
-                  alt={`${project.name} — primary screenshot`}
-                  loading="lazy"
-                  decoding="async"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-              </div>
-              <div 
-                className="project-img w-1/2 rounded-xl overflow-hidden border border-white/10 bg-black/20 shadow-2xl"
-                style={{ aspectRatio: "9/16" }}
-              >
-                <img
-                  src={project.images[1]}
-                  alt={`${project.name} — secondary screenshot`}
-                  loading="lazy"
-                  decoding="async"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-              </div>
+              {project.images.map((img, idx) => (
+                <div 
+                  key={img}
+                  className={`project-img ${project.images.length === 1 ? "w-full max-w-sm mx-auto" : "w-1/2"} rounded-xl overflow-hidden border border-white/10 bg-black/20 shadow-2xl`}
+                  style={{ aspectRatio: "9/16" }}
+                >
+                  <img
+                    src={img}
+                    alt={`${project.name} — screenshot ${idx + 1}`}
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                </div>
+              ))}
             </>
           ) : (
-            /* Desktop View Format (Djabi & Sneakrz King) */
+            /* Desktop View Format */
             <>
-              <div className="project-img aspect-[4/3] rounded overflow-hidden border border-white/10">
-                <img
-                  src={project.images[0]}
-                  alt={`${project.name} — primary screenshot`}
-                  loading="lazy"
-                  decoding="async"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-              </div>
-              <div className="project-img aspect-[4/3] rounded overflow-hidden border border-white/10">
-                <img
-                  src={project.images[1]}
-                  alt={`${project.name} — secondary screenshot`}
-                  loading="lazy"
-                  decoding="async"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-              </div>
+              {project.images.map((img, idx) => (
+                <div key={img} className="project-img aspect-[4/3] rounded overflow-hidden border border-white/10">
+                  <img
+                    src={img}
+                    alt={`${project.name} — screenshot ${idx + 1}`}
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                </div>
+              ))}
             </>
           )}
         </div>
