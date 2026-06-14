@@ -42,16 +42,12 @@ export default function Index() {
     window.addEventListener("scroll", handleInteraction, { once: true, passive: true });
     window.addEventListener("mousemove", handleInteraction, { once: true, passive: true });
     window.addEventListener("touchstart", handleInteraction, { once: true, passive: true });
-    
-    // Fallback: load after 3s if no interaction
-    const fallbackTimer = setTimeout(handleInteraction, 3000);
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("scroll", handleInteraction);
       window.removeEventListener("mousemove", handleInteraction);
       window.removeEventListener("touchstart", handleInteraction);
-      clearTimeout(fallbackTimer);
     };
   }, [lastScrollY]);
 
