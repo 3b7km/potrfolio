@@ -13,8 +13,8 @@
     --secondary: 48 8% 58%;
     /* Improved contrast from 50 5% 53% */
     --accent: 217 100% 50%;
-    --muted: 48 8% 58%;
-    /* Improved contrast from 50 5% 53% */
+    --muted: 48 15% 75%;
+    /* Improved contrast from 48 8% 58% */
     --border: 0 0% 8.5%;
     --divider: 0 0% 13%;
   }

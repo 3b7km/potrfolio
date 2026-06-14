@@ -18,6 +18,7 @@ const Deferred3DScene = lazy(
 export default function Index() {
   const [showNav, setShowNav] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [isInteractive, setIsInteractive] = useState(false);
 
   useLenis();
 
@@ -35,8 +36,23 @@ export default function Index() {
       setLastScrollY(currentScrollY);
     };
 
+    const handleInteraction = () => setIsInteractive(true);
+
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleInteraction, { once: true, passive: true });
+    window.addEventListener("mousemove", handleInteraction, { once: true, passive: true });
+    window.addEventListener("touchstart", handleInteraction, { once: true, passive: true });
+    
+    // Fallback: load after 3s if no interaction
+    const fallbackTimer = setTimeout(handleInteraction, 3000);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("scroll", handleInteraction);
+      window.removeEventListener("mousemove", handleInteraction);
+      window.removeEventListener("touchstart", handleInteraction);
+      clearTimeout(fallbackTimer);
+    };
   }, [lastScrollY]);
 
   useEffect(() => {
@@ -60,9 +76,11 @@ export default function Index() {
       </a>
 
       {/* 3D Scene — deferred until after page is interactive */}
-      <Suspense fallback={null}>
-        <Deferred3DScene />
-      </Suspense>
+      {isInteractive && (
+        <Suspense fallback={null}>
+          <Deferred3DScene />
+        </Suspense>
+      )}
 
       {/* Floating Navigation — CSS transition for show/hide */}
       <div
