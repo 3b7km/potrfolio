@@ -7,6 +7,7 @@ import { Navigation } from "@/components/Navigation";
 import { FloatingWhatsApp } from "@/components/ui/FloatingWhatsApp";
 
 const Projects = lazy(() => import("@/components/sections/Projects"));
+const CaseStudies = lazy(() => import("@/components/sections/CaseStudies"));
 const About = lazy(() => import("@/components/sections/About"));
 const ExperienceContact = lazy(
   () => import("@/components/sections/ExperienceContact"),
@@ -95,6 +96,7 @@ export default function Index() {
         <Marquee />
         <Suspense fallback={<div className="h-32 w-full" />}>
           <Projects />
+          <CaseStudies />
           <About />
           <div id="experience">
             <ExperienceContact />
