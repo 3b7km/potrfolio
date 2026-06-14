@@ -1,87 +1,52 @@
-import { useRef, useState, useEffect } from "react";
-import { useGSAP } from "@gsap/react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { projects } from "@/lib/data";
-
-gsap.registerPlugin(ScrollTrigger);
 
 interface ProjectRowProps {
   project: (typeof projects)[0];
 }
 
 function ProjectRow({ project }: ProjectRowProps) {
-  const rowRef = useRef<HTMLElement>(null);
-  const imagesRef = useRef<HTMLDivElement>(null);
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30, filter: "blur(4px)" },
+    visible: { 
+      opacity: 1, y: 0, filter: "blur(0px)", 
+      transition: { duration: 0.8, ease: "easeOut" } 
+    }
+  };
 
-  useGSAP(() => {
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReducedMotion) return;
-
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: rowRef.current,
-        start: "top 85%",
-        toggleActions: "play none none reverse",
-      }
-    });
-
-    // Animate text elements
-    tl.fromTo(
-      ".project-text",
-      { opacity: 0, y: 30, filter: "blur(4px)" },
-      {
-        opacity: 1,
-        y: 0,
-        filter: "blur(0px)",
-        duration: 1.2,
-        stagger: 0.1,
-        ease: "expo.out",
-        clearProps: "filter"
-      }
-    );
-
-    // GSAP ScrollTrigger animation for the images (runs slightly after text starts)
-    tl.fromTo(
-      ".project-img",
-      { opacity: 0, y: 50, scale: 0.95 },
-      {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        duration: 1.4,
-        stagger: 0.15,
-        ease: "expo.out",
-      },
-      "-=1.0" // overlap with text animation
-    );
-
-    // Refresh ScrollTrigger after Framer Motion layout animations finish
-    const timer = setTimeout(() => {
-      ScrollTrigger.refresh();
-    }, 500);
-
-    return () => clearTimeout(timer);
-  }, { scope: rowRef });
+  const imgVariants = {
+    hidden: { opacity: 0, y: 50, scale: 0.95 },
+    visible: { 
+      opacity: 1, y: 0, scale: 1, 
+      transition: { duration: 1, ease: "easeOut" } 
+    }
+  };
 
   return (
-    <article ref={rowRef} className="relative group border-t border-border/10 py-8 md:py-12 transition-all duration-400 ease-out hover:bg-white/[0.02] hover:-translate-y-1 hover:border-white/20">
+    <motion.article 
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: false, margin: "-10%" }}
+      transition={{ staggerChildren: 0.1 }}
+      className="relative group border-t border-border/10 py-8 md:py-12 transition-all duration-400 ease-out hover:bg-white/[0.02] hover:-translate-y-1 hover:border-white/20"
+    >
       <div className="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-y-8 md:gap-x-8 items-start px-4">
         {/* 1. Header (Title, Description, Tags) */}
         <div className="flex flex-col gap-2 order-1 md:col-span-7 md:col-start-6 md:row-start-1">
-          <span className="project-text opacity-0 text-sm md:text-sm font-sans text-muted mb-2">
+          <motion.span variants={itemVariants} className="text-sm md:text-sm font-sans text-muted mb-2">
             {project.id} — {project.type}
-          </span>
-          <h3 className="project-text opacity-0 text-4xl sm:text-4xl md:text-5xl font-syne font-bold uppercase tracking-tight text-foreground transition-all duration-300 leading-tight antialiased">
+          </motion.span>
+          <motion.h3 variants={itemVariants} className="text-4xl sm:text-4xl md:text-5xl font-syne font-bold uppercase tracking-tight text-foreground transition-all duration-300 leading-tight antialiased">
             {project.name}
-          </h3>
-          <p className="project-text opacity-0 text-base sm:text-base md:text-sm font-sans text-muted max-w-lg mt-2 leading-relaxed antialiased">
+          </motion.h3>
+          <motion.p variants={itemVariants} className="text-base sm:text-base md:text-sm font-sans text-muted max-w-lg mt-2 leading-relaxed antialiased">
             {project.description}
-          </p>
-          <div
-            className="project-text opacity-0 flex flex-wrap gap-2 mt-4"
+          </motion.p>
+          <motion.div
+            variants={itemVariants}
+            className="flex flex-wrap gap-2 mt-4"
             role="list"
             aria-label={`Technologies used in ${project.name}`}
           >
@@ -94,12 +59,11 @@ function ProjectRow({ project }: ProjectRowProps) {
                 {tag}
               </span>
             ))}
-          </div>
+          </motion.div>
         </div>
 
         {/* 2. Photos */}
         <div 
-          ref={imagesRef}
           className={`order-2 md:col-span-5 md:col-start-1 md:row-start-1 md:row-span-2 w-full ${
             project.id === "01" || project.id === "02" || project.id === "03" || project.id === "04" || project.id === "06"
               ? "flex flex-row gap-4" 
@@ -110,9 +74,10 @@ function ProjectRow({ project }: ProjectRowProps) {
             /* Mobile View Format (Helwa & ZAD & Dethar) */
             <>
               {project.images.map((img, idx) => (
-                <div 
+                <motion.div 
+                  variants={imgVariants}
                   key={img}
-                  className={`project-img ${project.images.length === 1 ? "w-full max-w-sm mx-auto" : "w-1/2"} rounded-xl overflow-hidden border border-white/10 bg-black/20 shadow-2xl relative`}
+                  className={`${project.images.length === 1 ? "w-full max-w-sm mx-auto" : "w-1/2"} rounded-xl overflow-hidden border border-white/10 bg-black/20 shadow-2xl relative`}
                   style={{ aspectRatio: "9/16" }}
                 >
                   {img.endsWith(".mp4") ? (
@@ -133,14 +98,14 @@ function ProjectRow({ project }: ProjectRowProps) {
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
                   )}
-                </div>
+                </motion.div>
               ))}
             </>
           ) : (
             /* Desktop View Format */
             <>
               {project.images.map((img, idx) => (
-                <div key={img} className="project-img aspect-[4/3] rounded overflow-hidden border border-white/10 relative">
+                <motion.div variants={imgVariants} key={img} className="aspect-[4/3] rounded overflow-hidden border border-white/10 relative">
                   {img.endsWith(".mp4") ? (
                     <video
                       src={img}
@@ -159,7 +124,7 @@ function ProjectRow({ project }: ProjectRowProps) {
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
                   )}
-                </div>
+                </motion.div>
               ))}
             </>
           )}
@@ -167,7 +132,7 @@ function ProjectRow({ project }: ProjectRowProps) {
 
         {/* 3. Footer (Key Metric, CTA) */}
         <div className="flex flex-col gap-6 order-3 md:col-span-7 md:col-start-6 md:row-start-2 mt-4 md:mt-0">
-          <div className="project-text opacity-0 font-sans p-4 border border-white/10 rounded bg-white/[0.01]">
+          <motion.div variants={itemVariants} className="font-sans p-4 border border-white/10 rounded bg-white/[0.01]">
             <div className="text-xs text-muted mb-2 uppercase tracking-wide">
               Key Metric
             </div>
@@ -177,23 +142,24 @@ function ProjectRow({ project }: ProjectRowProps) {
             <p className="text-xs text-white/70 mt-2 leading-relaxed">
               {project.metricContext}
             </p>
-          </div>
+          </motion.div>
 
           <div className="flex flex-wrap gap-3">
-            <a
+            <motion.a
+              variants={itemVariants}
               href={project.url}
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`View ${project.name} live site (opens in new tab)`}
-              className="project-text opacity-0 tap-target inline-flex items-center gap-2 text-sm font-sans uppercase tracking-wide text-background bg-white px-5 py-3 rounded hover:bg-white/90 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-white/10 transition-all duration-300 font-bold focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+              className="tap-target inline-flex items-center gap-2 text-sm font-sans uppercase tracking-wide text-background bg-white px-5 py-3 rounded hover:bg-white/90 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-white/10 transition-all duration-300 font-bold focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
             >
               View Live Site
               <ArrowUpRight size={16} aria-hidden="true" />
-            </a>
+            </motion.a>
           </div>
         </div>
       </div>
-    </article>
+    </motion.article>
   );
 }
 
@@ -208,14 +174,6 @@ export default function Projects() {
   const filteredProjects = projects.filter((p) =>
     filter === "All" ? true : p.type.includes(filter),
   );
-
-  useEffect(() => {
-    // Refresh ScrollTrigger after Framer Motion layout animations finish
-    const timer = setTimeout(() => {
-      ScrollTrigger.refresh();
-    }, 500);
-    return () => clearTimeout(timer);
-  }, [filter]);
 
   return (
     <section
