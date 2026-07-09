@@ -91,7 +91,7 @@ export default function Hero() {
     >
       <div className="pointer-events-auto">
         {/* Top Info Layout */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mt-12 md:mt-24 w-full">
+        <div className="flex justify-start items-center mt-6 md:mt-20 w-full">
           {/* Status widget */}
           <div
             className="hero-anim opacity-0 flex items-center gap-2.5 text-xs md:text-sm font-sans font-medium text-white/80 tracking-wide"
@@ -102,17 +102,6 @@ export default function Hero() {
             </span>
             <span>Available for projects</span>
           </div>
-
-          <div
-            className="hero-anim opacity-0 max-w-xs md:max-w-sm text-xs md:text-sm text-right text-white/90 font-sans leading-relaxed tracking-normal relative z-10"
-          >
-            <div
-              className="absolute inset-0 bg-background/40 blur-2xl -z-10 rounded-full"
-              aria-hidden="true"
-            />
-            I build secure, high-conversion e-commerce platforms and immersive
-            3D web experiences that drive measurable business impact.
-          </div>
         </div>
 
         {/* Screen-reader accessible name — invisible to users, read by bots/screen readers */}
@@ -120,13 +109,13 @@ export default function Hero() {
 
         {/* Space reserved for 3D Text rendered from the global Canvas */}
         <div
-          className="mt-[10vh] md:mt-[15vh] h-[30vh] w-full relative pointer-events-none"
+          className="mt-[4vh] md:mt-[12vh] h-[25vh] md:h-[30vh] w-full relative pointer-events-none"
           aria-hidden="true"
         />
 
         {/* Primary CTA */}
         <div
-          className="hero-anim opacity-0 mt-16 md:mt-24 flex items-center justify-center relative z-10"
+          className="hero-anim opacity-0 mt-6 md:mt-20 flex items-center justify-center relative z-10"
         >
           <div
             className="absolute w-[200px] h-[40px] bg-white/20 blur-2xl -z-10"
@@ -159,16 +148,27 @@ export default function Hero() {
 
       {/* Bottom Layout */}
       <div
-        className="hero-anim opacity-0 flex justify-between items-end w-full pointer-events-auto mix-blend-difference text-white pb-4"
-        aria-hidden="true"
+        className="hero-anim opacity-0 flex flex-col-reverse md:flex-row justify-between items-start md:items-end gap-6 w-full pointer-events-auto pb-4 md:pb-6 z-10"
       >
-        <span className="text-xs uppercase tracking-widest">
-          Scroll to explore
-        </span>
-        <div className="w-[1px] h-12 bg-white/50 overflow-hidden relative">
+        <div className="flex items-center gap-4 text-xs uppercase tracking-widest text-white/70 mix-blend-difference">
+          <span>Scroll to explore</span>
+          <div className="w-[1px] h-10 bg-white/50 overflow-hidden relative">
+            <div
+              className="w-full h-1/3 bg-white absolute top-0 animate-[scrollIndicator_2s_ease-in-out_infinite]"
+            />
+          </div>
+        </div>
+
+        {/* Right Bottom Summary Text */}
+        <div
+          className="max-w-xs md:max-w-sm text-xs md:text-sm self-end text-right text-white/90 font-sans leading-relaxed tracking-normal relative z-10"
+        >
           <div
-            className="w-full h-1/3 bg-white absolute top-0 animate-[scrollIndicator_2s_ease-in-out_infinite]"
+            className="absolute inset-0 bg-background/40 blur-2xl -z-10 rounded-full"
+            aria-hidden="true"
           />
+          I build secure, high-conversion e-commerce platforms and immersive
+          3D web experiences that drive measurable business impact.
         </div>
       </div>
     </section>
