@@ -79,9 +79,9 @@ export default function Hero3DText() {
             <Text3D
               font="https://unpkg.com/three@0.77.0/examples/fonts/helvetiker_bold.typeface.json"
               scale={textScale}
-              curveSegments={isMobile ? 16 : 24}
+              curveSegments={isMobile ? 32 : 48}
               bevelEnabled
-              bevelSegments={isMobile ? 4 : 5}
+              bevelSegments={isMobile ? 8 : 12}
               bevelSize={isMobile ? 0.03 : 0.04}
               bevelThickness={isMobile ? 0.08 : 0.1}
               height={isMobile ? 0.4 : 0.5}
@@ -103,9 +103,9 @@ export default function Hero3DText() {
             <Text3D
               font="https://unpkg.com/three@0.77.0/examples/fonts/helvetiker_bold.typeface.json"
               scale={textScale}
-              curveSegments={isMobile ? 16 : 24}
+              curveSegments={isMobile ? 32 : 48}
               bevelEnabled
-              bevelSegments={isMobile ? 4 : 5}
+              bevelSegments={isMobile ? 8 : 12}
               bevelSize={isMobile ? 0.03 : 0.04}
               bevelThickness={isMobile ? 0.08 : 0.1}
               height={isMobile ? 0.4 : 0.5}

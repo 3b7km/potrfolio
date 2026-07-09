@@ -91,7 +91,7 @@ export default function Hero() {
     >
       <div className="pointer-events-auto">
         {/* Top Info Layout */}
-        <div className="flex justify-start items-center mt-6 md:mt-20 w-full">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-3 md:gap-6 mt-4 md:mt-20 w-full">
           {/* Status widget */}
           <div
             className="hero-anim opacity-0 flex items-center gap-2.5 text-xs md:text-sm font-sans font-medium text-white/80 tracking-wide"
@@ -101,6 +101,18 @@ export default function Hero() {
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
             </span>
             <span>Available for projects</span>
+          </div>
+
+          {/* Top Summary Text */}
+          <div
+            className="hero-anim opacity-0 max-w-xs md:max-w-sm text-xs md:text-sm text-left md:text-right text-white/90 font-sans leading-relaxed tracking-normal relative z-10"
+          >
+            <div
+              className="absolute inset-0 bg-background/40 blur-2xl -z-10 rounded-full"
+              aria-hidden="true"
+            />
+            I build secure, high-conversion e-commerce platforms and immersive
+            3D web experiences that drive measurable business impact.
           </div>
         </div>
 
@@ -148,7 +160,7 @@ export default function Hero() {
 
       {/* Bottom Layout */}
       <div
-        className="hero-anim opacity-0 flex flex-col-reverse md:flex-row justify-between items-start md:items-end gap-6 w-full pointer-events-auto pb-4 md:pb-6 z-10"
+        className="hero-anim opacity-0 flex justify-start items-end w-full pointer-events-auto pb-4 md:pb-6 z-10"
       >
         <div className="flex items-center gap-4 text-xs uppercase tracking-widest text-white/70 mix-blend-difference">
           <span>Scroll to explore</span>
@@ -157,18 +169,6 @@ export default function Hero() {
               className="w-full h-1/3 bg-white absolute top-0 animate-[scrollIndicator_2s_ease-in-out_infinite]"
             />
           </div>
-        </div>
-
-        {/* Right Bottom Summary Text */}
-        <div
-          className="max-w-xs md:max-w-sm text-xs md:text-sm self-end text-right text-white/90 font-sans leading-relaxed tracking-normal relative z-10"
-        >
-          <div
-            className="absolute inset-0 bg-background/40 blur-2xl -z-10 rounded-full"
-            aria-hidden="true"
-          />
-          I build secure, high-conversion e-commerce platforms and immersive
-          3D web experiences that drive measurable business impact.
         </div>
       </div>
     </section>
