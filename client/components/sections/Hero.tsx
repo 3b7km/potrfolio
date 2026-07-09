@@ -92,21 +92,19 @@ export default function Hero() {
       <div className="pointer-events-auto">
         {/* Top Info Layout */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mt-12 md:mt-24 w-full">
-          {/* Status & Location widget */}
+          {/* Status widget */}
           <div
-            className="hero-anim opacity-0 flex flex-col gap-2 text-xs md:text-sm font-sans tracking-wide text-muted"
+            className="hero-anim opacity-0 flex items-center gap-2.5 text-xs md:text-sm font-sans font-medium text-white/80 tracking-wide"
           >
-            <div className="flex items-center gap-3">
-              <span className="relative flex h-2 w-2" aria-hidden="true">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-              </span>
-              <span>Available for projects</span>
-            </div>
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </span>
+            <span>Available for projects</span>
           </div>
 
           <div
-            className="hero-anim opacity-0 max-w-xs text-xs md:text-sm text-white/90 font-sans leading-relaxed relative z-10"
+            className="hero-anim opacity-0 max-w-xs md:max-w-sm text-xs md:text-sm text-right text-white/90 font-sans leading-relaxed tracking-normal relative z-10"
           >
             <div
               className="absolute inset-0 bg-background/40 blur-2xl -z-10 rounded-full"
@@ -138,11 +136,11 @@ export default function Hero() {
             ref={buttonRef}
             href="#work"
             aria-label="View selected works — scroll to portfolio section"
-            className="inline-flex items-center gap-3 px-8 md:px-12 py-4 md:py-5 border-2 border-primary text-white bg-transparent rounded-full text-sm md:text-base font-syne font-bold uppercase tracking-widest hover:bg-primary/10 transition-colors duration-300 shadow-[0_0_40px_rgba(213,53,25,0.1)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+            className="group relative inline-flex items-center gap-3 px-8 md:px-12 py-4 md:py-5 overflow-hidden rounded-full text-sm md:text-base font-syne font-bold uppercase tracking-widest text-white border border-white/10 bg-white/[0.03] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-white hover:text-background focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
           >
-            View Selected Works
+            <span className="relative z-10">View Selected Works</span>
             <svg
-              className="w-4 h-4 md:w-5 md:h-5 text-primary"
+              className="w-4 h-4 md:w-5 md:h-5 text-accent group-hover:text-background transition-colors duration-500"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"

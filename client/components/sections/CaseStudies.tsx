@@ -1,12 +1,12 @@
-import { motion } from "framer-motion";
-import { ArrowUpRight, CheckCircle2 } from "lucide-react";
+import { motion, Variants } from "framer-motion";
+import { CheckCircle2 } from "lucide-react";
 
-const fadeIn = {
+const fadeIn: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
 };
 
-const staggerContainer = {
+const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -104,12 +104,12 @@ export default function CaseStudies() {
                 <img 
                   src="/photos/dethar-2.webp" 
                   alt="Dethar Mobile Before" 
-                  className="absolute inset-0 w-full h-full object-cover rounded-2xl border border-white/10 shadow-2xl z-10 translate-x-[-20%] translate-y-[-10%] scale-90 opacity-60"
+                  className="absolute inset-0 w-full h-full object-cover object-top rounded-2xl border border-white/10 shadow-2xl z-10 translate-x-[-20%] translate-y-[-10%] scale-90 opacity-60"
                 />
                 <img 
                   src="/photos/dethar-1.webp" 
                   alt="Dethar Mobile After" 
-                  className="absolute inset-0 w-full h-full object-cover rounded-2xl border border-white/20 shadow-[0_0_50px_rgba(0,0,0,0.5)] z-20"
+                  className="absolute inset-0 w-full h-full object-cover object-top rounded-2xl border border-white/20 shadow-[0_0_50px_rgba(0,0,0,0.5)] z-20"
                 />
                 
                 <div className="absolute -bottom-6 -right-6 bg-background border border-white/10 p-4 rounded-xl shadow-xl z-30">
@@ -174,7 +174,7 @@ export default function CaseStudies() {
                 <img 
                   src="/photos/floof-2.webp" 
                   alt="Floof Website UI" 
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
                 />
               </div>
             </motion.div>

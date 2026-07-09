@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
-import { Text3D, Center, Float } from "@react-three/drei";
+import { Text3D, Float } from "@react-three/drei";
 import * as THREE from "three";
 
 export default function Hero3DText() {

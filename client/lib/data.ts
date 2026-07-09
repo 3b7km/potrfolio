@@ -1,6 +1,105 @@
 export const projects = [
   {
     id: "01",
+    name: "Dethar",
+    platform: "Shopify Optimization",
+    type: "E-Commerce — Islamic Products",
+    tags: ["Shopify", "Liquid", "Performance", "SEO", "Optimization"],
+    description: "A premium Islamic products store offering medical prayer mats, gemstone misbahas, and Qurans. The project focused heavily on technical SEO, accessibility, and aggressive performance optimization.",
+    metrics: "90+ PageSpeed, 100+ Orders",
+    metricContext: "Boosted performance scores from a sluggish 60 to a high-performing 90+ while generating 100+ verified orders, achieving 100/100 on SEO and Accessibility.",
+    url: "https://detharshop.com/",
+    images: ["/photos/dethar-1.webp", "/photos/dethar-2.webp"],
+    impact: [
+      "Conducted a comprehensive performance audit and technical overhaul, elevating the Google PageSpeed Insights score from the 60s to a consistent 90+.",
+      "Achieved a perfect 100/100 score in SEO and Accessibility through semantic HTML restructuring and meticulous metadata optimization.",
+      "Significantly reduced image payloads and optimized theme scripts to deliver a lightning-fast browsing experience for users while driving 100+ verified orders.",
+      "Refined existing UI components to elevate the premium feel of the luxury prayer mats and gemstone products."
+    ],
+    techStack: {
+      frontend: ["HTML5", "CSS3", "JavaScript", "Shopify Liquid"],
+      backend: ["Shopify (Ruby on Rails)"],
+      database: ["Shopify Integrated"],
+      deployment: ["Shopify Hosting"],
+    },
+    skills: [
+      "Performance Optimization",
+      "Technical SEO",
+      "Web Accessibility",
+      "Shopify Optimization"
+    ],
+  },
+  {
+    id: "02",
+    name: "MN Trends",
+    platform: "Shopify / Custom Theme",
+    type: "E-Commerce — General Lifestyle (USA)",
+    tags: ["Shopify", "Liquid", "CSS3", "JavaScript", "US Market", "SEO"],
+    description:
+      "A versatile, high-performance Shopify store engineered for the US market. MN Trends features a diverse catalog across Home Care, Pet Care, and Automotive categories. The project focused on creating a frictionless, \"Smart Finds\" shopping experience for a broad American demographic.",
+    metrics: "Conversion-Optimized US Store",
+    metricContext:
+      "Engineered high-conversion features including bundles, quantity breaks, and cart upsells for the US market, delivering a frictionless \"Smart Finds\" shopping journey.",
+    url: "https://mn-trends.myshopify.com/",
+    images: ["/photos/mn-1.webp", "/photos/mn-2.webp"],
+    impact: [
+      "Successfully launched and engineered for the US market, demonstrating international e-commerce capability and adherence to US consumer UX standards.",
+      "Architected a versatile, high-performance general store handling multi-category inventory across Home Care, Pet Care, and Automotive goods.",
+      "Designed a frictionless \"Smart Finds\" shopping journey with intuitive category navigation, product bundles, quantity breaks, and cart upsells.",
+      "Optimized theme performance, responsive layouts, and technical SEO to drive sustained visibility across the competitive American market."
+    ],
+    techStack: {
+      frontend: ["HTML5", "CSS3", "JavaScript", "Shopify Liquid"],
+      backend: ["Shopify (Ruby on Rails)"],
+      database: ["Shopify Integrated"],
+      deployment: ["Shopify Hosting"],
+    },
+    skills: [
+      "US Market E-Commerce Localization",
+      "Multi-Category Catalog Architecture",
+      "UI/UX Design & Conversion Optimization",
+      "Shopify Liquid Theme Engineering",
+      "Technical SEO & Speed Optimization",
+    ],
+  },
+  {
+    id: "03",
+    name: "ZAD",
+    platform: "Shopify Optimization",
+    type: "E-Commerce — Perfume Store",
+    tags: ["Shopify", "Liquid", "CSS3", "JavaScript", "SEO", "UI/UX"],
+    description:
+      "Arabic luxury fragrance store featuring men's, niche, designer, and oriental collections. Required deep theme optimization, UI/UX refinement, and extensive Arabic copywriting for SEO.",
+    metrics: "200+ Verified Orders",
+    metricContext:
+      "Generated real sales traction and over 200+ verified orders through unified luxury aesthetics and frictionless bilingual navigation.",
+    url: "https://zad-9478.myshopify.com",
+    images: ["/photos/zad-1.webp", "/photos/zad-2.webp"],
+    impact: [
+      "Rewrote and SEO-optimized all product descriptions in Arabic, improving search visibility and content professionalism across the catalog.",
+      "Unified product image aesthetics across the niche perfume collection — consistent backgrounds and compositions creating a premium, editorial look.",
+      "Rebuilt the product card and review templates for a cleaner, more branded UI aligned with the store's luxury identity.",
+      "Added structured FAQ sections to product pages — including shipping, returns, and authenticity — reducing friction before purchase and building customer trust.",
+      "Fixed broken navigation links (Bundles 404), refreshed hero imagery, and updated section headings to modern bilingual labels (e.g. \"For Him / For Her\").",
+      "Refined UI/UX color identity and overall visual consistency — creating a cohesive dark-luxury aesthetic across all store sections."
+    ],
+    techStack: {
+      frontend: ["HTML5", "CSS3", "JavaScript", "Shopify Liquid"],
+      backend: ["Shopify (Ruby on Rails)"],
+      database: ["Shopify Integrated"],
+      content: ["Arabic Copywriting", "Product Photography Direction"],
+    },
+    skills: [
+      "Shopify Optimization",
+      "Template Customization",
+      "Conversion Optimization",
+      "UI/UX Design",
+      "Arabic Copywriting",
+      "SEO",
+    ],
+  },
+  {
+    id: "04",
     name: "Helwa Fashion",
     platform: "Shopify / Custom Theme",
     type: "E-Commerce — Fashion Store",
@@ -34,49 +133,42 @@ export const projects = [
     ],
   },
   {
-    id: "02",
-    name: "ZAD",
-    platform: "Shopify Optimization",
-    type: "E-Commerce — Perfume Store",
-    tags: ["Shopify", "Liquid", "CSS3", "JavaScript", "SEO", "UI/UX"],
-    description:
-      "Arabic luxury fragrance store featuring men's, niche, designer, and oriental collections. Required deep theme optimization, UI/UX refinement, and extensive Arabic copywriting for SEO.",
-    metrics: "100+ Verified Orders",
-    metricContext:
-      "Generated real sales traction and over 100 orders through unified luxury aesthetics, and frictionless bilingual navigation.",
-    url: "https://zad-9478.myshopify.com",
-    images: ["/photos/zad-1.webp", "/photos/zad-2.webp"],
+    id: "05",
+    name: "Floof",
+    platform: "Shopify / Custom Theme",
+    type: "E-Commerce — Premium Body Pillows",
+    tags: ["Shopify", "Liquid", "CSS3", "JavaScript", "UI/UX"],
+    description: "A custom-built Shopify store for Floof, a premium body pillow brand. The store features a highly responsive, custom-designed theme built entirely from scratch, focusing on conveying ultimate comfort and an inviting aesthetic.",
+    metrics: "10 Verified Orders (Early Launch)",
+    metricContext: "Achieved initial sales traction during early launch phase while engineered on a fast, lightweight custom theme without heavy third-party dependencies.",
+    url: "https://fl00f.myshopify.com/",
+    images: ["/photos/floof-2.webp", "/photos/floof-1.webp"],
     impact: [
-      "Rewrote and SEO-optimized all product descriptions in Arabic, improving search visibility and content professionalism across the catalog.",
-      "Unified product image aesthetics across the niche perfume collection — consistent backgrounds and compositions creating a premium, editorial look.",
-      "Rebuilt the product card and review templates for a cleaner, more branded UI aligned with the store's luxury identity.",
-      "Added structured FAQ sections to product pages — including shipping, returns, and authenticity — reducing friction before purchase and building customer trust.",
-      "Fixed broken navigation links (Bundles 404), refreshed hero imagery, and updated section headings to modern bilingual labels (e.g. \"For Him / For Her\").",
-      "Refined UI/UX color identity and overall visual consistency — creating a cohesive dark-luxury aesthetic across all store sections."
+      "Built a complete custom Shopify theme from scratch to match Floof's brand identity, resulting in a unique, premium storefront that generated early sales.",
+      "Optimized the user journey for frictionless shopping, highlighting product comfort and features intuitively.",
+      "Implemented seamless animations and responsive design elements to ensure a flawless mobile and desktop experience."
     ],
     techStack: {
       frontend: ["HTML5", "CSS3", "JavaScript", "Shopify Liquid"],
       backend: ["Shopify (Ruby on Rails)"],
       database: ["Shopify Integrated"],
-      content: ["Arabic Copywriting", "Product Photography Direction"],
+      deployment: ["Shopify Hosting"],
     },
     skills: [
-      "Shopify Optimization",
-      "Template Customization",
-      "Conversion Optimization",
+      "E-Commerce Platform Customization",
       "UI/UX Design",
-      "Arabic Copywriting",
-      "SEO",
+      "Frontend Development",
+      "Shopify Liquid Programming"
     ],
   },
   {
-    id: "03",
+    id: "06",
     name: "The Dancing Cow",
     platform: "Shopify / Custom Theme",
     type: "E-Commerce — Artisanal Food",
     tags: ["Shopify", "Liquid", "CSS3", "JavaScript", "UI/UX"],
     description: "A visually striking Shopify store built from scratch for The Dancing Cow, specializing in artisanal butter, ghee, and natural food products. The site balances a playful brand identity with premium product presentation.",
-    metrics: "Brand Centric Design",
+    metrics: "Brand-Centric Design",
     metricContext: "Developed an entirely custom, tailored experience directly reflecting the brand's aesthetic.",
     url: "https://the-dancing-cow.myshopify.com/",
     images: ["/photos/dancing-cow-vid.mp4", "/photos/dancing-cow-1.webp"],
@@ -99,36 +191,7 @@ export const projects = [
     ],
   },
   {
-    id: "04",
-    name: "Floof",
-    platform: "Shopify / Custom Theme",
-    type: "E-Commerce — Premium Body Pillows",
-    tags: ["Shopify", "Liquid", "CSS3", "JavaScript", "UI/UX"],
-    description: "A custom-built Shopify store for Floof, a premium body pillow brand. The store features a highly responsive, custom-designed theme built entirely from scratch, focusing on conveying ultimate comfort and an inviting aesthetic.",
-    metrics: "Custom Architecture",
-    metricContext: "Engineered a fast, lightweight theme without heavy third-party dependencies.",
-    url: "https://fl00f.myshopify.com/",
-    images: ["/photos/floof-2.webp", "/photos/floof-1.webp"],
-    impact: [
-      "Built a complete custom Shopify theme from scratch to match Floof's brand identity, resulting in a unique, premium storefront.",
-      "Optimized the user journey for frictionless shopping, highlighting product comfort and features intuitively.",
-      "Implemented seamless animations and responsive design elements to ensure a flawless mobile and desktop experience."
-    ],
-    techStack: {
-      frontend: ["HTML5", "CSS3", "JavaScript", "Shopify Liquid"],
-      backend: ["Shopify (Ruby on Rails)"],
-      database: ["Shopify Integrated"],
-      deployment: ["Shopify Hosting"],
-    },
-    skills: [
-      "E-Commerce Platform Customization",
-      "UI/UX Design",
-      "Frontend Development",
-      "Shopify Liquid Programming"
-    ],
-  },
-  {
-    id: "05",
+    id: "07",
     name: "Sneakrz King",
     platform: "Next.js / Vercel",
     type: "E-Commerce — Sneaker Store",
@@ -161,37 +224,7 @@ export const projects = [
     ],
   },
   {
-    id: "06",
-    name: "Dethar",
-    platform: "Shopify Optimization",
-    type: "E-Commerce — Islamic Products",
-    tags: ["Shopify", "Liquid", "Performance", "SEO", "Optimization"],
-    description: "A premium Islamic products store offering medical prayer mats, gemstone misbahas, and Qurans. The project focused heavily on technical SEO, accessibility, and aggressive performance optimization.",
-    metrics: "90+ PageSpeed",
-    metricContext: "Boosted performance scores from a sluggish 60 to a high-performing 90+, while achieving 100/100 on SEO and Accessibility.",
-    url: "https://detharshop.com/",
-    images: ["/photos/dethar-1.webp", "/photos/dethar-2.webp"],
-    impact: [
-      "Conducted a comprehensive performance audit and technical overhaul, elevating the Google PageSpeed Insights score from the 60s to a consistent 90+.",
-      "Achieved a perfect 100/100 score in SEO and Accessibility through semantic HTML restructuring and meticulous metadata optimization.",
-      "Significantly reduced image payloads and optimized theme scripts to deliver a lightning-fast browsing experience for users.",
-      "Refined existing UI components to elevate the premium feel of the luxury prayer mats and gemstone products."
-    ],
-    techStack: {
-      frontend: ["HTML5", "CSS3", "JavaScript", "Shopify Liquid"],
-      backend: ["Shopify (Ruby on Rails)"],
-      database: ["Shopify Integrated"],
-      deployment: ["Shopify Hosting"],
-    },
-    skills: [
-      "Performance Optimization",
-      "Technical SEO",
-      "Web Accessibility",
-      "Shopify Optimization"
-    ],
-  },
-  {
-    id: "07",
+    id: "08",
     name: "Al-Manarh General Contracting",
     platform: "WordPress",
     type: "Portfolios — Construction & Business Services",
@@ -222,7 +255,7 @@ export const projects = [
     ],
   },
   {
-    id: "08",
+    id: "09",
     name: "Djabi",
     platform: "Shopify / Modest Fashion",
     type: "E-Commerce — Modest Fashion Store",
@@ -253,7 +286,7 @@ export const projects = [
       "Content Management",
       "Digital Marketing",
     ],
-  }
+  },
 ];
 
 export const experiences = [

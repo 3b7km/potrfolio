@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { projects } from "@/lib/data";
 import CaseStudies from "./CaseStudies";
@@ -9,7 +9,7 @@ interface ProjectRowProps {
 }
 
 function ProjectRow({ project }: ProjectRowProps) {
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 30, filter: "blur(4px)" },
     visible: { 
       opacity: 1, y: 0, filter: "blur(0px)", 
@@ -17,7 +17,7 @@ function ProjectRow({ project }: ProjectRowProps) {
     }
   };
 
-  const imgVariants = {
+  const imgVariants: Variants = {
     hidden: { opacity: 0, y: 50, scale: 0.95 },
     visible: { 
       opacity: 1, y: 0, scale: 1, 
@@ -31,9 +31,9 @@ function ProjectRow({ project }: ProjectRowProps) {
       whileInView="visible"
       viewport={{ once: false, margin: "-10%" }}
       transition={{ staggerChildren: 0.1 }}
-      className="relative group border-t border-border/10 py-8 md:py-12 transition-all duration-400 ease-out hover:bg-white/[0.02] hover:-translate-y-1 hover:border-white/20"
+      className="relative group border-t border-border/10 py-16 md:py-32 transition-all duration-400 ease-out hover:bg-white/[0.02] hover:-translate-y-1 hover:border-white/20"
     >
-      <div className="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-y-8 md:gap-x-8 items-start px-4">
+      <div className="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-y-12 md:gap-x-12 lg:gap-x-16 items-start px-4 md:px-0">
         {/* 1. Header (Title, Description, Tags) */}
         <div className="flex flex-col gap-2 order-1 md:col-span-7 md:col-start-6 md:row-start-1">
           <motion.span variants={itemVariants} className="text-sm md:text-sm font-sans text-muted mb-2">
@@ -66,13 +66,13 @@ function ProjectRow({ project }: ProjectRowProps) {
         {/* 2. Photos */}
         <div 
           className={`order-2 md:col-span-5 md:col-start-1 md:row-start-1 md:row-span-2 w-full ${
-            project.id === "01" || project.id === "02" || project.id === "03" || project.id === "04" || project.id === "06"
+            ["01", "02", "03", "04", "05", "06"].includes(project.id)
               ? "flex flex-row gap-4" 
               : "flex flex-col gap-4"
           }`}
         >
-          {project.id === "01" || project.id === "02" || project.id === "03" || project.id === "04" || project.id === "06" ? (
-            /* Mobile View Format (Helwa & ZAD & Dethar) */
+          {["01", "02", "03", "04", "05", "06"].includes(project.id) ? (
+            /* Mobile View Format (Dethar, MN Trends, ZAD, Helwa, Floof, Dancing Cow) */
             <>
               {project.images.map((img, idx) => (
                 <motion.div 
@@ -88,7 +88,7 @@ function ProjectRow({ project }: ProjectRowProps) {
                       muted
                       loop
                       playsInline
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
                     />
                   ) : (
                     <img
@@ -96,14 +96,14 @@ function ProjectRow({ project }: ProjectRowProps) {
                       alt={`${project.name} — screenshot ${idx + 1}`}
                       loading="lazy"
                       decoding="async"
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
                     />
                   )}
                 </motion.div>
               ))}
             </>
           ) : (
-            /* Desktop View Format */
+            /* Desktop View Format (Sneakrz King, Al-Manarh, Djabi) */
             <>
               {project.images.map((img, idx) => (
                 <motion.div variants={imgVariants} key={img} className="aspect-[4/3] rounded overflow-hidden border border-white/10 relative">
@@ -114,7 +114,7 @@ function ProjectRow({ project }: ProjectRowProps) {
                       muted
                       loop
                       playsInline
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
                     />
                   ) : (
                     <img
@@ -122,7 +122,7 @@ function ProjectRow({ project }: ProjectRowProps) {
                       alt={`${project.name} — screenshot ${idx + 1}`}
                       loading="lazy"
                       decoding="async"
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
                     />
                   )}
                 </motion.div>
@@ -152,10 +152,10 @@ function ProjectRow({ project }: ProjectRowProps) {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`View ${project.name} live site (opens in new tab)`}
-              className="tap-target inline-flex items-center gap-2 text-sm font-sans uppercase tracking-wide text-background bg-white px-5 py-3 rounded hover:bg-white/90 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-white/10 transition-all duration-300 font-bold focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+              className="group relative inline-flex items-center gap-2 px-6 py-4 overflow-hidden rounded-full text-sm font-syne font-bold uppercase tracking-widest text-white border border-white/10 bg-white/[0.03] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-white hover:text-background focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
             >
-              View Live Site
-              <ArrowUpRight size={16} aria-hidden="true" />
+              <span className="relative z-10">View Live Site</span>
+              <ArrowUpRight size={16} aria-hidden="true" className="relative z-10 text-accent group-hover:text-background transition-colors duration-500" />
             </motion.a>
           </div>
         </div>
@@ -181,7 +181,7 @@ export default function Projects() {
     <section
       id="work"
       aria-label="Selected works and portfolio projects"
-      className="relative w-full py-32 bg-transparent pointer-events-auto"
+      className="relative w-full py-20 md:py-24 bg-transparent pointer-events-auto"
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         {/* Header */}

@@ -136,15 +136,15 @@ export default function ScrollSceneGeometry() {
       {/* Orbiting Planets */}
       <group ref={orbitRef}>
         <mesh position={[3, 1, 0]}>
-          <sphereGeometry args={[0.2, isMobile ? 16 : 32, isMobile ? 16 : 32]} />
+          <sphereGeometry args={[0.2, isMobile ? 8 : 16, isMobile ? 8 : 16]} />
           <meshStandardMaterial color="#444" roughness={0.8} />
         </mesh>
         <mesh position={[-4, -2, -1]}>
-          <sphereGeometry args={[0.15, isMobile ? 16 : 32, isMobile ? 16 : 32]} />
+          <sphereGeometry args={[0.15, isMobile ? 8 : 16, isMobile ? 8 : 16]} />
           <meshStandardMaterial color="#888" roughness={0.4} metalness={0.5} />
         </mesh>
         <mesh position={[1, -3, 2]}>
-          <sphereGeometry args={[0.3, isMobile ? 16 : 32, isMobile ? 16 : 32]} />
+          <sphereGeometry args={[0.3, isMobile ? 8 : 16, isMobile ? 8 : 16]} />
           <meshStandardMaterial color="#fff" roughness={0.1} />
         </mesh>
       </group>

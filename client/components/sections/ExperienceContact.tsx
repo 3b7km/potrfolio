@@ -116,7 +116,7 @@ export default function ExperienceContact() {
     <section
       id="contact"
       aria-label="Contact form and information"
-      className="relative w-full py-48 md:py-64 bg-transparent pointer-events-auto border-t border-border/10"
+      className="relative w-full py-16 md:py-24 bg-transparent pointer-events-auto"
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8">

@@ -138,13 +138,13 @@ export default function Work() {
                           <img
                             src={project.images[0]}
                             alt={project.name}
-                            className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105"
+                            className="object-cover object-top w-full h-full transition-transform duration-700 group-hover:scale-105"
                           />
                           {project.images[1] && (
                             <img
                               src={project.images[1]}
                               alt={`${project.name} secondary`}
-                              className="absolute inset-0 object-cover w-full h-full opacity-0 group-hover:opacity-100 transition-opacity duration-700"
+                              className="absolute inset-0 object-cover object-top w-full h-full opacity-0 group-hover:opacity-100 transition-opacity duration-700"
                             />
                           )}
                         </div>
@@ -237,13 +237,13 @@ export default function Work() {
                       </h3>
                       <div className="flex flex-col gap-5">
                         {Object.entries(project.techStack).map(
-                          ([category, items]) => (
+                          ([category, items]: [string, string[] | undefined]) => (
                             <div key={category}>
                               <span className="block text-xs font-sans text-white/50 uppercase tracking-widest mb-2">
                                 {category}
                               </span>
                               <div className="flex flex-wrap gap-1.5">
-                                {items.map((item) => (
+                                {(items || []).map((item: string) => (
                                   <span
                                     key={item}
                                     className="text-xs font-sans px-2 py-1 bg-white/5 border border-white/5 text-muted"
