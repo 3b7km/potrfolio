@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { projects, skills } from "@/lib/data";
 import Footer from "@/components/Footer";
@@ -37,16 +37,16 @@ function CollapsibleSection({
         className="tap-target w-full flex items-center justify-between py-4 text-xs font-sans uppercase tracking-widest text-muted hover:text-foreground transition-colors"
       >
         <span>{isExpanded ? `Hide ${title}` : `View ${title}`}</span>
-        <motion.div
+        <m.div
           animate={{ rotate: isExpanded ? 180 : 0 }}
           transition={{ duration: 0.3 }}
         >
           <ChevronDown size={16} />
-        </motion.div>
+        </m.div>
       </button>
       <AnimatePresence>
         {isExpanded && (
-          <motion.div
+          <m.div
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
@@ -54,7 +54,7 @@ function CollapsibleSection({
             className="overflow-hidden"
           >
             <div className="pb-6">{children}</div>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </div>
@@ -89,15 +89,15 @@ export default function Work() {
       {/* Hero Header */}
       <header className="w-full pt-48 pb-24 px-6 md:px-12 border-b border-border/10">
         <div className="max-w-7xl mx-auto flex flex-col gap-6">
-          <motion.h1
+          <m.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="text-fluid-hero font-syne font-bold uppercase tracking-tighter"
           >
             Digital <br /> Archives
-          </motion.h1>
-          <motion.p
+          </m.h1>
+          <m.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.8 }}
@@ -105,7 +105,7 @@ export default function Work() {
           >
             A comprehensive overview of massive-scale e-commerce architectures,
             3D web experiences, and brand platforms currently in production.
-          </motion.p>
+          </m.p>
         </div>
       </header>
 
@@ -126,7 +126,7 @@ export default function Work() {
                 >
                   {/* Image Showcase */}
                   <div className="w-full lg:w-3/5 overflow-hidden relative aspect-[4/3] md:aspect-[16/10] bg-[#111]">
-                    <motion.div
+                    <m.div
                       initial={{ scale: 1.1, opacity: 0 }}
                       whileInView={{ scale: 1, opacity: 1 }}
                       viewport={{ once: true, margin: "-20%" }}
@@ -149,7 +149,7 @@ export default function Work() {
                           )}
                         </div>
                       )}
-                    </motion.div>
+                    </m.div>
                   </div>
 
                   {/* Project Details */}

@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Home } from "lucide-react";
 
 const NotFound = () => {
@@ -20,22 +20,22 @@ const NotFound = () => {
       <div className="relative w-full max-w-2xl px-4 text-center">
         <div className="absolute inset-0 bg-gradient-to-br from-accent/10 via-background to-accent/5 rounded-full blur-3xl -z-10"></div>
 
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           className="space-y-6"
         >
-          <motion.h1
+          <m.h1
             className="text-7xl md:text-9xl font-syne font-bold bg-gradient-to-r from-foreground to-accent bg-clip-text text-transparent"
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.5 }}
           >
             404
-          </motion.h1>
+          </m.h1>
 
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2, duration: 0.6 }}
@@ -51,9 +51,9 @@ const NotFound = () => {
               Attempted route:{" "}
               <span className="text-accent">{location.pathname}</span>
             </p>
-          </motion.div>
+          </m.div>
 
-          <motion.button
+          <m.button
             onClick={() => navigate("/")}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -64,8 +64,8 @@ const NotFound = () => {
           >
             <Home size={18} />
             Return Home
-          </motion.button>
-        </motion.div>
+          </m.button>
+        </m.div>
       </div>
     </div>
   );

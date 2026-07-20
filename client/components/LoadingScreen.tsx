@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 
 interface LoadingScreenProps {
   onComplete: () => void;
@@ -27,7 +27,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
   }, [count, onComplete]);
 
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 1 }}
       animate={
         count >= 100
@@ -43,7 +43,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
       className="fixed inset-0 bg-background z-50 flex items-center justify-center overflow-hidden"
     >
       {/* Left split */}
-      <motion.div
+      <m.div
         initial={{ x: 0 }}
         animate={count >= 100 ? { x: "-100vw" } : { x: 0 }}
         transition={{ delay: 0.3, duration: 0.8, ease: "easeInOut" }}
@@ -51,7 +51,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
       />
 
       {/* Right split */}
-      <motion.div
+      <m.div
         initial={{ x: 0 }}
         animate={count >= 100 ? { x: "100vw" } : { x: 0 }}
         transition={{ delay: 0.3, duration: 0.8, ease: "easeInOut" }}
@@ -59,7 +59,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
       />
 
       {/* Counter */}
-      <motion.div
+      <m.div
         animate={
           count >= 100 ? { opacity: 0, scale: 0.8 } : { opacity: 1, scale: 1 }
         }
@@ -70,15 +70,15 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
           {String(Math.floor(count)).padStart(2, "0")}
         </div>
 
-        <motion.div
+        <m.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2, duration: 0.8 }}
           className="text-4xl font-syne font-bold text-foreground"
         >
           Y.A
-        </motion.div>
-      </motion.div>
-    </motion.div>
+        </m.div>
+      </m.div>
+    </m.div>
   );
 }

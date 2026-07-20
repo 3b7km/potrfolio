@@ -1,4 +1,4 @@
-import { motion, Variants } from "framer-motion";
+import { m, Variants } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
 
 const fadeIn: Variants = {
@@ -18,7 +18,7 @@ export default function CaseStudies() {
   return (
     <div className="flex flex-col gap-32 pt-8 w-full">
       {/* Case Study 1: Dethar */}
-      <motion.article 
+      <m.article 
             initial="hidden"
             whileInView="visible"
             viewport={{ once: false, margin: "-10%" }}
@@ -27,26 +27,26 @@ export default function CaseStudies() {
           >
             {/* Text Content */}
             <div className="order-2 lg:order-1 lg:col-span-6 flex flex-col gap-6">
-              <motion.div variants={fadeIn} className="inline-flex items-center gap-2 px-3 py-1 bg-accent/10 text-accent rounded-full text-xs font-bold uppercase tracking-wider w-fit border border-accent/20">
+              <m.div variants={fadeIn} className="inline-flex items-center gap-2 px-3 py-1 bg-accent/10 text-accent rounded-full text-xs font-bold uppercase tracking-wider w-fit border border-accent/20">
                 Performance Engineering & Localization
-              </motion.div>
+              </m.div>
               
-              <motion.h3 variants={fadeIn} className="text-4xl lg:text-5xl font-syne font-bold uppercase leading-tight tracking-tight text-foreground">
+              <m.h3 variants={fadeIn} className="text-4xl lg:text-5xl font-syne font-bold uppercase leading-tight tracking-tight text-foreground">
                 Dethar
-              </motion.h3>
+              </m.h3>
               
-              <motion.p variants={fadeIn} className="text-lg font-sans text-white/80 leading-relaxed font-medium">
+              <m.p variants={fadeIn} className="text-lg font-sans text-white/80 leading-relaxed font-medium">
                 Boosting performance by 30% and localizing for a global Islamic market.
-              </motion.p>
+              </m.p>
               
-              <motion.div variants={fadeIn} className="space-y-4 mt-4">
+              <m.div variants={fadeIn} className="space-y-4 mt-4">
                 <h4 className="text-sm font-bold uppercase tracking-widest text-muted">The Challenge</h4>
                 <p className="text-sm font-sans text-muted leading-relaxed">
                   Dethar, a premium Islamic products store, was struggling with a fragmented user experience. The site had inconsistent language (mixing Arabic and English), poor accessibility scores (73), and sluggish performance (60), which was hurting conversion rates and trust within its target demographic.
                 </p>
-              </motion.div>
+              </m.div>
 
-              <motion.div variants={fadeIn} className="space-y-4 mt-2">
+              <m.div variants={fadeIn} className="space-y-4 mt-2">
                 <h4 className="text-sm font-bold uppercase tracking-widest text-muted">The Solution</h4>
                 <ul className="space-y-3">
                   <li className="flex gap-3 text-sm font-sans text-muted leading-relaxed">
@@ -62,9 +62,9 @@ export default function CaseStudies() {
                     <span><strong>Accessibility First:</strong> Audited the site for WCAG compliance, adding descriptive Alt text to all imagery and improving mobile touch targets.</span>
                   </li>
                 </ul>
-              </motion.div>
+              </m.div>
 
-              <motion.div variants={fadeIn} className="mt-6 p-6 border border-white/10 rounded-xl bg-white/[0.02]">
+              <m.div variants={fadeIn} className="mt-6 p-6 border border-white/10 rounded-xl bg-white/[0.02]">
                 <h4 className="text-sm font-bold uppercase tracking-widest text-white/90 mb-4">The Results (Data-Driven)</h4>
                 <div className="grid grid-cols-4 gap-4 text-center">
                   <div className="flex flex-col gap-1">
@@ -88,18 +88,18 @@ export default function CaseStudies() {
                     <span className="text-xs font-bold text-green-400 mt-1">92 <span className="text-[10px] ml-1">(+19%)</span></span>
                   </div>
                 </div>
-              </motion.div>
+              </m.div>
 
-              <motion.div variants={fadeIn} className="mt-2 p-4 bg-accent/5 rounded border border-accent/20">
+              <m.div variants={fadeIn} className="mt-2 p-4 bg-accent/5 rounded border border-accent/20">
                 <h4 className="text-xs font-bold uppercase tracking-widest text-accent mb-2">Key Learning</h4>
                 <p className="text-sm font-sans text-muted leading-relaxed italic">
                   "Learned how to balance high-res visual storytelling with aggressive performance targets in the Shopify ecosystem."
                 </p>
-              </motion.div>
+              </m.div>
             </div>
 
             {/* Visuals */}
-            <motion.div variants={fadeIn} className="order-1 lg:order-2 lg:col-span-6 relative w-full h-full min-h-[400px] flex items-center justify-center">
+            <m.div variants={fadeIn} className="order-1 lg:order-2 lg:col-span-6 relative w-full h-full min-h-[400px] flex items-center justify-center">
               <div className="relative w-full max-w-sm aspect-[9/16] mx-auto">
                 <img 
                   src="/photos/dethar-2.webp" 
@@ -117,13 +117,13 @@ export default function CaseStudies() {
                   <div className="text-2xl font-syne font-bold text-accent">+30% Speed</div>
                 </div>
               </div>
-            </motion.div>
-          </motion.article>
+            </m.div>
+          </m.article>
 
           <hr className="border-t border-border/5" />
 
           {/* Case Study 2: Floof */}
-          <motion.article 
+          <m.article 
             initial="hidden"
             whileInView="visible"
             viewport={{ once: false, margin: "-10%" }}
@@ -131,7 +131,7 @@ export default function CaseStudies() {
             className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center"
           >
             {/* Visuals (Left) */}
-            <motion.div variants={fadeIn} className="lg:col-span-6 w-full flex flex-col gap-6">
+            <m.div variants={fadeIn} className="lg:col-span-6 w-full flex flex-col gap-6">
               {/* Branding Board (CSS Based) */}
               <div className="p-8 border border-[#de5c88]/20 rounded-2xl bg-[#fff1f6]/5 flex flex-col gap-8 shadow-2xl relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-[#de5c88] rounded-full blur-[100px] opacity-10 mix-blend-screen pointer-events-none"></div>
@@ -177,30 +177,30 @@ export default function CaseStudies() {
                   className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
                 />
               </div>
-            </motion.div>
+            </m.div>
 
             {/* Text Content (Right) */}
             <div className="lg:col-span-6 flex flex-col gap-6">
-              <motion.div variants={fadeIn} className="inline-flex items-center gap-2 px-3 py-1 bg-accent/10 text-accent rounded-full text-xs font-bold uppercase tracking-wider w-fit border border-accent/20">
+              <m.div variants={fadeIn} className="inline-flex items-center gap-2 px-3 py-1 bg-accent/10 text-accent rounded-full text-xs font-bold uppercase tracking-wider w-fit border border-accent/20">
                 Full-Brand Identity & Custom E-commerce
-              </motion.div>
+              </m.div>
               
-              <motion.h3 variants={fadeIn} className="text-4xl lg:text-5xl font-syne font-bold uppercase leading-tight tracking-tight text-foreground">
+              <m.h3 variants={fadeIn} className="text-4xl lg:text-5xl font-syne font-bold uppercase leading-tight tracking-tight text-foreground">
                 Floof
-              </motion.h3>
+              </m.h3>
               
-              <motion.p variants={fadeIn} className="text-lg font-sans text-white/80 leading-relaxed font-medium">
+              <m.p variants={fadeIn} className="text-lg font-sans text-white/80 leading-relaxed font-medium">
                 Designing the soul and the store of a premium body pillow brand.
-              </motion.p>
+              </m.p>
               
-              <motion.div variants={fadeIn} className="space-y-4 mt-4">
+              <m.div variants={fadeIn} className="space-y-4 mt-4">
                 <h4 className="text-sm font-bold uppercase tracking-widest text-muted">The Challenge</h4>
                 <p className="text-sm font-sans text-muted leading-relaxed">
                   Floof was a new concept in the premium bedding space that needed a complete identity from scratch. The goal was to convey "ultimate comfort" through every touchpoint—from the logo to the final checkout screen.
                 </p>
-              </motion.div>
+              </m.div>
 
-              <motion.div variants={fadeIn} className="space-y-4 mt-2">
+              <m.div variants={fadeIn} className="space-y-4 mt-2">
                 <h4 className="text-sm font-bold uppercase tracking-widest text-muted">The Solution</h4>
                 <p className="text-sm font-sans text-white/80 mb-4 font-medium italic">
                   I acted as both the Brand Designer and the Lead Developer:
@@ -219,9 +219,9 @@ export default function CaseStudies() {
                     <span><strong>UX Design:</strong> Focused on a "minimal-friction" shopping experience, ensuring that high-resolution product imagery loaded instantly without sacrificing speed.</span>
                   </li>
                 </ul>
-              </motion.div>
+              </m.div>
 
-              <motion.div variants={fadeIn} className="mt-6 p-6 border border-white/10 rounded-xl bg-white/[0.02]">
+              <m.div variants={fadeIn} className="mt-6 p-6 border border-white/10 rounded-xl bg-white/[0.02]">
                 <h4 className="text-sm font-bold uppercase tracking-widest text-white/90 mb-4">Key Deliverables</h4>
                 <div className="flex flex-col gap-3">
                   <div className="flex items-center gap-3">
@@ -237,16 +237,16 @@ export default function CaseStudies() {
                     <span className="text-sm font-sans text-white/80"><strong>Conversion Optimization:</strong> A mobile-first design prioritizing easy navigation.</span>
                   </div>
                 </div>
-              </motion.div>
+              </m.div>
 
-              <motion.div variants={fadeIn} className="mt-2 p-4 bg-accent/5 rounded border border-accent/20">
+              <m.div variants={fadeIn} className="mt-2 p-4 bg-accent/5 rounded border border-accent/20">
                 <h4 className="text-xs font-bold uppercase tracking-widest text-accent mb-2">Key Learning</h4>
                 <p className="text-sm font-sans text-muted leading-relaxed italic">
                   "Mastered the intersection of brand identity and technical architecture, proving that a strong emotional connection doesn't have to come at the cost of load times."
                 </p>
-              </motion.div>
+              </m.div>
             </div>
-          </motion.article>
+          </m.article>
         </div>
   );
 }

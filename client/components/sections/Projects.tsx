@@ -1,8 +1,43 @@
 import { useState } from "react";
-import { motion, AnimatePresence, Variants } from "framer-motion";
+import { m, AnimatePresence, Variants, LazyMotion, domAnimation } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { projects } from "@/lib/data";
 import CaseStudies from "./CaseStudies";
+import { useRef, useEffect } from "react";
+
+function LazyVideo({ src, className }: { src: string; className?: string }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && videoRef.current) {
+          videoRef.current.src = src;
+          videoRef.current.load();
+          videoRef.current.play().catch(() => {});
+          observer.disconnect();
+        }
+      });
+    }, { rootMargin: "200px" });
+
+    if (videoRef.current) {
+      observer.observe(videoRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [src]);
+
+  return (
+    <video
+      ref={videoRef}
+      muted
+      loop
+      playsInline
+      preload="none"
+      className={className}
+    />
+  );
+}
 
 interface ProjectRowProps {
   project: (typeof projects)[0];
@@ -26,7 +61,7 @@ function ProjectRow({ project }: ProjectRowProps) {
   };
 
   return (
-    <motion.article 
+    <m.article 
       initial="hidden"
       whileInView="visible"
       viewport={{ once: false, margin: "-10%" }}
@@ -36,16 +71,16 @@ function ProjectRow({ project }: ProjectRowProps) {
       <div className="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-y-12 md:gap-x-12 lg:gap-x-16 items-start px-4 md:px-0">
         {/* 1. Header (Title, Description, Tags) */}
         <div className="flex flex-col gap-2 order-1 md:col-span-7 md:col-start-6 md:row-start-1">
-          <motion.span variants={itemVariants} className="text-sm md:text-sm font-sans text-muted mb-2">
+          <m.span variants={itemVariants} className="text-sm md:text-sm font-sans text-muted mb-2">
             {project.id} — {project.type}
-          </motion.span>
-          <motion.h3 variants={itemVariants} className="text-4xl sm:text-4xl md:text-5xl font-syne font-bold uppercase tracking-tight text-foreground transition-all duration-300 leading-tight antialiased">
+          </m.span>
+          <m.h3 variants={itemVariants} className="text-4xl sm:text-4xl md:text-5xl font-syne font-bold uppercase tracking-tight text-foreground transition-all duration-300 leading-tight antialiased">
             {project.name}
-          </motion.h3>
-          <motion.p variants={itemVariants} className="text-base sm:text-base md:text-sm font-sans text-muted max-w-lg mt-2 leading-relaxed antialiased">
+          </m.h3>
+          <m.p variants={itemVariants} className="text-base sm:text-base md:text-sm font-sans text-muted max-w-lg mt-2 leading-relaxed antialiased">
             {project.description}
-          </motion.p>
-          <motion.div
+          </m.p>
+          <m.div
             variants={itemVariants}
             className="flex flex-wrap gap-2 mt-4"
             role="list"
@@ -60,7 +95,7 @@ function ProjectRow({ project }: ProjectRowProps) {
                 {tag}
               </span>
             ))}
-          </motion.div>
+          </m.div>
         </div>
 
         {/* 2. Photos */}
@@ -75,26 +110,22 @@ function ProjectRow({ project }: ProjectRowProps) {
             /* Mobile View Format (Dethar, MN Trends, ZAD, Helwa, Floof, Dancing Cow) */
             <>
               {project.images.map((img, idx) => (
-                <motion.div 
+                <m.div 
                   variants={imgVariants}
                   key={img}
                   className={`${project.images.length === 1 ? "w-full max-w-sm mx-auto" : "w-1/2"} rounded-xl overflow-hidden border border-white/10 bg-black/20 shadow-2xl relative`}
                   style={{ aspectRatio: "9/16" }}
                 >
                   {img.endsWith(".mp4") ? (
-                    <video
+                    <LazyVideo
                       src={img}
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
                       className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
                     />
                   ) : (
                     <img
                       src={img}
-                      srcSet={`${img.replace('.webp', '-sm.webp')} 350w, ${img} 600w`}
-                      sizes="(max-width: 768px) 350px, 600px"
+                      srcSet={`${img.replace('.webp', '-sm.webp')} 300w, ${img} 600w`}
+                      sizes="(max-width: 768px) 300px, 600px"
                       alt={`${project.name} — screenshot ${idx + 1}`}
                       loading="lazy"
                       decoding="async"
@@ -103,37 +134,33 @@ function ProjectRow({ project }: ProjectRowProps) {
                       className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
                     />
                   )}
-                </motion.div>
+                </m.div>
               ))}
             </>
           ) : (
             /* Desktop View Format (Sneakrz King, Al-Manarh, Djabi) */
             <>
               {project.images.map((img, idx) => (
-                <motion.div variants={imgVariants} key={img} className="aspect-[4/3] rounded overflow-hidden border border-white/10 relative">
+                <m.div variants={imgVariants} key={img} className="aspect-[4/3] rounded overflow-hidden border border-white/10 relative">
                   {img.endsWith(".mp4") ? (
-                    <video
+                    <LazyVideo
                       src={img}
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
                       className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
                     />
                   ) : (
                     <img
                       src={img}
-                      srcSet={`${img.replace('.webp', '-sm.webp')} 350w, ${img} 800w`}
-                      sizes="(max-width: 768px) 350px, 800px"
+                      srcSet={`${img.replace('.webp', '-sm.webp')} 300w, ${img} 600w`}
+                      sizes="(max-width: 768px) 300px, 600px"
                       alt={`${project.name} — screenshot ${idx + 1}`}
                       loading="lazy"
                       decoding="async"
-                      width={800}
-                      height={600}
+                      width={600}
+                      height={450}
                       className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
                     />
                   )}
-                </motion.div>
+                </m.div>
               ))}
             </>
           )}
@@ -141,7 +168,7 @@ function ProjectRow({ project }: ProjectRowProps) {
 
         {/* 3. Footer (Key Metric, CTA) */}
         <div className="flex flex-col gap-6 order-3 md:col-span-7 md:col-start-6 md:row-start-2 mt-4 md:mt-0">
-          <motion.div variants={itemVariants} className="font-sans p-4 border border-white/10 rounded bg-white/[0.01]">
+          <m.div variants={itemVariants} className="font-sans p-4 border border-white/10 rounded bg-white/[0.01]">
             <div className="text-xs text-muted mb-2 uppercase tracking-wide">
               Key Metric
             </div>
@@ -151,10 +178,10 @@ function ProjectRow({ project }: ProjectRowProps) {
             <p className="text-xs text-white/70 mt-2 leading-relaxed">
               {project.metricContext}
             </p>
-          </motion.div>
+          </m.div>
 
           <div className="flex flex-wrap gap-3">
-            <motion.a
+            <m.a
               variants={itemVariants}
               href={project.url}
               target="_blank"
@@ -164,11 +191,11 @@ function ProjectRow({ project }: ProjectRowProps) {
             >
               <span className="relative z-10">View Live Site</span>
               <ArrowUpRight size={16} aria-hidden="true" className="relative z-10 text-accent group-hover:text-background transition-colors duration-500" />
-            </motion.a>
+            </m.a>
           </div>
         </div>
       </div>
-    </motion.article>
+    </m.article>
   );
 }
 
@@ -186,12 +213,13 @@ export default function Projects() {
   );
 
   return (
-    <section
-      id="work"
-      aria-label="Selected works and portfolio projects"
-      className="relative w-full py-20 md:py-24 bg-transparent pointer-events-auto"
-    >
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
+    <LazyMotion features={domAnimation} strict>
+      <section
+        id="work"
+        aria-label="Selected works and portfolio projects"
+        className="relative w-full py-20 md:py-24 bg-transparent pointer-events-auto"
+      >
+        <div className="max-w-7xl mx-auto px-6 md:px-12">
         {/* Header */}
         <div className="mb-16 md:mb-20 flex flex-col md:flex-row justify-between items-start md:items-end gap-8">
           <h2 className="text-fluid-section font-syne font-bold uppercase tracking-tighter">
@@ -231,7 +259,7 @@ export default function Projects() {
         <div className="border-b border-border/10">
           <AnimatePresence mode="wait">
             {filter === "Case Studies" ? (
-              <motion.div
+              <m.div
                 key="case-studies-view"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -239,10 +267,10 @@ export default function Projects() {
                 transition={{ duration: 0.4 }}
               >
                 <CaseStudies />
-              </motion.div>
+              </m.div>
             ) : (
               filteredProjects.map((project) => (
-                <motion.div
+                <m.div
                   key={project.id}
                   layout
                   initial={{ opacity: 0, y: 20 }}
@@ -251,12 +279,13 @@ export default function Projects() {
                   transition={{ duration: 0.4 }}
                 >
                   <ProjectRow project={project} />
-                </motion.div>
+                </m.div>
               ))
             )}
           </AnimatePresence>
         </div>
       </div>
     </section>
+    </LazyMotion>
   );
 }

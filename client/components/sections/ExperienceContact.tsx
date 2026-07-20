@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Mail, Linkedin, Send, CheckCircle, ArrowUpRight } from "lucide-react";
 import { ContactFormSchema } from "@/lib/validation";
 
@@ -126,14 +126,14 @@ export default function ExperienceContact() {
               <span className="text-sm font-sans tracking-widest text-muted uppercase mb-8 block">
                 (Contact)
               </span>
-              <motion.h2
+              <m.h2
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
                 className="text-fluid-contact font-syne font-bold uppercase tracking-tighter leading-[0.8] text-foreground mix-blend-difference"
               >
                 Say <br /> <span className="text-muted">Hi!</span>
-              </motion.h2>
+              </m.h2>
               <p className="text-sm font-sans text-muted mt-6 max-w-sm">
                 Whether you have a project in mind, want to discuss
                 collaboration, or simply want to connect—I'm always open to
@@ -298,7 +298,7 @@ export default function ExperienceContact() {
               </div>
 
               {/* Submit Button */}
-              <motion.button
+              <m.button
                 type="submit"
                 disabled={formState !== "idle"}
                 whileHover={{ scale: 1.02 }}
@@ -313,7 +313,7 @@ export default function ExperienceContact() {
                 )}
                 {formState === "sending" && (
                   <>
-                    <motion.div
+                    <m.div
                       animate={{ rotate: 360 }}
                       transition={{
                         duration: 1,
@@ -337,7 +337,7 @@ export default function ExperienceContact() {
                     <span>Error</span>
                   </>
                 )}
-              </motion.button>
+              </m.button>
 
               {/* Live region for form status announcements */}
               <div
@@ -355,7 +355,7 @@ export default function ExperienceContact() {
 
               {/* Success Message */}
               {formState === "sent" && (
-                <motion.div
+                <m.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
@@ -369,12 +369,12 @@ export default function ExperienceContact() {
                       Thank you for reaching out. I'll review your message and get back to you within 24 hours.
                     </p>
                   </div>
-                </motion.div>
+                </m.div>
               )}
 
               {/* Rate Limit Error Message */}
               {rateLimitError && (
-                <motion.div
+                <m.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
@@ -387,7 +387,7 @@ export default function ExperienceContact() {
                       Please wait a moment before sending another message.
                     </p>
                   </div>
-                </motion.div>
+                </m.div>
               )}
             </form>
           </div>
