@@ -15,19 +15,19 @@ export default function Hero() {
       return;
     }
 
-    const tl = gsap.timeline({ 
-      defaults: { ease: "expo.out", duration: 1.4 } 
+    const tl = gsap.timeline({
+      defaults: { ease: "expo.out", duration: 1.4 }
     });
 
     // Staggered reveal with blur for a premium cinematic feel
     tl.fromTo(
       ".hero-anim",
       { y: 40, opacity: 0, filter: "blur(12px)" },
-      { 
-        y: 0, 
-        opacity: 1, 
-        filter: "blur(0px)", 
-        stagger: 0.15, 
+      {
+        y: 0,
+        opacity: 1,
+        filter: "blur(0px)",
+        stagger: 0.15,
         delay: 0.2,
         clearProps: "filter" // cleanup for performance
       }
@@ -144,6 +144,7 @@ export default function Hero() {
               className="w-4 h-4 md:w-5 md:h-5 text-accent group-hover:text-background transition-colors duration-500"
               fill="none"
               stroke="currentColor"
+
               viewBox="0 0 24 24"
               aria-hidden="true"
             >

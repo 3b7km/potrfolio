@@ -93,6 +93,8 @@ function ProjectRow({ project }: ProjectRowProps) {
                   ) : (
                     <img
                       src={img}
+                      srcSet={`${img.replace('.webp', '-sm.webp')} 350w, ${img} 600w`}
+                      sizes="(max-width: 768px) 350px, 600px"
                       alt={`${project.name} — screenshot ${idx + 1}`}
                       loading="lazy"
                       decoding="async"
@@ -121,6 +123,8 @@ function ProjectRow({ project }: ProjectRowProps) {
                   ) : (
                     <img
                       src={img}
+                      srcSet={`${img.replace('.webp', '-sm.webp')} 350w, ${img} 800w`}
+                      sizes="(max-width: 768px) 350px, 800px"
                       alt={`${project.name} — screenshot ${idx + 1}`}
                       loading="lazy"
                       decoding="async"
