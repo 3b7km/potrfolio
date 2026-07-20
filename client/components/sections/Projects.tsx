@@ -96,6 +96,8 @@ function ProjectRow({ project }: ProjectRowProps) {
                       alt={`${project.name} — screenshot ${idx + 1}`}
                       loading="lazy"
                       decoding="async"
+                      width={600}
+                      height={1008}
                       className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
                     />
                   )}
@@ -122,6 +124,8 @@ function ProjectRow({ project }: ProjectRowProps) {
                       alt={`${project.name} — screenshot ${idx + 1}`}
                       loading="lazy"
                       decoding="async"
+                      width={800}
+                      height={600}
                       className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
                     />
                   )}
@@ -152,7 +156,7 @@ function ProjectRow({ project }: ProjectRowProps) {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`View ${project.name} live site (opens in new tab)`}
-              className="group relative inline-flex items-center gap-2 px-6 py-4 overflow-hidden rounded-full text-sm font-syne font-bold uppercase tracking-widest text-white border border-white/10 bg-white/[0.03] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-white hover:text-background focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+              className="group relative inline-flex items-center gap-2 px-6 py-4 overflow-hidden rounded-full text-sm font-syne font-bold uppercase tracking-widest text-white border border-white/10 bg-white/[0.03] transition-all duration-500 ease-custom hover:bg-white hover:text-background focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
             >
               <span className="relative z-10">View Live Site</span>
               <ArrowUpRight size={16} aria-hidden="true" className="relative z-10 text-accent group-hover:text-background transition-colors duration-500" />

@@ -20,6 +20,9 @@ export default {
         syne: ["Syne", "sans-serif"],
         sans: ["DM Sans", "sans-serif"],
       },
+      transitionTimingFunction: {
+        custom: "cubic-bezier(0.16, 1, 0.3, 1)",
+      },
       keyframes: {
         "accordion-down": {
           from: {

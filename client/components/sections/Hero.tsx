@@ -137,7 +137,7 @@ export default function Hero() {
             ref={buttonRef}
             href="#work"
             aria-label="View selected works — scroll to portfolio section"
-            className="group relative inline-flex items-center gap-3 px-8 md:px-12 py-4 md:py-5 overflow-hidden rounded-full text-sm md:text-base font-syne font-bold uppercase tracking-widest text-white border border-white/10 bg-white/[0.03] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-white hover:text-background focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+            className="group relative inline-flex items-center gap-3 px-8 md:px-12 py-4 md:py-5 overflow-hidden rounded-full text-sm md:text-base font-syne font-bold uppercase tracking-widest text-white border border-white/10 bg-white/[0.03] transition-all duration-500 ease-custom hover:bg-white hover:text-background focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
           >
             <span className="relative z-10">View Selected Works</span>
             <svg
