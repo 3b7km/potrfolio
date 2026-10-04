@@ -31,6 +31,71 @@ export const projects = [
   },
   {
     id: "02",
+    name: "COIBA",
+    platform: "Shopify / Custom Theme",
+    type: "E-Commerce — Fashion & Lifestyle (Egypt)",
+    tags: ["Shopify", "Liquid", "Fashion E-Commerce", "Product UX", "Egyptian Market", "Responsive Design"],
+    description:
+      "A Shopify fashion store for COIBA, an Egyptian lifestyle brand built around premium cotton, relaxed silhouettes, and coastal-inspired everyday wear. The storefront translates the brand idea — “Crafted in Egypt. Inspired by the Coast.” — into a clean, product-led shopping experience for adults, teenagers, kids, and accessories.",
+    metrics: "Multi-audience product architecture",
+    metricContext:
+      "Built a store structure that separates Adults, Teenagers, Kids, and Accessories while supporting product variants, promotional pricing, quick purchase actions, and a localized Egyptian checkout journey.",
+    url: "https://coiba.store/",
+    images: ["/photos/coiba-1.jpeg", "/photos/coiba-2.jpeg"],
+    impact: [
+      "Directly reinforces Shopify specialization with a real fashion-commerce storefront featuring variants, collections, cart, customer accounts, and localized pricing.",
+      "Connects brand identity to commerce visually, supporting the coastal, comfortable, premium-cotton positioning instead of treating the website as a generic catalog.",
+      "Provides product-detail depth through color variants, sale presentation, quick view, add-to-cart actions, and collection organization.",
+      "Adds local-market credibility by explicitly building for Egypt, using EGP pricing, local shipping language, and an Egyptian brand story."
+    ],
+    techStack: {
+      frontend: ["HTML5", "CSS3", "JavaScript", "Shopify Liquid"],
+      backend: ["Shopify (Ruby on Rails)"],
+      database: ["Shopify Integrated"],
+      deployment: ["Shopify Hosting"],
+    },
+    skills: [
+      "Shopify Optimization",
+      "UI/UX Design",
+      "Conversion Optimization",
+      "Template Customization",
+    ],
+  },
+  {
+    id: "03",
+    name: "Djabi",
+    platform: "Shopify / Modest Fashion",
+    type: "E-Commerce — Modest Fashion Store",
+    tags: ["Shopify", "Liquid", "UI/UX", "Content Management", "SEO"],
+    description:
+      "A complete e-commerce store for a modest fashion brand featuring the SUJOOD collection. Built with categorized product navigation, email subscription for new arrivals, and full social media marketing integration.",
+    metrics: "2x Organic Traffic",
+    metricContext:
+      "Result of implementing strict technical SEO practices, semantic HTML, and rapid page load speeds.",
+    url: "https://djabieg.com/",
+    images: ["/photos/djabi-1.webp", "/photos/djabi-2.webp"],
+    impact: [
+      "Implemented strict technical SEO practices and semantic HTML structures, resulting in a 2x increase in organic search traffic.",
+      "Developed a robust categorization system for diverse modest fashion lines (Prayer Isdals, Kaftans, Umara Abayas) to streamline the user journey.",
+      "Integrated automated email capture sequences linked to new arrival drops to maximize customer retention and lifetime value.",
+      "Optimized asset delivery and reduced third-party script blocking to ensure rapid page load speeds across all mobile devices."
+    ],
+    techStack: {
+      frontend: ["HTML5", "CSS3", "JavaScript", "Shopify Liquid"],
+      backend: ["Shopify (Ruby on Rails)"],
+      database: ["Shopify Integrated"],
+      deployment: ["Shopify Hosting"],
+    },
+    skills: [
+      "E-Commerce Platform Management",
+      "Product Catalog Management",
+      "UI/UX Design",
+      "Content Management",
+      "Digital Marketing",
+    ],
+  },
+  {
+    id: "04",
     name: "MN Trends",
     platform: "Shopify / Custom Theme",
     type: "E-Commerce — General Lifestyle (USA)",
@@ -63,43 +128,72 @@ export const projects = [
     ],
   },
   {
-    id: "03",
-    name: "ZAD",
-    platform: "Shopify Optimization",
-    type: "E-Commerce — Perfume Store",
-    tags: ["Shopify", "Liquid", "CSS3", "JavaScript", "SEO", "UI/UX"],
+    id: "05",
+    name: "Sneakrz King",
+    platform: "Next.js / Vercel",
+    type: "E-Commerce — Sneaker Store",
+    tags: ["React.js", "Next.js", "Tailwind", "Vercel", "Responsive"],
     description:
-      "Arabic luxury fragrance store featuring men's, niche, designer, and oriental collections. Required deep theme optimization, UI/UX refinement, and extensive Arabic copywriting for SEO.",
-    metrics: "200+ Verified Orders",
+      "A custom-built sneaker e-commerce platform deployed on Vercel. Features advanced product filtering by brand, real-time search, a dynamic shopping cart, and seamless social media integration.",
+    metrics: "<1.2s Load Time",
     metricContext:
-      "Generated real sales traction and over 200+ verified orders through unified luxury aesthetics and frictionless bilingual navigation.",
-    url: "https://zad-9478.myshopify.com",
-    images: ["/photos/zad-1.webp", "/photos/zad-2.webp"],
+      "Measured globally via Vercel Edge caching and aggressive lazy-loading of high-resolution sneaker images.",
+    url: "https://sneakrz-king.vercel.app",
+    images: ["/photos/king-1.webp", "/photos/king-2.webp"],
     impact: [
-      "Rewrote and SEO-optimized all product descriptions in Arabic, improving search visibility and content professionalism across the catalog.",
-      "Unified product image aesthetics across the niche perfume collection — consistent backgrounds and compositions creating a premium, editorial look.",
-      "Rebuilt the product card and review templates for a cleaner, more branded UI aligned with the store's luxury identity.",
-      "Added structured FAQ sections to product pages — including shipping, returns, and authenticity — reducing friction before purchase and building customer trust.",
-      "Fixed broken navigation links (Bundles 404), refreshed hero imagery, and updated section headings to modern bilingual labels (e.g. \"For Him / For Her\").",
-      "Refined UI/UX color identity and overall visual consistency — creating a cohesive dark-luxury aesthetic across all store sections."
+      "Built a custom serverless Next.js e-commerce platform from the ground up, deployed on Vercel for global edge caching and minimal latency.",
+      "Achieved sub-1.2s page load times globally by implementing aggressive lazy-loading and next/image optimization for high-resolution sneaker assets.",
+      "Engineered a real-time product filtering system (by brand, size, color) that instantly updates without page reloads, using React state management.",
+      "Integrated direct-to-social purchasing pathways via WhatsApp to accommodate regional buying behaviors and increase sales."
     ],
     techStack: {
-      frontend: ["HTML5", "CSS3", "JavaScript", "Shopify Liquid"],
-      backend: ["Shopify (Ruby on Rails)"],
-      database: ["Shopify Integrated"],
-      content: ["Arabic Copywriting", "Product Photography Direction"],
+      frontend: ["React.js", "Next.js", "Tailwind CSS", "JavaScript"],
+      backend: ["Node.js", "Serverless Functions"],
+      database: ["NoSQL (MongoDB / Firebase)"],
+      deployment: ["Vercel"],
     },
     skills: [
-      "Shopify Optimization",
-      "Template Customization",
-      "Conversion Optimization",
+      "Frontend Development",
       "UI/UX Design",
-      "Arabic Copywriting",
-      "SEO",
+      "API Integration",
+      "State Management",
+      "Responsive Web Design",
     ],
   },
   {
-    id: "04",
+    id: "06",
+    name: "Managem Aljazera",
+    platform: "Next.js / React",
+    type: "B2B Industrial — Steel & Construction Supply (Saudi Arabia)",
+    tags: ["Next.js", "React", "Tailwind CSS", "Arabic/English", "B2B Lead Generation", "Saudi Market"],
+    description:
+      "A bilingual Arabic/English B2B website for a Saudi-based supplier of steel, structural profiles, pipes, insulation materials, and MEP accessories. The experience was designed to turn a technically complex product catalog into a clear procurement journey for contractors, industrial businesses, and project teams across the Kingdom.",
+    metrics: "55-product technical catalog",
+    metricContext:
+      "Structured a large industrial inventory into searchable categories and product pages with specifications, applications, quotation CTAs, and direct sales contact flows.",
+    url: "https://www.managem-aljazera.com/ar",
+    images: ["/photos/Manjem-1.jpeg", "/photos/Manjem-2.jpeg"],
+    impact: [
+      "Shows capability beyond fashion and DTC by demonstrating high-trust digital experiences for technical B2B businesses.",
+      "Demonstrates regional expertise by positioning the work for the Saudi market, including Arabic-first content, Riyadh operations, Saudi standards, and nationwide logistics.",
+      "Proves conversion thinking by prioritizing a qualified quotation request and sales conversation rather than a standard cart checkout.",
+      "Highlights information architecture by organizing complex product groups, specifications, industries served, and procurement actions into a navigable system."
+    ],
+    techStack: {
+      frontend: ["Next.js", "React", "Tailwind CSS"],
+      backend: ["Node.js"],
+      database: ["Headless CMS"],
+      deployment: ["Vercel"],
+    },
+    skills: [
+      "B2B Lead Generation",
+      "Bilingual Architecture (AR/EN)",
+      "Technical SEO",
+      "UI/UX Design",
+    ],
+  },
+  {
+    id: "07",
     name: "Helwa Fashion",
     platform: "Shopify / Custom Theme",
     type: "E-Commerce — Fashion Store",
@@ -133,36 +227,7 @@ export const projects = [
     ],
   },
   {
-    id: "05",
-    name: "Floof",
-    platform: "Shopify / Custom Theme",
-    type: "E-Commerce — Premium Body Pillows",
-    tags: ["Shopify", "Liquid", "CSS3", "JavaScript", "UI/UX"],
-    description: "A custom-built Shopify store for Floof, a premium body pillow brand. The store features a highly responsive, custom-designed theme built entirely from scratch, focusing on conveying ultimate comfort and an inviting aesthetic.",
-    metrics: "10 Verified Orders (Early Launch)",
-    metricContext: "Achieved initial sales traction during early launch phase while engineered on a fast, lightweight custom theme without heavy third-party dependencies.",
-    url: "https://fl00f.myshopify.com/",
-    images: ["/photos/floof-2.webp", "/photos/floof-1.webp"],
-    impact: [
-      "Built a complete custom Shopify theme from scratch to match Floof's brand identity, resulting in a unique, premium storefront that generated early sales.",
-      "Optimized the user journey for frictionless shopping, highlighting product comfort and features intuitively.",
-      "Implemented seamless animations and responsive design elements to ensure a flawless mobile and desktop experience."
-    ],
-    techStack: {
-      frontend: ["HTML5", "CSS3", "JavaScript", "Shopify Liquid"],
-      backend: ["Shopify (Ruby on Rails)"],
-      database: ["Shopify Integrated"],
-      deployment: ["Shopify Hosting"],
-    },
-    skills: [
-      "E-Commerce Platform Customization",
-      "UI/UX Design",
-      "Frontend Development",
-      "Shopify Liquid Programming"
-    ],
-  },
-  {
-    id: "06",
+    id: "08",
     name: "The Dancing Cow",
     platform: "Shopify / Custom Theme",
     type: "E-Commerce — Artisanal Food",
@@ -170,7 +235,7 @@ export const projects = [
     description: "A visually striking Shopify store built from scratch for The Dancing Cow, specializing in artisanal butter, ghee, and natural food products. The site balances a playful brand identity with premium product presentation.",
     metrics: "Brand-Centric Design",
     metricContext: "Developed an entirely custom, tailored experience directly reflecting the brand's aesthetic.",
-    url: "https://the-dancing-cow.myshopify.com/",
+    url: "https://drive.google.com/file/d/1cdvjmbbDIKdQxkjTYOvn73_fFPclJQ2t/view?usp=drivesdk",
     images: ["/photos/dancing-cow-vid.mp4", "/photos/dancing-cow-1.webp"],
     impact: [
       "Developed a custom Shopify theme from the ground up, avoiding off-the-shelf templates to ensure absolute brand consistency.",
@@ -191,40 +256,7 @@ export const projects = [
     ],
   },
   {
-    id: "07",
-    name: "Sneakrz King",
-    platform: "Next.js / Vercel",
-    type: "E-Commerce — Sneaker Store",
-    tags: ["React.js", "Next.js", "Tailwind", "Vercel", "Responsive"],
-    description:
-      "A custom-built sneaker e-commerce platform deployed on Vercel. Features advanced product filtering by brand, real-time search, a dynamic shopping cart, and seamless social media integration.",
-    metrics: "<1.2s Load Time",
-    metricContext:
-      "Measured globally via Vercel Edge caching and aggressive lazy-loading of high-resolution sneaker images.",
-    url: "https://sneakrz-king.vercel.app",
-    images: ["/photos/king-1.webp", "/photos/king-2.webp"],
-    impact: [
-      "Built a custom serverless Next.js e-commerce platform from the ground up, deployed on Vercel for global edge caching and minimal latency.",
-      "Achieved sub-1.2s page load times globally by implementing aggressive lazy-loading and next/image optimization for high-resolution sneaker assets.",
-      "Engineered a real-time product filtering system (by brand, size, color) that instantly updates without page reloads, using React state management.",
-      "Integrated direct-to-social purchasing pathways via WhatsApp to accommodate regional buying behaviors and increase sales."
-    ],
-    techStack: {
-      frontend: ["React.js", "Next.js", "Tailwind CSS", "JavaScript"],
-      backend: ["Node.js", "Serverless Functions"],
-      database: ["NoSQL (MongoDB / Firebase)"],
-      deployment: ["Vercel"],
-    },
-    skills: [
-      "Frontend Development",
-      "UI/UX Design",
-      "API Integration",
-      "State Management",
-      "Responsive Web Design",
-    ],
-  },
-  {
-    id: "08",
+    id: "09",
     name: "Al-Manarh General Contracting",
     platform: "WordPress",
     type: "Portfolios — Construction & Business Services",
@@ -252,39 +284,6 @@ export const projects = [
       "Custom Theme Creation",
       "SEO",
       "UI/UX Design"
-    ],
-  },
-  {
-    id: "09",
-    name: "Djabi",
-    platform: "Shopify / Modest Fashion",
-    type: "E-Commerce — Modest Fashion Store",
-    tags: ["Shopify", "Liquid", "UI/UX", "Content Management", "SEO"],
-    description:
-      "A complete e-commerce store for a modest fashion brand featuring the SUJOOD collection. Built with categorized product navigation, email subscription for new arrivals, and full social media marketing integration.",
-    metrics: "2x Organic Traffic",
-    metricContext:
-      "Result of implementing strict technical SEO practices, semantic HTML, and rapid page load speeds.",
-    url: "https://djabi-eg.com",
-    images: ["/photos/djabi-1.webp", "/photos/djabi-2.webp"],
-    impact: [
-      "Implemented strict technical SEO practices and semantic HTML structures, resulting in a 2x increase in organic search traffic.",
-      "Developed a robust categorization system for diverse modest fashion lines (Prayer Isdals, Kaftans, Umara Abayas) to streamline the user journey.",
-      "Integrated automated email capture sequences linked to new arrival drops to maximize customer retention and lifetime value.",
-      "Optimized asset delivery and reduced third-party script blocking to ensure rapid page load speeds across all mobile devices."
-    ],
-    techStack: {
-      frontend: ["HTML5", "CSS3", "JavaScript", "Shopify Liquid"],
-      backend: ["Shopify (Ruby on Rails)"],
-      database: ["Shopify Integrated"],
-      deployment: ["Shopify Hosting"],
-    },
-    skills: [
-      "E-Commerce Platform Management",
-      "Product Catalog Management",
-      "UI/UX Design",
-      "Content Management",
-      "Digital Marketing",
     ],
   },
 ];

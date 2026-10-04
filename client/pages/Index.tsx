@@ -80,7 +80,7 @@ export default function Index() {
 
       {/* Floating Navigation — CSS transition for show/hide */}
       <div
-        className={`transition-all duration-500 ease-custom ${
+        className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ease-custom ${
           showNav
             ? "opacity-100 translate-y-0"
             : "opacity-0 -translate-y-full pointer-events-none"
