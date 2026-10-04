@@ -101,12 +101,12 @@ function ProjectRow({ project }: ProjectRowProps) {
         {/* 2. Photos */}
         <div 
           className={`order-2 md:col-span-5 md:col-start-1 md:row-start-1 md:row-span-2 w-full ${
-            ["01", "04", "07", "08"].includes(project.id)
+            ["01", "02", "04", "06", "07", "08"].includes(project.id)
               ? "flex flex-row gap-4" 
               : "flex flex-col gap-4"
           }`}
         >
-          {["01", "04", "07", "08"].includes(project.id) ? (
+          {["01", "02", "04", "06", "07", "08"].includes(project.id) ? (
             /* Mobile View Format (Dethar, MN Trends, ZAD, Helwa, Floof, Dancing Cow) */
             <>
               {project.images.map((img, idx) => (
